@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Our Story — Salmon</title>
+  <meta name="description" content="Salmon was built by operators who lived the pain of stale CRM data. Meet the team behind the real-time data engine.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- OG -->
+  <meta property="og:title" content="Our Story — Salmon">
+  <meta property="og:description" content="We built Salmon with one goal: deliver clean, useful data instantly.">
+  <meta property="og:image" content="/images/OG-Image.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Salmon">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Our Story — Salmon">
+  <meta name="twitter:description" content="We built Salmon with one goal: deliver clean, useful data instantly.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="256x256" href="/images/Favicon-256-x-256.png">
+  <link rel="shortcut icon" href="/images/Favicon-256-x-256.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/main.css">
+
+  <!-- GA -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0ZW1JGTHR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C0ZW1JGTHR');
+  </script>
+
+  <style>
+    /* ── Story Hero ── */
+    .story-hero {
+      padding: 8rem 0 4rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .story-hero h1 {
+      margin-bottom: 1rem;
+    }
+    .story-hero p {
+      font-size: clamp(1rem, 1.5vw, 1.125rem);
+      color: var(--grey);
+      max-width: 36rem;
+      margin: 0 auto;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ── Mission Section ── */
+    .mission {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .mission h2 {
+      margin-bottom: 0.75rem;
+    }
+    .mission-body p {
+      color: var(--grey);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+    }
+    .mission-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Callout */
+    .mission-callout {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 2rem;
+      border-left: 3px solid var(--salmon);
+    }
+    .mission-callout p {
+      font-size: 1.125rem;
+      color: var(--light-grey);
+      line-height: 1.65;
+      font-weight: 400;
+    }
+
+    /* ── Promise Section ── */
+    .promise {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .promise-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .promise h2 {
+      margin-bottom: 0.75rem;
+    }
+    .promise-body p {
+      color: var(--grey);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+    }
+    .promise-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── Founders ── */
+    .founders {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .founders-header {
+      margin-bottom: 1rem;
+    }
+    .founders-sub {
+      color: var(--grey);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 36rem;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+    .founders-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .founder-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .founder-card:hover {
+      border-color: var(--border-2);
+    }
+    .founder-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 2px solid var(--border);
+    }
+    .founder-info h3 {
+      font-size: 1.125rem;
+      margin-bottom: 0.25rem;
+    }
+    .founder-info .founder-role {
+      font-size: 0.8125rem;
+      color: var(--salmon);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+    .founder-info p {
+      font-size: 0.875rem;
+      color: var(--grey);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+    .founder-linkedin {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-size: 0.8125rem;
+      color: var(--grey);
+      margin-top: 0.75rem;
+      transition: color 0.15s;
+    }
+    .founder-linkedin:hover {
+      color: var(--salmon);
+    }
+    .founder-linkedin svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ── Bottom CTA ── */
+    .bottom-cta {
+      padding: 4rem 0;
+    }
+    .bottom-cta-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 3.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .bottom-cta-box::before {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 300px;
+      background: radial-gradient(ellipse at center, rgba(252,120,105,0.06), transparent 70%);
+      pointer-events: none;
+    }
+    .bottom-cta-box h2 {
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+    .bottom-cta-box p {
+      color: var(--grey);
+      max-width: 28rem;
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+      font-weight: 300;
+      position: relative;
+    }
+    .bottom-cta-btns {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      position: relative;
+    }
+
+    @media (max-width: 767px) {
+      .mission-grid,
+      .promise-grid,
+      .founders-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .founder-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><img src="/images/salmon_logo.svg" alt="Salmon"></a>
+    <div class="nav-links">
+      <div class="nav-dropdown">
+        <a class="nav-link nav-dropdown-trigger" href="/solutions/">Solutions</a>
+        <div class="nav-dropdown-menu">
+          <a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a>
+          <a class="nav-dropdown-item" href="/solutions/gtm.html">GTM & Prospecting</a>
+          <a class="nav-dropdown-item" href="/solutions/kyc.html">KYC & Compliance</a>
+          <a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a>
+          <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
+        </div>
+      </div>
+      <a class="nav-link" href="/data.html">Data</a>
+        <a class="nav-link" href="/coho.html">Coho</a>
+      <a class="nav-link" href="/pricing.html">Pricing</a>
+      <div class="nav-dropdown">
+        <a class="nav-link nav-dropdown-trigger">Company</a>
+        <div class="nav-dropdown-menu">
+          <a class="nav-dropdown-item" href="/story.html">Our Story</a>
+          <a class="nav-dropdown-item" href="/how-we-work.html">How It Works</a>
+          <a class="nav-dropdown-item" href="/security.html">Security</a>
+        </div>
+      </div>
+    </div>
+    <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta hide-mobile">Book a Demo</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- Mobile nav overlay -->
+<div class="nav-mobile-overlay" id="mobileNav">
+  <div class="nav-dropdown">
+    <a class="nav-link nav-dropdown-trigger">Solutions</a>
+    <div class="nav-dropdown-menu">
+      <a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a>
+      <a class="nav-dropdown-item" href="/solutions/gtm.html">GTM & Prospecting</a>
+      <a class="nav-dropdown-item" href="/solutions/kyc.html">KYC & Compliance</a>
+      <a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a>
+      <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
+    </div>
+  </div>
+  <a class="nav-link" href="/data.html">Data</a>
+        <a class="nav-link" href="/coho.html">Coho</a>
+  <a class="nav-link" href="/pricing.html">Pricing</a>
+  <a class="nav-link" href="/story.html">Our Story</a>
+  <a class="nav-link" href="/how-we-work.html">How It Works</a>
+  <a class="nav-link" href="/security.html">Security</a>
+  <a href="/contact-us.html" class="btn btn-primary mt-md" style="width:100%;text-align:center;">Book a Demo</a>
+</div>
+
+<main>
+
+  <!-- Hero -->
+  <section class="story-hero">
+    <div class="container">
+      <span class="eyebrow">Our Story</span>
+      <h1>We built Salmon with one goal &mdash; deliver clean, useful data instantly.</h1>
+      <p>Enterprise data shouldn't be static, stale, or stitched together from five different vendors. We started Salmon to fix that.</p>
+    </div>
+  </section>
+
+  <!-- Mission: Data should be living -->
+  <section class="mission">
+    <div class="container">
+      <span class="eyebrow">Our Philosophy</span>
+      <h2>We believe data should be living.</h2>
+      <div class="mission-grid" style="margin-top: 2.5rem;">
+        <div class="mission-body">
+          <p>We've scaled growth teams. We've run data ops. We know the reality: millions wasted on static lists, outreach campaigns built on half-truths, hours lost hunting for updated contacts that should have been verified the moment you needed them.</p>
+          <p>Companies spend billions on sales and marketing intelligence &mdash; and 40% of it goes stale before the next quarter even begins. Roles change. Emails bounce. Fraud slips through. The best teams fix it manually or patch it with half-broken point solutions.</p>
+        </div>
+        <div>
+          <div class="mission-callout">
+            <p>Your CRM should clean itself. Our AI agents source, verify and enrich records continuously &mdash; so your team never wastes time on stale leads, ghost contacts, or broken campaigns.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promise: No more stale data -->
+  <section class="promise">
+    <div class="container">
+      <span class="eyebrow">Our Promise</span>
+      <h2>No more stale data. Ever.</h2>
+      <div class="promise-grid" style="margin-top: 2.5rem;">
+        <div class="promise-body">
+          <p>Salmon is the real-time data engine that plugs into your CRM and keeps it alive. Our AI agents source, verify, and enrich records continuously &mdash; so your team never wastes time on stale leads, ghost contacts, or broken campaigns.</p>
+          <p>Today, we power sales and marketing orgs with live prospect data. Next, we're bringing real-time intelligence to fraud, compliance, and hiring. Wherever trust and timing matter, your data should keep up &mdash; automatically.</p>
+        </div>
+        <div class="promise-body">
+          <p>It doesn't have to be this way. We believe your systems should verify themselves. Your CRM and pipeline should stay clean on its own. Data should be a living, dynamic layer &mdash; always up-to-date, always accurate, always ready to move when you do.</p>
+          <p>No more static vendors. No more stale CSVs. No more guesswork. Just data that works as hard as you do &mdash; and never goes stale.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founders -->
+  <section class="founders">
+    <div class="container">
+      <span class="eyebrow">Our Team</span>
+      <h2 class="founders-header">Built by Operators, for Operators</h2>
+      <p class="founders-sub">We've run sales, product, and data teams for some of the best. We know the pain of stale records, wasted spend, and manual fixes &mdash; so we built Salmon to fix it for good.</p>
+      <div class="founders-grid">
+        <div class="founder-card">
+          <img src="/images/Kevin-Liu.avif" alt="Kevin Liu" class="founder-photo">
+          <div class="founder-info">
+            <h3>Kevin Liu</h3>
+            <div class="founder-role">Founder &amp; CEO</div>
+            <p>Kevin has scaled revenue and growth operations across B2B SaaS companies. He founded Salmon after seeing firsthand how stale CRM data torpedoes pipeline, wastes outbound spend, and kills deal velocity. His focus: building the data layer that revenue teams actually trust.</p>
+            <a href="https://www.linkedin.com/in/ckevinliu/" target="_blank" rel="noopener" class="founder-linkedin">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+        <div class="founder-card">
+          <img src="/images/Duncan-Winter.avif" alt="Duncan Winter" class="founder-photo">
+          <div class="founder-info">
+            <h3>Duncan Winter</h3>
+            <div class="founder-role">Co-Founder &amp; CTO</div>
+            <p>Duncan brings deep expertise in data engineering, AI systems, and product development. He designed Salmon's Coho engine &mdash; the AI research layer that continuously sources, triangulates, and verifies data across hundreds of sources in real time.</p>
+            <a href="https://www.linkedin.com/in/duncanwinter/" target="_blank" rel="noopener" class="founder-linkedin">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="bottom-cta">
+    <div class="container">
+      <div class="bottom-cta-box">
+        <span class="eyebrow">Get Started</span>
+        <h2>Transform Your CRM Data with Salmon</h2>
+        <p>See Salmon enrich, verify, and refresh your data in real time. No slides &mdash; we run it on your actual records.</p>
+        <div class="bottom-cta-btns">
+          <a href="/contact-us.html" class="btn btn-primary btn-lg">Book a Demo</a>
+          <a href="/solutions/" class="btn btn-outline btn-lg">Explore Solutions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><img src="/images/salmon_logo.svg" alt="Salmon"><p>The real-time data engine that keeps your CRM accurate, current, and trusted.</p></div>
+      <div class="footer-col"><h4>Solutions</h4><a href="/solutions/crm.html">CRM Enrichment</a><a href="/solutions/gtm.html">GTM & Prospecting</a><a href="/solutions/kyc.html">KYC & Compliance</a><a href="/solutions/intel.html">Account Intelligence</a><a href="/solutions/api.html">Enterprise Data API</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="/story.html">Our Story</a><a href="/how-we-work.html">How It Works</a><a href="/coho.html">Coho Engine</a><a href="/security.html">Security</a><a href="/data.html">Data</a></div>
+      <div class="footer-col"><h4>Compare</h4><a href="/compare/zoominfo.html">vs ZoomInfo</a><a href="/compare/clay.html">vs Clay</a><a href="#">vs Apollo <span class="text-xs text-grey">(soon)</span></a><a href="#">vs Crustdata <span class="text-xs text-grey">(soon)</span></a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-service.html">Terms & Conditions</a><a href="/contact-us.html">Contact Us</a><a href="/support.html">Support</a><a href="mailto:hello@salmonrun.ai">hello@salmonrun.ai</a></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2025 Salmon Inc. All rights reserved.</p></div>
+  </div>
+</footer>
+
+<!-- Mobile nav JS -->
+<script>
+  document.querySelector('.nav-toggle').addEventListener('click', function() {
+    const overlay = document.getElementById('mobileNav');
+    const expanded = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', !expanded);
+    overlay.classList.toggle('active');
+  });
+</script>
+
+<!-- LinkedIn Insight -->
+<script type="text/javascript">
+_linkedin_partner_id = "8028276";
+window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+</script>
+<script type="text/javascript">
+(function(l) {
+if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+window.lintrk.q=[]}
+var s = document.getElementsByTagName("script")[0];
+var b = document.createElement("script");
+b.type = "text/javascript";b.async = true;
+b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+s.parentNode.insertBefore(b, s);})(window.lintrk);
+</script>
+<noscript><img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=8028276&fmt=gif"></noscript>
+
+</body>
+</html>

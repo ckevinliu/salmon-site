@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Solutions — Salmon</title>
+  <meta name="description" content="Explore Salmon's solutions: CRM enrichment, GTM prospecting, KYC compliance, account intelligence, and enterprise data API.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- OG -->
+  <meta property="og:title" content="Solutions — Salmon">
+  <meta property="og:description" content="Five solutions, one data engine. See how Salmon fits your workflow.">
+  <meta property="og:image" content="/images/OG-Image.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="256x256" href="/images/Favicon-256-x-256.png">
+  <link rel="shortcut icon" href="/images/Favicon-256-x-256.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/main.css">
+
+  <style>
+    /* ── Hero ── */
+    .sol-hub-hero {
+      padding: 8rem 0 4rem;
+      text-align: center;
+    }
+    .sol-hub-hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin-bottom: 1.25rem;
+    }
+    .sol-hub-hero p {
+      font-size: 1.125rem;
+      font-weight: 300;
+      color: var(--grey);
+      max-width: 34rem;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* ── Tab bar ── */
+    .tab-bar {
+      position: sticky;
+      top: 4rem;
+      z-index: 90;
+      background: rgba(31,31,31,0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .tab-bar-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .tab-btn {
+      flex-shrink: 0;
+      padding: 1rem 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--grey);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+      font-family: var(--f);
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--white); }
+    .tab-btn.active {
+      color: var(--salmon);
+      border-bottom-color: var(--salmon);
+      font-weight: 500;
+    }
+
+    /* ── Tab panels ── */
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .tab-panel.active { display: block; }
+
+    /* ── Solution card layout ── */
+    .sol-card-hero {
+      padding: 4rem 0 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .sol-card-hero h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      white-space: pre-line;
+      margin-bottom: 1rem;
+    }
+    .sol-card-sub {
+      font-size: 1.0625rem;
+      font-weight: 300;
+      color: var(--grey);
+      max-width: 36rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .sol-card-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    /* Stats row */
+    .sol-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .sol-stat {
+      background: var(--dark-2);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .sol-stat-v {
+      font-size: 2.25rem;
+      font-weight: 600;
+      background: var(--salmon-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .sol-stat-l {
+      font-size: 0.75rem;
+      color: var(--charcoal);
+      font-family: var(--f-mono);
+      line-height: 1.5;
+    }
+
+    /* Feature cards */
+    .sol-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .sol-feat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 1.75rem 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .sol-feat:hover { border-color: var(--border-2); transform: translateY(-2px); }
+    .sol-feat-icon { margin-bottom: 0.75rem; width: 28px; height: 28px; color: var(--grey); }
+    .sol-feat-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .sol-feat-t { font-size: 0.9375rem; font-weight: 500; color: var(--white); margin-bottom: 0.5rem; }
+    .sol-feat-b { font-size: 0.8125rem; font-weight: 300; color: var(--charcoal); line-height: 1.65; }
+
+    /* Deep link */
+    .sol-deep {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--salmon);
+      margin-top: 2rem;
+      transition: gap 0.2s;
+    }
+    .sol-deep:hover { gap: 0.75rem; }
+
+    /* ── Bottom CTA ── */
+    .hub-cta {
+      text-align: center;
+    }
+    .hub-cta h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 300;
+      letter-spacing: -0.015em;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+    .hub-cta p {
+      font-size: 1.125rem;
+      font-weight: 300;
+      color: var(--grey);
+      max-width: 28rem;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 767px) {
+      .sol-stats { grid-template-columns: 1fr; }
+      .sol-features { grid-template-columns: 1fr; }
+      .tab-btn { padding: 0.875rem 1rem; font-size: 0.8125rem; }
+    }
+  </style>
+
+  <!-- GA -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0ZW1JGTHR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C0ZW1JGTHR');
+  </script>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo"><img src="/images/salmon_logo.svg" alt="Salmon"></a>
+      <div class="nav-links">
+        <div class="nav-dropdown">
+          <a class="nav-link nav-dropdown-trigger active" href="/solutions/">Solutions</a>
+          <div class="nav-dropdown-menu">
+            <a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a>
+            <a class="nav-dropdown-item" href="/solutions/gtm.html">GTM &amp; Prospecting</a>
+            <a class="nav-dropdown-item" href="/solutions/kyc.html">KYC &amp; Compliance</a>
+            <a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a>
+            <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
+          </div>
+        </div>
+        <a class="nav-link" href="/data.html">Data</a>
+        <a class="nav-link" href="/coho.html">Coho</a>
+        <a class="nav-link" href="/pricing.html">Pricing</a>
+        <div class="nav-dropdown">
+          <a class="nav-link nav-dropdown-trigger">Company</a>
+          <div class="nav-dropdown-menu">
+            <a class="nav-dropdown-item" href="/story.html">Our Story</a>
+            <a class="nav-dropdown-item" href="/how-we-work.html">How It Works</a>
+            <a class="nav-dropdown-item" href="/security.html">Security</a>
+          </div>
+        </div>
+      </div>
+      <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta hide-mobile">Book a Demo</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay -->
+  <div class="nav-mobile-overlay">
+    <a class="nav-link" href="/solutions/">Solutions</a>
+    <div class="nav-dropdown-menu">
+      <a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a>
+      <a class="nav-dropdown-item" href="/solutions/gtm.html">GTM &amp; Prospecting</a>
+      <a class="nav-dropdown-item" href="/solutions/kyc.html">KYC &amp; Compliance</a>
+      <a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a>
+      <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
+    </div>
+    <a class="nav-link" href="/data.html">Data</a>
+        <a class="nav-link" href="/coho.html">Coho</a>
+    <a class="nav-link" href="/pricing.html">Pricing</a>
+    <a class="nav-link" href="/story.html">Our Story</a>
+    <a class="nav-link" href="/how-we-work.html">How It Works</a>
+    <a class="nav-link" href="/security.html">Security</a>
+    <a class="nav-link" href="/contact-us.html" style="color: var(--salmon); font-weight: 600;">Book a Demo</a>
+  </div>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="sol-hub-hero">
+      <div class="container">
+        <span class="eyebrow">Solutions</span>
+        <h1>Real-time data. Every workflow.</h1>
+        <p>From CRM hygiene to compliance screening, Salmon keeps your records accurate, your signals timely, and your team focused on revenue &mdash; not data cleanup.</p>
+      </div>
+    </section>
+
+    <!-- Tab bar -->
+    <div class="tab-bar">
+      <div class="tab-bar-inner">
+        <button class="tab-btn active" data-tab="crm">CRM Enrichment</button>
+        <button class="tab-btn" data-tab="gtm">GTM &amp; Prospecting</button>
+        <button class="tab-btn" data-tab="kyc">KYC &amp; Compliance</button>
+        <button class="tab-btn" data-tab="intel">Account Intelligence</button>
+        <button class="tab-btn" data-tab="api">Enterprise Data API</button>
+      </div>
+    </div>
+
+    <!-- ═══ CRM TAB ═══ -->
+    <div class="tab-panel active" id="panel-crm">
+      <section class="sol-card-hero">
+        <div class="container">
+          <span class="eyebrow">CRM Data &amp; Revenue Ops</span>
+          <h2>Your CRM decays 30&ndash;40%
+every year. Salmon fixes it in real time.</h2>
+          <p class="sol-card-sub">Stale titles, dead emails, wrong companies. Every bad record is a missed conversation or a wasted touch. Salmon continuously verifies and refreshes your CRM so your reps always work from accurate data.</p>
+          <div class="sol-card-btns">
+            <a href="/contact-us.html" class="btn btn-primary">Run a free data audit</a>
+            <a href="/solutions/crm.html" class="btn btn-ghost">See how it works &rarr;</a>
+          </div>
+        </div>
+      </section>
+      <div class="sol-stats">
+        <div class="sol-stat"><div class="sol-stat-v">30&ndash;40%</div><div class="sol-stat-l">of B2B CRM data decays annually</div></div>
+        <div class="sol-stat"><div class="sol-stat-v">20%</div><div class="sol-stat-l">of selling time lost chasing bad leads</div></div>
+        <div class="sol-stat"><div class="sol-stat-v">45%</div><div class="sol-stat-l">reduction in bad data within 30 days</div></div>
+      </div>
+      <section class="section">
+        <div class="container">
+          <div class="sol-features">
+            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div><div class="sol-feat-t">Always-on refresh</div><div class="sol-feat-b">Records self-heal as people change roles and companies. No quarterly cleanups, no ops fire drills.</div></div>
+            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="sol-feat-t">Instant enrichment on every lead</div><div class="sol-feat-b">New form fills resolve in seconds. Your reps see a complete profile before the first reply.</div></div>
+            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div class="sol-feat-t">Native CRM sync</div><div class="sol-feat-b">Data lands in your Salesforce or HubSpot fields automatically. No schema changes, no IT tickets.</div></div>
+          </div>
+          <a href="/solutions/crm.html" class="sol-deep">Read the full CRM solution page &rarr;</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ═══ GTM TAB ═══ -->
+    <div class="tab-panel" id="panel-gtm">
+      <section class="sol-card-hero">
+        <div class="container">
+          <span class="eyebrow">GTM &amp; Prospecting</span>
+          <h2>From ICP brief to verified list.
+Minutes, not days.</h2>
+          <p class="sol-card-sub">Describe your ideal customer. Coho finds the companies, qualifies the contacts, verifies the data, and delivers a signal-rich list directly into your CRM &mdash; ready to work.</p>
+          <div class="sol-card-btns">
+            <a href="/contact-us.html" class="btn btn-primary">See a list built for your ICP</a>
+            <a href="/solutions/gtm.html" class="btn btn-ghost">See how it works &rarr;</a>
+          </div>
+        </div>
+      </section>
+      <div class="sol-stats">
+        <div class="sol-stat"><div class="sol-stat-v">5&ndash;6 hrs</div><div class="sol-stat-l">of analyst work per list &mdash; eliminated</div></div>
+        <div class="sol-stat"><div class="sol-stat-v">3&times;</div><div class="sol-stat-l">more pipeline, same headcount</div></div>
+        <div class="sol-stat"><div class="sol-stat-v">&lt; 1 day</div><div class="sol-stat-l">from ICP brief to verified list in CRM</div></div>
+      </div>
+      <section class="section">
+        <div class="container">
+          <div class="sol-features">
+            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><div class="sol-feat-t">Precision targeting, not database filtering</div><div class="sol-feat-b">Coho researches and qualifies against your exact ICP criteria. No generic lists to clean afterward.</div></div>
+            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"/></svg></div><div class="sol-feat-t">Buying signals included</div><div class="sol-feat-b">Funding rounds, leadership changes, hiring surges &mdash; attached to every prospect at the moment of delivery.</div></div>
+            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div><div class="sol-feat-t">Verified before it hits your CRM</div><div class="sol-feat-b">Emails deliverable. Titles current. Companies active. You get finished leads, not rows to clean.</div></div>
+          </div>
+          <a href="/solutions/gtm.html" class="sol-deep">Read the full GTM solution page &rarr;</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ═══ KYC TAB ═══ -->
+    <div class="tab-panel" id="panel-kyc">
+      <section class="sol-card-hero">
+        <div class="container">
+          <span class="eyebrow">KYC &amp; Compliance</span>
+          <h2>Real-time verification.
+Continuous monitoring. Full audit trail.</h2>
+          <p class="sol-card-sub">Manual KYC costs $25&ndash;40 per case and takes 45+ minutes. Salmon screens against sanctions lists, PEP registries, and adverse media in seconds &mdash; and keeps monitoring after approval.</p>
+          <div class="sol-card-btns">
+            <a href="/contact-us.html" class="btn btn-primary">See a live KYC check</a>
+            <a href="/solutions/kyc.html" class="btn btn-ghost">See how it works &rarr;</a>
+          </div>
+        </div>
+      </section>
+      <div class="sol-stats">
+        <div class="sol-stat"><div class="sol-stat-v">$25&ndash;40</div><div class="sol-stat-l">per manual KYC case &mdash; before rework</div></div>
+        <div class="sol-stat"><div class="sol-stat-v">45+ min</div><div class="sol-stat-l">per manual research case</div></div>
+        <div class="sol-stat"><div class="sol-stat-v">3&ndash;5&times;</div><div class="sol-stat-l">more cases cleared per analyst per day</div></div>
+      </div>
+      <section class="section">
+        <div class="container">
+          <div class="sol-features">
+            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="sol-feat-t">Automated screening, human decisions</div><div class="sol-feat-b">Coho runs sanctions, PEP, and adverse media checks across multiple sources. Your team reviews and approves.</div></div>
+            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div><div class="sol-feat-t">Audit-ready from day one</div><div class="sol-feat-b">Source attribution, confidence scores, timestamps, and reasoning traces on every output.</div></div>
+            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4"/></svg></div><div class="sol-feat-t">Ongoing monitoring, not one-time checks</div><div class="sol-feat-b">Continuous screening against global watchlists. Status changes trigger alerts automatically.</div></div>
+          </div>
+          <a href="/solutions/kyc.html" class="sol-deep">Read the full KYC solution page &rarr;</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ═══ INTEL TAB ═══ -->
+    <div class="tab-panel" id="panel-intel">
+      <section class="sol-card-hero">
+        <div class="container">
+          <span class="eyebrow">Account Intelligence &amp; Signal Monitoring</span>
+          <h2>The signals that close deals
+expire in days. Catch them first.</h2>
+          <p class="sol-card-sub">New CRO starts. Funding round closes. Hiring surge begins. Most teams find out from LinkedIn, weeks late. Salmon surfaces signals in real time and routes them to the right rep with full context.</p>
+          <div class="sol-card-btns">
+            <a href="/contact-us.html" class="btn btn-primary">See real-time signal monitoring</a>
+            <a href="/solutions/intel.html" class="btn btn-ghost">See how it works &rarr;</a>
+          </div>
+        </div>
+      </section>
+      <div class="sol-stats">
+        <div class="sol-stat"><div class="sol-stat-v">72 hrs</div><div class="sol-stat-l">average detection latency in manual workflows</div></div>
+        <div class="sol-stat"><div class="sol-stat-v">Real-time</div><div class="sol-stat-l">Salmon's signal detection latency</div></div>
+        <div class="sol-stat"><div class="sol-stat-v">12+</div><div class="sol-stat-l">signal types monitored per account</div></div>
+      </div>
+      <section class="section">
+        <div class="container">
+          <div class="sol-features">
+            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div><div class="sol-feat-t">Signal-triggered workflows</div><div class="sol-feat-b">Leadership change, funding event, tech migration &mdash; alerts route to the right rep with context, not noise.</div></div>
+            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="sol-feat-t">12+ signal types per account</div><div class="sol-feat-b">Web, job boards, filings, news, tech detection &mdash; triangulated into one feed per account.</div></div>
+            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div><div class="sol-feat-t">Prioritized account scoring</div><div class="sol-feat-b">Composite scores from firmographics, engagement, and real-time signals. Focus on accounts ready to buy.</div></div>
+          </div>
+          <a href="/solutions/intel.html" class="sol-deep">Read the full Intelligence solution page &rarr;</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ═══ API TAB ═══ -->
+    <div class="tab-panel" id="panel-api">
+      <section class="sol-card-hero">
+        <div class="container">
+          <span class="eyebrow">Enterprise Data API</span>
+          <h2>One API. Every enrichment,
+verification, and signal workflow.</h2>
+          <p class="sol-card-sub">Replace multiple point-solution vendors with a single integration. Sub-200ms responses, schema-flexible output, and source attribution on every field. Built for engineering teams who are done stitching.</p>
+          <div class="sol-card-btns">
+            <a href="/contact-us.html" class="btn btn-primary">Get API docs and pricing</a>
+            <a href="/solutions/api.html" class="btn btn-ghost">See how it works &rarr;</a>
+          </div>
+        </div>
+      </section>
+      <div class="sol-stats">
+        <div class="sol-stat"><div class="sol-stat-v">&lt; 200ms</div><div class="sol-stat-l">average API response time</div></div>
+        <div class="sol-stat"><div class="sol-stat-v">99.9%</div><div class="sol-stat-l">uptime SLA on enterprise plans</div></div>
+        <div class="sol-stat"><div class="sol-stat-v">1 API</div><div class="sol-stat-l">replacing multiple point-solution vendors</div></div>
+      </div>
+      <section class="section">
+        <div class="container">
+          <div class="sol-features">
+            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="sol-feat-t">One call, every system</div><div class="sol-feat-b">REST API feeds your CRM, Snowflake, marketing automation, and risk tools from a single enrichment layer.</div></div>
+            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><div class="sol-feat-t">Schema-flexible output</div><div class="sol-feat-b">Return exactly the fields each downstream system needs. No rigid schemas, no unwanted data.</div></div>
+            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="sol-feat-t">Source attribution on every field</div><div class="sol-feat-b">Confidence score, data source, and last-verified timestamp. Audit-ready from the first API call.</div></div>
+          </div>
+          <a href="/solutions/api.html" class="sol-deep">Read the full API solution page &rarr;</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- Bottom CTA -->
+    <section class="section-lg" style="border-top: 1px solid var(--border);">
+      <div class="container">
+        <div class="hub-cta">
+          <h2>See it on your actual data.</h2>
+          <p>No slides. We run Salmon on your records and show you what changes. 30 minutes, live.</p>
+          <div class="flex justify-center gap-sm">
+            <a href="/contact-us.html" class="btn btn-primary btn-lg">Book a Demo</a>
+            <a href="/data.html" class="btn btn-outline btn-lg">Explore the Data Engine</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="/images/salmon_logo.svg" alt="Salmon">
+          <p>The real-time data engine that keeps your CRM accurate, current, and trusted.</p>
+        </div>
+        <div class="footer-col"><h4>Solutions</h4>
+          <a href="/solutions/crm.html">CRM Enrichment</a>
+          <a href="/solutions/gtm.html">GTM &amp; Prospecting</a>
+          <a href="/solutions/kyc.html">KYC &amp; Compliance</a>
+          <a href="/solutions/intel.html">Account Intelligence</a>
+          <a href="/solutions/api.html">Enterprise Data API</a>
+        </div>
+        <div class="footer-col"><h4>Company</h4>
+          <a href="/story.html">Our Story</a>
+          <a href="/how-we-work.html">How It Works</a><a href="/coho.html">Coho Engine</a>
+          <a href="/security.html">Security</a>
+          <a href="/data.html">Data</a>
+        </div>
+        <div class="footer-col"><h4>Compare</h4>
+          <a href="/compare/zoominfo.html">vs ZoomInfo</a>
+          <a href="/compare/clay.html">vs Clay</a>
+          <a href="#">vs Apollo <span class="text-xs text-grey">(soon)</span></a>
+          <a href="#">vs Crustdata <span class="text-xs text-grey">(soon)</span></a>
+        </div>
+        <div class="footer-col"><h4>Legal</h4>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-of-service.html">Terms &amp; Conditions</a>
+          <a href="/contact-us.html">Contact Us</a>
+          <a href="/support.html">Support</a>
+          <a href="mailto:hello@salmonrun.ai">hello@salmonrun.ai</a>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 Salmon Inc. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script src="/js/nav.js"></script>
+
+  <!-- Tab switching -->
+  <script>
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.tab-panel');
+
+    function activate(slug) {
+      tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === slug));
+      panels.forEach(p => p.classList.toggle('active', p.id === 'panel-' + slug));
+    }
+
+    tabs.forEach(t => {
+      t.addEventListener('click', () => {
+        const slug = t.dataset.tab;
+        activate(slug);
+        history.replaceState(null, '', '#' + slug);
+      });
+    });
+
+    // Handle hash on load
+    const hash = window.location.hash.slice(1);
+    if (hash && document.getElementById('panel-' + hash)) {
+      activate(hash);
+    }
+  </script>
+
+  <!-- LinkedIn Partner ID -->
+  <script type="text/javascript">
+    _linkedin_partner_id = "8028276";
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+  </script>
+</body>
+</html>

@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Salmon — Your CRM Is Lying to You</title>
+  <meta name="description" content="Salmon is the real-time data engine that enriches, verifies, and keeps your CRM accurate. Stop losing deals to stale data.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- OG -->
+  <meta property="og:title" content="Salmon — Your CRM Is Lying to You">
+  <meta property="og:description" content="30–40% of B2B contact data goes stale every year. Salmon fixes that.">
+  <meta property="og:image" content="/images/OG-Image.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="256x256" href="/images/Favicon-256-x-256.png">
+  <link rel="shortcut icon" href="/images/Favicon-256-x-256.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+
+  <style>
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7rem 0 4rem;
+      overflow: hidden;
+    }
+    .hero-bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    #salmon-hero-root {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+    }
+
+    /* ── Logo strip ── */
+    .logo-strip {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .logo-strip p {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--light-grey);
+      margin-bottom: 1.5rem;
+    }
+    .logo-strip-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+    }
+    .logo-strip-logos span {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--light-grey);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── CRM showcase wrapper ── */
+    .crm-showcase {
+      position: relative;
+      background: var(--darker);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      overflow: hidden;
+      padding: 0;
+      max-width: 64rem;
+      margin: 2rem auto 0;
+    }
+    .crm-topbar {
+      background: var(--surface);
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .crm-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border-2);
+    }
+    .crm-dot:nth-child(1) { background: #ff5f57; }
+    .crm-dot:nth-child(2) { background: #febc2e; }
+    .crm-dot:nth-child(3) { background: #28c840; }
+    .crm-topbar span {
+      margin-left: auto;
+      font-size: 0.6875rem;
+      color: var(--charcoal);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Prompt pill ── */
+    .prompt-pill {
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(252,120,105,0.08);
+      border: 1px solid rgba(252,120,105,0.18);
+      border-radius: 2rem;
+      padding: 0.375rem 1rem;
+      margin: 0 auto 1rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--salmon-light);
+      text-align: center;
+      max-width: 40rem;
+    }
+
+    /* ── Grid meta bar ── */
+    .grid-meta {
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 0.5rem 1.125rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      font-size: 0.6875rem;
+      color: #6b7280;
+    }
+
+    /* ── Enrichment table (white bg, matches salmon-demo) ── */
+    .enrichment-table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 50rem;
+      background: #fff;
+    }
+    .enrichment-table thead tr { background: #111; }
+    .enrichment-table thead th {
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+      font-size: 0.5625rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #888;
+      border-right: 1px solid #1e1e1e;
+      white-space: nowrap;
+    }
+    .enrichment-table thead th:last-child { border-right: none; }
+    .enrichment-table thead th.col-n { width: 1.75rem; text-align: center; }
+    .enrichment-table tbody tr {
+      border-bottom: 1px solid #f3f4f6;
+      opacity: 0;
+      transition: background 0.1s;
+    }
+    .enrichment-table tbody tr.row-visible {
+      animation: gridRowIn 0.18s ease forwards;
+    }
+    .enrichment-table tbody tr:hover { background: #fafbff; }
+    .enrichment-table tbody tr:last-child { border-bottom: none; }
+    .enrichment-table td {
+      padding: 0.5625rem 0.75rem;
+      font-size: 0.75rem;
+      color: #374151;
+      border-right: 1px solid #f3f4f6;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+    .enrichment-table td:last-child { border-right: none; }
+    .enrichment-table td.col-n { color: #9ca3af; font-size: 0.625rem; text-align: center; width: 1.75rem; }
+    .enrichment-table td.col-name { font-weight: 700; font-size: 0.75rem; color: #111827; }
+    .enrichment-table td.col-enriched {
+      color: #1d4ed8; font-size: 0.625rem; background: #f8faff;
+      max-width: 10.625rem; overflow: hidden; text-overflow: ellipsis;
+    }
+    .enrichment-table td.col-signal {
+      color: #15803d; font-size: 0.625rem; background: #f0fdf4;
+      max-width: 11.875rem; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    /* Shimmer */
+    .shimmer-bar {
+      height: 0.625rem;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+      background-size: 400% 100%;
+      animation: shimmerAnim 0.65s ease-in-out infinite;
+      min-width: 3rem;
+      display: inline-block;
+    }
+    @keyframes shimmerAnim {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Status badge (light) */
+    .grid-badge {
+      font-size: 0.625rem;
+      font-weight: 700;
+      padding: 0.125rem 0.4375rem;
+      border-radius: 1.25rem;
+      display: inline-block;
+    }
+    .grid-badge.verified { background: #dcfce7; color: #15803d; }
+    .grid-badge.enriched { background: #dbeafe; color: #1d4ed8; }
+
+    @keyframes gridRowIn {
+      from { opacity: 0; transform: translateY(3px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    /* ── Email gate ── */
+    .email-gate {
+      background: #232323;
+      border: 1px solid #3a3a3a;
+      border-radius: 0.75rem;
+      padding: 2.25rem 2rem;
+      margin-top: 1.75rem;
+      text-align: center;
+      box-shadow: 0 0 52px rgba(252,120,105,0.1);
+      position: relative;
+      overflow: hidden;
+      max-width: 64rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .email-gate::before {
+      content: '';
+      position: absolute;
+      bottom: -3.75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 31.25rem;
+      height: 16.25rem;
+      background: radial-gradient(ellipse at center, rgba(252,120,105,0.06), transparent 70%);
+      pointer-events: none;
+    }
+    .email-gate-heading {
+      font-size: clamp(1.0625rem, 2vw, 1.375rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.4375rem;
+      position: relative;
+    }
+    .email-gate-sub {
+      font-size: 0.8125rem;
+      color: #888;
+      max-width: 25rem;
+      margin: 0 auto 1.375rem;
+      line-height: 1.65;
+      position: relative;
+    }
+    .email-gate-form {
+      position: relative;
+      max-width: 25rem;
+      margin: 0 auto;
+    }
+    .email-gate-row {
+      display: flex;
+      gap: 0.5rem;
+      position: relative;
+    }
+    .email-gate-input {
+      flex: 1;
+      background: #2a2a2a;
+      border: 1px solid #3a3a3a;
+      border-radius: 0.5rem;
+      padding: 0.6875rem 0.875rem;
+      font-size: 0.8125rem;
+      font-weight: 400;
+      color: var(--light-grey);
+      font-family: var(--f);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      margin-bottom: 0.625rem;
+    }
+    .email-gate-input::placeholder { color: #666; }
+    .email-gate-input:focus { border-color: rgba(252,120,105,0.5); }
+    .email-gate-btn {
+      background: var(--salmon);
+      color: var(--dark);
+      border: none;
+      border-radius: 2rem;
+      padding: 0 1.5rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--f);
+      white-space: nowrap;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      height: 2.75rem;
+      flex-shrink: 0;
+    }
+    .email-gate-btn:hover:not(:disabled) {
+      background: var(--white);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(252,120,105,0.2);
+    }
+    .email-gate-btn:disabled { opacity: 0.25; cursor: not-allowed; transform: none; box-shadow: none; }
+    .email-gate-error {
+      font-size: 0.6875rem;
+      color: #f87171;
+      margin-top: 0.375rem;
+      min-height: 1rem;
+      text-align: center;
+    }
+    .email-gate-note {
+      font-size: 0.625rem;
+      color: #666;
+      margin-top: 0.5rem;
+      text-align: center;
+      position: relative;
+      letter-spacing: 0.03em;
+    }
+    .email-gate-success {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.625rem;
+      position: relative;
+    }
+    .email-gate-success-icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      background: rgba(21,128,61,0.12);
+      border: 1px solid rgba(74,222,128,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: #4ade80;
+    }
+    .email-gate-success-msg { font-size: 0.9375rem; font-weight: 700; color: var(--white); }
+    .email-gate-success-sub { font-size: 0.6875rem; color: #888; }
+
+    /* ── Features ── */
+    .features-header {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1rem;
+      align-items: start;
+      margin-bottom: 3rem;
+    }
+    .features-header > div:first-child {
+      grid-column: 1 / 5;
+    }
+    .features-header-body {
+      grid-column: 5 / 13;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3rem;
+    }
+    .features-header-text {
+      font-size: 2.5rem;
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--white);
+      margin-top: -0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .feature-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .feature-row:last-child { border-bottom: none; }
+    .feature-row.reverse { direction: rtl; }
+    .feature-row.reverse > * { direction: ltr; }
+    .feature-img {
+      overflow: hidden;
+      mix-blend-mode: lighten;
+    }
+    .feature-img img {
+      width: 100%;
+      height: auto;
+    }
+    .feature-text h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .feature-text p {
+      font-size: 0.9375rem;
+      color: var(--grey);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ── Who it's for ── */
+    .who-section {
+      background-color: #fff;
+      color: var(--charcoal);
+      padding-top: 8rem;
+      padding-bottom: 12rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .who-section .wave-bg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: 50% 100%;
+      pointer-events: none;
+    }
+    .who-section .container {
+      position: relative;
+      z-index: 2;
+    }
+    .who-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1rem;
+      align-items: start;
+    }
+    .who-heading {
+      grid-column: 1 / 5;
+    }
+    .who-label {
+      text-transform: uppercase;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #555;
+      letter-spacing: 0.12em;
+    }
+    .who-body {
+      grid-column: 5 / 13;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3.5rem;
+    }
+    .who-body-text {
+      font-size: 2.5rem;
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--dark);
+      margin-top: -0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .btn-on-white {
+      background: var(--salmon);
+      color: var(--dark);
+    }
+    .btn-on-white:hover {
+      background: var(--dark);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* ── Section labels (Webflow .heading style) ── */
+    .section-label {
+      text-transform: uppercase;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+    }
+
+    /* ── Testimonials (Swiper carousel) ── */
+    .testimonials-section {
+      overflow: hidden;
+      background: #1a1a1a;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1rem;
+      align-items: start;
+    }
+    .testimonials-grid > div:first-child {
+      grid-column: 1 / 5;
+    }
+    .testimonials-carousel-wrap {
+      grid-column: 5 / 13;
+      overflow: hidden;
+    }
+    .testimonials-swiper .swiper-slide {
+      opacity: 0.2;
+      flex: none;
+      max-width: 55.5rem;
+      transition: opacity 0.3s;
+    }
+    .testimonials-swiper .swiper-slide-active {
+      opacity: 1;
+    }
+    .testimonial-slide {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+    .testimonial-quote {
+      font-size: 2.5rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.35;
+      color: rgba(255,255,255,0.85);
+      margin-top: -0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .testimonial-attr {
+      color: var(--grey);
+      font-size: 0.875rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+    .testimonials-scrollbar.swiper-scrollbar {
+      position: relative;
+      background: var(--grey);
+      border-radius: 2px;
+      max-width: 20.875rem;
+      height: 0.125rem;
+      margin-top: 5rem;
+    }
+    .testimonials-scrollbar .swiper-scrollbar-drag {
+      background: var(--light-grey);
+      border-radius: 2px;
+      height: 0.125rem;
+    }
+
+    /* ── Connect With Us (CTA) ── */
+    .connect-section {
+      position: relative;
+      overflow: hidden;
+    }
+    .connect-bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.2;
+      pointer-events: none;
+    }
+    .connect-section .container {
+      position: relative;
+      z-index: 2;
+    }
+    .connect-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1rem;
+      align-items: center;
+    }
+    .connect-grid h2 {
+      grid-column: 1 / 5;
+      font-size: 0.875rem;
+      line-height: 1.1;
+      text-transform: uppercase;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+    }
+    .connect-grid .sub {
+      grid-column: 5 / 10;
+      font-size: 2.5rem;
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+    .connect-grid .btn {
+      grid-column: 10 / 13;
+      justify-self: end;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 991px) {
+      .features-header { grid-template-columns: 1fr; }
+      .features-header > div:first-child { grid-column: 1 / -1; }
+      .features-header-body { grid-column: 1 / -1; gap: 2.5rem; }
+      .features-header-text { font-size: 2rem; font-weight: 400; }
+      .who-grid { grid-template-columns: 1fr; }
+      .who-heading { grid-column: 1 / -1; }
+      .who-body { grid-column: 1 / -1; gap: 3rem; }
+      .who-section { padding-top: 6rem; padding-bottom: 10rem; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .testimonials-grid > div:first-child { grid-column: 1 / -1; }
+      .testimonials-carousel-wrap { grid-column: 1 / -1; }
+      .connect-grid { grid-template-columns: 1fr; text-align: center; }
+      .connect-grid h2 { grid-column: 1 / -1; }
+      .connect-grid .sub { grid-column: 1 / -1; font-size: 2rem; }
+      .connect-grid .btn { grid-column: 1 / -1; justify-self: center; }
+      .testimonials-swiper .swiper-slide { max-width: 40rem; width: 100%; }
+    }
+
+    @media (max-width: 767px) {
+      .hero { min-height: auto; padding: 6rem 0 3rem; }
+      .feature-row { grid-template-columns: 1fr; gap: 1.5rem; }
+      .feature-row.reverse { direction: ltr; }
+      .crm-showcase { overflow-x: auto; }
+      .who-section { padding-top: 4rem; padding-bottom: 8rem; }
+      .features-header-text { font-size: 1.75rem; font-weight: 400; }
+      .who-body-text { font-size: 1.75rem; font-weight: 400; }
+      .testimonial-quote { font-size: 1.75rem; font-weight: 300; }
+      .connect-grid .sub { font-size: 1.5rem; font-weight: 400; }
+    }
+  </style>
+
+  <!-- GA -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0ZW1JGTHR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C0ZW1JGTHR');
+  </script>
+</head>
+<body>
+
+  <!-- ═══ NAV ═══ -->
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/salmon_logo.svg" alt="Salmon">
+      </a>
+
+      <div class="nav-links">
+        <!-- Solutions dropdown -->
+        <div class="nav-dropdown">
+          <a class="nav-link nav-dropdown-trigger" href="/solutions/">Solutions</a>
+          <div class="nav-dropdown-menu">
+            <a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a>
+            <a class="nav-dropdown-item" href="/solutions/gtm.html">GTM & Prospecting</a>
+            <a class="nav-dropdown-item" href="/solutions/kyc.html">KYC & Compliance</a>
+            <a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a>
+            <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
+          </div>
+        </div>
+
+        <a class="nav-link" href="/data.html">Data</a>
+        <a class="nav-link" href="/coho.html">Coho</a>
+        <a class="nav-link" href="/pricing.html">Pricing</a>
+
+        <!-- Company dropdown -->
+        <div class="nav-dropdown">
+          <a class="nav-link nav-dropdown-trigger">Company</a>
+          <div class="nav-dropdown-menu">
+            <a class="nav-dropdown-item" href="/story.html">Our Story</a>
+            <a class="nav-dropdown-item" href="/how-we-work.html">How It Works</a>
+            <a class="nav-dropdown-item" href="/security.html">Security</a>
+          </div>
+        </div>
+      </div>
+
+      <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta hide-mobile">Book a Demo</a>
+
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay -->
+  <div class="nav-mobile-overlay">
+    <a class="nav-link" href="/solutions/">Solutions</a>
+    <div class="nav-dropdown-menu">
+      <a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a>
+      <a class="nav-dropdown-item" href="/solutions/gtm.html">GTM & Prospecting</a>
+      <a class="nav-dropdown-item" href="/solutions/kyc.html">KYC & Compliance</a>
+      <a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a>
+      <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
+    </div>
+    <a class="nav-link" href="/data.html">Data</a>
+        <a class="nav-link" href="/coho.html">Coho</a>
+    <a class="nav-link" href="/pricing.html">Pricing</a>
+    <a class="nav-link" href="/story.html">Our Story</a>
+    <a class="nav-link" href="/how-we-work.html">How It Works</a>
+    <a class="nav-link" href="/security.html">Security</a>
+    <a class="nav-link" href="/contact-us.html" style="color: var(--salmon); font-weight: 600;">Book a Demo</a>
+  </div>
+
+  <main>
+    <!-- ═══ HERO (salmon-hero-widget) ═══ -->
+    <section class="hero" id="hero-section">
+      <video autoplay muted loop playsinline class="hero-bg-video">
+        <source src="/videos/Dotted-animation-transcode.mp4" type="video/mp4">
+        <source src="/videos/Dotted-animation-transcode.webm" type="video/webm">
+      </video>
+      <div id="salmon-hero-root"></div>
+    </section>
+
+    <!-- ═══ LOGO STRIP ═══ -->
+    <div class="logo-strip anim-fade-up">
+      <div class="container">
+        <p>Backed by leading investors shaping the future of business intelligence</p>
+        <div class="logo-strip-logos">
+          <span>Alumni Ventures</span>
+          <span>Bragiel Brothers</span>
+          <span>Bread and Butter Ventures</span>
+          <span>Hike Ventures</span>
+          <span>Untapped Capital</span>
+          <span>Weekend Fund</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ CRM ENRICHMENT SHOWCASE ═══ -->
+    <section class="section section-surface section-bordered anim-fade-up" id="crm-showcase-section">
+      <div class="container">
+        <div class="text-center mb-lg">
+          <span class="eyebrow">See It In Action</span>
+          <h2>Real enrichment. Real contacts. In real time.</h2>
+          <p class="max-w-prose mx-auto mt-sm" style="color: var(--grey);">Here's what Salmon finds when it scans your CRM — promotions caught, stale fields fixed, new data surfaced.</p>
+        </div>
+
+        <!-- Prompt pill (hidden until hero fires) -->
+        <div id="prompt-pill" class="prompt-pill" style="display:none;"></div>
+
+        <div class="crm-showcase" id="crm-showcase">
+          <div class="crm-topbar">
+            <div class="crm-dot"></div>
+            <div class="crm-dot"></div>
+            <div class="crm-dot"></div>
+            <span>salmon enrichment engine — live preview</span>
+          </div>
+          <div id="grid-meta" class="grid-meta" style="display:none;"></div>
+          <div style="overflow-x:auto;">
+            <table class="enrichment-table" id="enrichment-table">
+              <thead>
+                <tr>
+                  <th class="col-n">#</th>
+                  <th>Name</th>
+                  <th>Title</th>
+                  <th>Company</th>
+                  <th>Email</th>
+                  <th>Headcount</th>
+                  <th>Tech Stack</th>
+                  <th>Signal</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="enrichment-rows"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Email Gate -->
+        <div id="email-gate" class="email-gate">
+          <span class="eyebrow" style="position:relative;">Try it yourself</span>
+          <h3 class="email-gate-heading">Want to see this for your actual data?</h3>
+          <p class="email-gate-sub">Enter your work email to unlock the live enrichment demo.</p>
+
+          <div id="gate-try-form" class="email-gate-form">
+            <div class="email-gate-row">
+              <input type="email" id="gate-email" class="email-gate-input" placeholder="you@company.com" style="margin-bottom:0;">
+              <button id="gate-submit" class="email-gate-btn" disabled>Unlock &rarr;</button>
+            </div>
+            <div id="gate-error" class="email-gate-error"></div>
+            <div class="email-gate-note">No spam. You choose if and when we follow up.</div>
+          </div>
+
+          <div id="gate-success" class="email-gate-success" style="display:none;">
+            <div class="email-gate-success-icon">&#x2713;</div>
+            <div class="email-gate-success-msg"></div>
+            <div class="email-gate-success-sub"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FEATURES ═══ -->
+    <section class="section-lg anim-fade-up">
+      <div class="container">
+        <div class="features-header">
+          <div>
+            <h2 class="section-label">Features</h2>
+          </div>
+          <div class="features-header-body">
+            <p class="features-header-text">Making enterprise data accurate, current, and trusted, when it matters most.</p>
+            <a href="/contact-us.html" class="btn btn-primary">Book a Demo</a>
+          </div>
+        </div>
+
+        <div class="feature-row anim-fade-up">
+          <div class="feature-img">
+            <img src="/images/integrate.png" alt="Integrate with any stack" loading="lazy">
+          </div>
+          <div class="feature-text">
+            <h3>Integrate with Any Stack</h3>
+            <p>Connect in minutes—not weeks. Salmon works seamlessly with CRMs like Salesforce and HubSpot, as well as APIs, data lakes, and your custom data stack.</p>
+          </div>
+        </div>
+
+        <div class="feature-row reverse anim-fade-up">
+          <div class="feature-img">
+            <img src="/images/icp-ready_1.avif" alt="AI finds ICP-ready leads" loading="lazy">
+          </div>
+          <div class="feature-text">
+            <h3>AI Finds ICP-Ready Leads Fast</h3>
+            <p>Our autonomous agents search, verify, and enrich live contact data – matched to your exact ICP – so you always have qualified leads, not bloat.</p>
+          </div>
+        </div>
+
+        <div class="feature-row anim-fade-up">
+          <div class="feature-img">
+            <img src="/images/flexible-by-design.png" alt="Flexible by design" loading="lazy">
+          </div>
+          <div class="feature-text">
+            <h3>Flexible by Design</h3>
+            <p>Unlike rigid vendors that force you into fixed fields and schemas, Salmon adapts to the exact data points your business needs. Any field, any format—verified and enriched in real time across your systems.</p>
+          </div>
+        </div>
+
+        <div class="feature-row reverse anim-fade-up">
+          <div class="feature-img">
+            <img src="/images/thoughtbubble.png" alt="AI Assistant" loading="lazy">
+          </div>
+          <div class="feature-text">
+            <h3>Ask Anything via AI Assistant</h3>
+            <p>With Salmon's AI assistant, you can query broad trends or drill down to specifics—instantly. From job changes across your CRM to sector insights and regional breakdowns, get clear answers and find the exact contacts you need, all in real time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ WHO IT'S FOR ═══ -->
+    <section class="who-section anim-fade-up">
+      <img src="/images/Data-wave-banner-bottom-02-1.avif" alt="" class="wave-bg" loading="lazy">
+      <div class="container">
+        <div class="who-grid">
+          <div class="who-heading">
+            <h2 class="who-label">who it's for</h2>
+          </div>
+          <div class="who-body">
+            <p class="who-body-text">Salmon is built for revenue operations, Marketing, Trust and Safety leaders at growth-focused enterprises. If your team relies on verified data to sell, market, and know-your-customer, Salmon keeps your data clean and ready.</p>
+            <a href="/contact-us.html" class="btn btn-primary btn-on-white">Book a Demo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ TESTIMONIALS ═══ -->
+    <section class="testimonials-section section-lg anim-fade-up">
+      <div class="container">
+        <div class="testimonials-grid">
+          <div>
+            <h2 class="section-label">Testimonials</h2>
+          </div>
+          <div class="testimonials-carousel-wrap">
+            <div class="swiper testimonials-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="testimonial-slide">
+                    <blockquote class="testimonial-quote">&ldquo;Salmon gave us a 360-degree view of our CRM, identifying gaps, inaccuracies, and outdated records in real-time.&rdquo;</blockquote>
+                    <div class="testimonial-attr">Daniel L. &nbsp;VP Sales Intelligence, Fortune 500 Company</div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="testimonial-slide">
+                    <blockquote class="testimonial-quote">&ldquo;Salmon cleaned and enriched our CRM in real time, reducing bad data by 45% and significantly increased our pipeline opportunities!&rdquo;</blockquote>
+                    <div class="testimonial-attr">Emma R. &nbsp;Head of Growth, E-commerce</div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="testimonial-slide">
+                    <blockquote class="testimonial-quote">&ldquo;Salmon cleaned and enriched our CRM in real time, reducing bad data by 45% and significantly increased our pipeline opportunities!&rdquo;</blockquote>
+                    <div class="testimonial-attr">Emma R. &nbsp;Head of Growth, E-commerce</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-scrollbar testimonials-scrollbar">
+              <div class="swiper-scrollbar-drag"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CONNECT WITH US ═══ -->
+    <section class="connect-section section-lg">
+      <video autoplay muted loop playsinline class="connect-bg-video">
+        <source src="/videos/Dotted-animation-transcode.mp4" type="video/mp4">
+        <source src="/videos/Dotted-animation-transcode.webm" type="video/webm">
+      </video>
+      <div class="container">
+        <div class="connect-grid">
+          <h2 class="section-label">Connect with us</h2>
+          <div class="sub">Transform Your CRM Data with Salmon</div>
+          <a href="/contact-us.html" class="btn btn-primary btn-lg">Book a Demo</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="/images/salmon_logo.svg" alt="Salmon">
+          <p>The real-time data engine that keeps your CRM accurate, current, and trusted.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Solutions</h4>
+          <a href="/solutions/crm.html">CRM Enrichment</a>
+          <a href="/solutions/gtm.html">GTM & Prospecting</a>
+          <a href="/solutions/kyc.html">KYC & Compliance</a>
+          <a href="/solutions/intel.html">Account Intelligence</a>
+          <a href="/solutions/api.html">Enterprise Data API</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="/story.html">Our Story</a>
+          <a href="/how-we-work.html">How It Works</a><a href="/coho.html">Coho Engine</a>
+          <a href="/security.html">Security</a>
+          <a href="/data.html">Data</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Compare</h4>
+          <a href="/compare/zoominfo.html">vs ZoomInfo</a>
+          <a href="/compare/clay.html">vs Clay</a>
+          <a href="#">vs Apollo <span class="text-xs text-grey">(soon)</span></a>
+          <a href="#">vs Crustdata <span class="text-xs text-grey">(soon)</span></a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-of-service.html">Terms & Conditions</a>
+          <a href="/contact-us.html">Contact Us</a>
+          <a href="/support.html">Support</a>
+          <a href="mailto:hello@salmonrun.ai">hello@salmonrun.ai</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Salmon Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <script src="/js/nav.js"></script>
+  <script src="/js/salmon-hero.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  <script>
+    /* ════════════════════════════════════════════════════════════════
+       Testimonials Swiper
+       ════════════════════════════════════════════════════════════════ */
+    var swiper = new Swiper('.testimonials-swiper', {
+      slidesPerView: 'auto',
+      spaceBetween: 1000,
+      grabCursor: true,
+      a11y: false,
+      autoplay: true,
+      scrollbar: {
+        el: '.testimonials-scrollbar',
+        draggable: true,
+      },
+      breakpoints: {
+        768: {
+          spaceBetween: 0
+        }
+      }
+    });
+
+    /* ════════════════════════════════════════════════════════════════
+       Animated Enrichment Grid + Email Gate
+       ════════════════════════════════════════════════════════════════ */
+    (function() {
+      // ── Intent-specific data sets ──
+      var DATA = {
+        prospects: [
+          { id:1, first:"Rachel",  last:"Kim",      company:"Rippling",      title:"VP of Revenue Operations",         email:"r.kim@rippling.com",     headcount:"3,200", tech:"Salesforce, Gong, Outreach",     signal:"Hiring 8 RevOps roles Q1",        verified:"Verified" },
+          { id:2, first:"Marcus",  last:"Webb",     company:"Brex",          title:"Head of GTM Strategy",             email:"m.webb@brex.com",        headcount:"1,100", tech:"Salesforce, Tableau, Marketo",   signal:"Series D \u2014 $150M raised",    verified:"Enriched" },
+          { id:3, first:"Priya",   last:"Nair",     company:"Plaid",         title:"Sr. Director, Sales Intelligence", email:"p.nair@plaid.com",       headcount:"900",   tech:"Salesforce, Gainsight, Looker",  signal:"New CRO hired \u2014 Sarah Friar", verified:"Verified" },
+          { id:4, first:"James",   last:"Okafor",   company:"Compliance.ai", title:"Chief Compliance Officer",         email:"j.okafor@compliance.ai", headcount:"220",   tech:"Salesforce, Workiva, ServiceNow",signal:"Expanded KYB screening mandate",  verified:"Enriched" },
+          { id:5, first:"Lena",    last:"Hoffmann", company:"Personio",      title:"VP Sales, DACH & UK",              email:"l.hoffmann@personio.de", headcount:"1,700", tech:"HubSpot, Salesloft, Drift",      signal:"US expansion \u2014 3 AE openings", verified:"Verified" },
+          { id:6, first:"David",   last:"Tan",      company:"Scale AI",      title:"Head of Workforce Ops",            email:"d.tan@scale.com",        headcount:"800",   tech:"Salesforce, Workday, Greenhouse",signal:"RLHF credentialing initiative",   verified:"Enriched" },
+          { id:7, first:"Aisha",   last:"Johnson",  company:"Chime",         title:"Director, Fraud & Risk",           email:"a.johnson@chime.com",    headcount:"1,500", tech:"Salesforce, Splunk, Datadog",    signal:"KYC friction reducing approvals", verified:"Verified" },
+        ],
+        crm: [
+          { id:1, first:"Thanh",   last:"Pham",     company:"Amgen",            title:"Director, Information Systems",     email:"t.pham@amgen.com",        headcount:"25,200", tech:"Salesforce, Veeva, MuleSoft",    signal:"Promoted from Sr. Manager",        verified:"Verified" },
+          { id:2, first:"Kush",    last:"Misra",    company:"Gilead Sciences",  title:"Corporate Head & VP, IT",           email:"k.misra@gilead.com",      headcount:"17,000", tech:"Salesforce, Workday, Tableau",   signal:"Last name corrected via cross-ref",verified:"Enriched" },
+          { id:3, first:"Jill",    last:"Higgins",  company:"Cencora",          title:"Director, Salesforce Delivery",     email:"j.higgins@cencora.com",   headcount:"46,000", tech:"Salesforce, SAP, Informatica",   signal:"Company rebranded from ABC",       verified:"Verified" },
+          { id:4, first:"Seth",    last:"Warner",   company:"Cardinal Health",  title:"Director, Analytics & BI",          email:"s.warner@cardhealth.com", headcount:"48,000", tech:"Salesforce, Power BI, Snowflake", signal:"Added LinkedIn, title, URL",       verified:"Enriched" },
+          { id:5, first:"Hriday",  last:"Porwal",   company:"PayPal",           title:"Solution Architect, MarTech",       email:"h.porwal@paypal.com",     headcount:"26,500", tech:"Salesforce, Braze, Segment",     signal:"Added location, phone, LinkedIn",  verified:"Enriched" },
+          { id:6, first:"Igor",    last:"Zeltzer",  company:"Danaher",          title:"VP Innovation, DBS Office",         email:"i.zeltzer@danaher.com",   headcount:"63,000", tech:"Salesforce, ServiceNow, SAP",    signal:"All fields current and confirmed", verified:"Verified" },
+          { id:7, first:"Adela",   last:"Li",       company:"Starbucks",        title:"Director, Business Systems",        email:"a.li@starbucks.com",      headcount:"381,000",tech:"Salesforce, Oracle, Adobe",      signal:"Moved from Nordstrom to Starbucks",verified:"Verified" },
+        ],
+        kyc: [
+          { id:1, first:"Sofia",   last:"Moreno",   company:"Stripe",           title:"Head of Identity Verification",     email:"s.moreno@stripe.com",     headcount:"8,100", tech:"Persona, Sardine, Alloy",        signal:"Expanded KYB checks to EMEA",      verified:"Verified" },
+          { id:2, first:"Raj",     last:"Patel",    company:"Mercury",          title:"VP of Risk & Compliance",           email:"r.patel@mercury.com",     headcount:"850",   tech:"Sardine, Unit21, Hummingbird",   signal:"BSA/AML audit underway",           verified:"Enriched" },
+          { id:3, first:"Elena",   last:"Voronova", company:"Wise",             title:"Director of Financial Crime",       email:"e.voronova@wise.com",     headcount:"6,000", tech:"ComplyAdvantage, LexisNexis",    signal:"New Head of Compliance hired",     verified:"Verified" },
+          { id:4, first:"Derek",   last:"Owens",    company:"SoFi",             title:"Chief Compliance Officer",          email:"d.owens@sofi.com",        headcount:"9,300", tech:"Onfido, Socure, Jumio",          signal:"Bank charter compliance review",   verified:"Enriched" },
+          { id:5, first:"Anika",   last:"Singh",    company:"Revolut",          title:"Global KYC Program Lead",           email:"a.singh@revolut.com",     headcount:"8,500", tech:"Onfido, Jumio, Sumsub",          signal:"Onboarding friction down 23%",     verified:"Verified" },
+          { id:6, first:"Nathan",  last:"Brooks",   company:"Plaid",            title:"Sr. Manager, Trust & Safety",       email:"n.brooks@plaid.com",      headcount:"900",   tech:"Sardine, Socure, ThreatMetrix",  signal:"PEP screening rollout Q2",         verified:"Enriched" },
+          { id:7, first:"Carmen",  last:"Reyes",    company:"Block",            title:"Director, Regulatory Affairs",      email:"c.reyes@block.xyz",       headcount:"12,000",tech:"LexisNexis, Chainalysis, Alloy", signal:"Crypto compliance framework v2",   verified:"Verified" },
+        ],
+        qualify: [
+          { id:1, first:"Tyler",   last:"Nguyen",   company:"Snowflake",        title:"VP of Sales Operations",            email:"t.nguyen@snowflake.com",  headcount:"5,900", tech:"Salesforce, Clari, Gong",        signal:"Hiring 12 AEs in Q1",              verified:"Verified" },
+          { id:2, first:"Hannah",  last:"Katz",     company:"Databricks",       title:"Head of Demand Generation",         email:"h.katz@databricks.com",   headcount:"5,500", tech:"HubSpot, 6sense, Demandbase",    signal:"Series I \u2014 $500M raised",     verified:"Enriched" },
+          { id:3, first:"Jordan",  last:"Davis",    company:"Figma",            title:"Director, Growth Marketing",        email:"j.davis@figma.com",       headcount:"1,500", tech:"Salesforce, Marketo, Mixpanel",   signal:"Enterprise tier just launched",    verified:"Verified" },
+          { id:4, first:"Mei",     last:"Wong",     company:"Notion",           title:"Sr. Director, Revenue Ops",         email:"m.wong@notion.so",        headcount:"800",   tech:"Salesforce, Outreach, Gong",     signal:"New CRO started last month",       verified:"Enriched" },
+          { id:5, first:"Andre",   last:"Foster",   company:"Canva",            title:"VP of Enterprise Sales",            email:"a.foster@canva.com",      headcount:"4,000", tech:"Salesforce, Salesloft, Chorus",   signal:"Expanding into APAC enterprise",   verified:"Verified" },
+          { id:6, first:"Chloe",   last:"Bennett",  company:"Miro",             title:"Global Head of Partnerships",       email:"c.bennett@miro.com",      headcount:"1,800", tech:"HubSpot, Crossbeam, Reveal",     signal:"Channel program doubling Q2",      verified:"Enriched" },
+          { id:7, first:"Omar",    last:"Hassan",   company:"Monday.com",       title:"Director, Sales Intelligence",      email:"o.hassan@monday.com",     headcount:"1,900", tech:"Salesforce, ZoomInfo, Gong",     signal:"ABM program launch this quarter",  verified:"Verified" },
+        ],
+        monitor: [
+          { id:1, first:"Lisa",    last:"Park",     company:"Stripe",           title:"VP of Customer Success",            email:"l.park@stripe.com",       headcount:"8,100", tech:"Gainsight, Salesforce, Looker",   signal:"Champion moved to CFO role",       verified:"Verified" },
+          { id:2, first:"Chris",   last:"Adler",    company:"Twilio",           title:"Head of RevOps",                    email:"c.adler@twilio.com",      headcount:"6,800", tech:"Salesforce, Clari, Gong",        signal:"Company layoffs \u2014 15% RIF",   verified:"Enriched" },
+          { id:3, first:"Nadia",   last:"Fernandez",company:"HubSpot",          title:"Director, Customer Marketing",      email:"n.fernandez@hubspot.com", headcount:"7,600", tech:"HubSpot, Pendo, Amplitude",      signal:"Champion left for MongoDB",        verified:"Verified" },
+          { id:4, first:"Ben",     last:"Torres",   company:"Okta",             title:"VP of Strategic Accounts",          email:"b.torres@okta.com",       headcount:"5,800", tech:"Salesforce, MEDDICC, Clari",     signal:"New VP Engineering hired",          verified:"Enriched" },
+          { id:5, first:"Sara",    last:"Kim",      company:"Datadog",          title:"Sr. Director, Partnerships",        email:"s.kim@datadoghq.com",     headcount:"5,200", tech:"Salesforce, Crossbeam, Gong",    signal:"AWS partnership expansion",        verified:"Verified" },
+          { id:6, first:"Alex",    last:"Morgan",   company:"Cloudflare",       title:"Head of Enterprise CS",             email:"a.morgan@cloudflare.com", headcount:"3,800", tech:"Gainsight, Salesforce, Tableau",  signal:"Exec sponsor promoted to CTO",     verified:"Enriched" },
+          { id:7, first:"Diana",   last:"Wu",       company:"Confluent",        title:"Global Accounts Director",          email:"d.wu@confluent.io",       headcount:"3,200", tech:"Salesforce, Outreach, Gong",     signal:"Board meeting next week \u2014 renewal", verified:"Verified" },
+        ],
+      };
+      DATA.api = DATA.prospects; // fallback
+
+      var tbody = document.getElementById('enrichment-rows');
+      var pillEl = document.getElementById('prompt-pill');
+      var metaEl = document.getElementById('grid-meta');
+      if (!tbody) return;
+
+      var currentAnim = null;
+
+      function shimmer(w) {
+        var s = document.createElement('span');
+        s.className = 'shimmer-bar';
+        s.style.width = w || '68%';
+        return s;
+      }
+
+      function fillRow(tr, r) {
+        var fields = tr.querySelectorAll('[data-field]');
+        for (var i = 0; i < fields.length; i++) {
+          var td = fields[i];
+          td.innerHTML = '';
+          switch (td.dataset.field) {
+            case 'email':     td.textContent = r.email; break;
+            case 'headcount': td.textContent = r.headcount; break;
+            case 'tech':      td.textContent = r.tech; break;
+            case 'signal':    td.textContent = r.signal; break;
+            case 'status':
+              var cls = r.verified === 'Verified' ? 'verified' : 'enriched';
+              td.innerHTML = '<span class="grid-badge ' + cls + '">' + r.verified + '</span>';
+              break;
+          }
+        }
+      }
+
+      function renderGrid(data, animated) {
+        if (currentAnim) { currentAnim.stop = true; currentAnim = null; }
+        tbody.innerHTML = '';
+        var ctx = { stop: false };
+        if (animated) currentAnim = ctx;
+
+        // Meta bar
+        if (metaEl) {
+          var ver = data.filter(function(r) { return r.verified === 'Verified'; }).length;
+          var enr = data.filter(function(r) { return r.verified === 'Enriched'; }).length;
+          metaEl.style.display = 'flex';
+          metaEl.innerHTML =
+            '<span style="font-size:0.6875rem;color:#6b7280;">Enrichment complete</span>' +
+            '<span class="grid-badge verified">' + ver + ' Verified</span>' +
+            '<span class="grid-badge enriched">' + enr + ' Enriched</span>' +
+            '<span style="margin-left:auto;font-size:0.625rem;color:#9ca3af;">syncing to CRM</span>';
+        }
+
+        data.forEach(function(r, i) {
+          var tr = document.createElement('tr');
+          tr.innerHTML =
+            '<td class="col-n">' + r.id + '</td>' +
+            '<td class="col-name">' + r.first + ' ' + r.last + '</td>' +
+            '<td style="font-size:0.6875rem;max-width:9.375rem;overflow:hidden;text-overflow:ellipsis;">' + r.title + '</td>' +
+            '<td style="font-weight:600;font-size:0.6875rem;">' + r.company + '</td>' +
+            '<td class="col-enriched" data-field="email"></td>' +
+            '<td class="col-enriched" data-field="headcount"></td>' +
+            '<td class="col-enriched" data-field="tech" style="max-width:10rem;overflow:hidden;text-overflow:ellipsis;"></td>' +
+            '<td class="col-signal" data-field="signal" style="max-width:11.875rem;overflow:hidden;text-overflow:ellipsis;"></td>' +
+            '<td data-field="status"></td>';
+          tbody.appendChild(tr);
+
+          if (animated) {
+            setTimeout(function() {
+              if (ctx.stop) return;
+              tr.classList.add('row-visible');
+              var enriched = tr.querySelectorAll('[data-field]');
+              for (var j = 0; j < enriched.length; j++) {
+                if (enriched[j].dataset.field !== 'status') {
+                  enriched[j].appendChild(shimmer(enriched[j].dataset.field === 'email' ? '80%' : '68%'));
+                }
+              }
+            }, i * 120);
+
+            setTimeout(function() {
+              if (ctx.stop) return;
+              fillRow(tr, r);
+            }, i * 120 + 400);
+          } else {
+            tr.classList.add('row-visible');
+            fillRow(tr, r);
+          }
+        });
+      }
+
+      // Auto-animate on scroll into view
+      var hasAnimated = false;
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !hasAnimated) {
+            hasAnimated = true;
+            renderGrid(DATA.prospects, true);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      obs.observe(document.getElementById('crm-showcase-section'));
+
+      // Listen for hero widget prompt
+      window.addEventListener('salmon-prompt', function(e) {
+        var detail = e.detail || {};
+        var intent = detail.intent || 'prospects';
+        var query = detail.query || '';
+        var dataset = DATA[intent] || DATA.prospects;
+
+        if (pillEl && query) {
+          pillEl.style.display = 'inline-flex';
+          pillEl.innerHTML = '<span style="color:var(--salmon);">\u2726</span> \u201c' + query + '\u201d';
+        }
+
+        hasAnimated = true;
+        renderGrid(dataset, true);
+      });
+
+      /* ── Email Gate Logic ── */
+      var SHEETS_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
+      var personal = ["gmail.com","yahoo.","hotmail.","outlook.com","icloud.","me.com","aol.","protonmail.","zoho."];
+
+      function isWork(v) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return false;
+        var lc = v.toLowerCase();
+        return !personal.some(function(d) { return lc.indexOf(d) !== -1; });
+      }
+
+      function postSheet(email) {
+        if (!SHEETS_URL || SHEETS_URL.indexOf('YOUR_') === 0) return Promise.resolve();
+        return fetch(SHEETS_URL, {
+          method: 'POST',
+          body: JSON.stringify({ email: email, type: 'try', timestamp: new Date().toISOString() }),
+        }).catch(function() {});
+      }
+
+      function showGateSuccess(msg, email) {
+        var heading = document.querySelector('.email-gate-heading');
+        var sub = document.querySelector('.email-gate-sub');
+        var eyebrow = document.querySelector('#email-gate .eyebrow');
+        var tryF = document.getElementById('gate-try-form');
+        var succ = document.getElementById('gate-success');
+        if (heading) heading.style.display = 'none';
+        if (sub) sub.style.display = 'none';
+        if (eyebrow) eyebrow.style.display = 'none';
+        if (tryF) tryF.style.display = 'none';
+        if (succ) {
+          succ.style.display = 'flex';
+          succ.querySelector('.email-gate-success-msg').textContent = msg;
+          succ.querySelector('.email-gate-success-sub').textContent = email;
+        }
+      }
+
+      // Email unlock form
+      var emailIn = document.getElementById('gate-email');
+      var tryBtn = document.getElementById('gate-submit');
+      var tryErr = document.getElementById('gate-error');
+
+      emailIn.addEventListener('input', function() { tryBtn.disabled = !emailIn.value.trim(); });
+      emailIn.addEventListener('keydown', function(e) { if (e.key === 'Enter') tryBtn.click(); });
+
+      tryBtn.addEventListener('click', function() {
+        if (!isWork(emailIn.value)) { tryErr.textContent = 'Please use your work email'; return; }
+        tryErr.textContent = '';
+        tryBtn.textContent = '...';
+        tryBtn.disabled = true;
+        postSheet(emailIn.value).then(function() {
+          showGateSuccess('Loading your breakdown\u2026', emailIn.value);
+          setTimeout(function() {
+            window.location.href = '/demo.html?email=' + encodeURIComponent(emailIn.value);
+          }, 800);
+        });
+      });
+
+    })();
+  </script>
+
+  <!-- LinkedIn Partner ID (from Webflow) -->
+  <script type="text/javascript">
+    _linkedin_partner_id = "8028276";
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+  </script>
+</body>
+</html>

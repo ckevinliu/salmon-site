@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Coho Engine — Salmon</title>
+  <meta name="description" content="Coho is Salmon's AI orchestration engine — a system of specialized agents that discover, verify, enrich, and deliver data with human-grade reasoning at machine speed.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- OG -->
+  <meta property="og:title" content="Coho Engine — Salmon">
+  <meta property="og:description" content="The AI research engine that replaces manual workflows with real-time, agentic intelligence.">
+  <meta property="og:image" content="/images/OG-Image.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Salmon">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Coho Engine — Salmon">
+  <meta name="twitter:description" content="The AI research engine that replaces manual workflows with real-time, agentic intelligence.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="256x256" href="/images/Favicon-256-x-256.png">
+  <link rel="shortcut icon" href="/images/Favicon-256-x-256.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/main.css">
+
+  <!-- GA -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0ZW1JGTHR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C0ZW1JGTHR');
+  </script>
+
+  <style>
+    /* ══════════════════════════════════════════════════════════════════════════
+       Coho Page Styles
+       ══════════════════════════════════════════════════════════════════════════ */
+
+    /* ── Hero ── */
+    .coho-hero {
+      padding: 6rem 0 3rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .coho-hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(ellipse at center, rgba(252,120,105,0.05), transparent 65%);
+      pointer-events: none;
+    }
+    .coho-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .coho-hero-text h1 {
+      margin-bottom: 1.25rem;
+    }
+    .coho-hero-text p {
+      font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+      font-weight: 300;
+      color: var(--grey);
+      max-width: 32rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .coho-hero-btns {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    /* Hero visual — animated data convergence */
+    .coho-hero-visual {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    .coho-hero-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      animation: ringPulse 6s ease-in-out infinite;
+    }
+    .coho-hero-ring:nth-child(1) {
+      inset: 0;
+      border-color: rgba(252,120,105,0.08);
+      animation-delay: 0s;
+    }
+    .coho-hero-ring:nth-child(2) {
+      inset: 15%;
+      border-color: rgba(252,120,105,0.12);
+      animation-delay: 0.5s;
+    }
+    .coho-hero-ring:nth-child(3) {
+      inset: 30%;
+      border-color: rgba(252,120,105,0.18);
+      animation-delay: 1s;
+    }
+    .coho-hero-center {
+      position: absolute;
+      inset: 40%;
+      border-radius: 50%;
+      background: var(--salmon-dim);
+      border: 1.5px solid var(--salmon-bdr);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: centerGlow 4s ease-in-out infinite;
+    }
+    .coho-hero-center svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--salmon);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    /* Floating data particles */
+    .coho-particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--salmon);
+      opacity: 0;
+      animation: particleFloat 5s ease-in-out infinite;
+    }
+    .coho-particle:nth-child(5)  { top: 5%;  left: 20%; animation-delay: 0s; }
+    .coho-particle:nth-child(6)  { top: 15%; left: 80%; animation-delay: 0.7s; }
+    .coho-particle:nth-child(7)  { top: 40%; left: 3%;  animation-delay: 1.4s; }
+    .coho-particle:nth-child(8)  { top: 70%; left: 90%; animation-delay: 2.1s; }
+    .coho-particle:nth-child(9)  { top: 85%; left: 15%; animation-delay: 2.8s; }
+    .coho-particle:nth-child(10) { top: 60%; left: 5%;  animation-delay: 3.5s; }
+    .coho-particle:nth-child(11) { top: 10%; left: 55%; animation-delay: 0.3s; }
+    .coho-particle:nth-child(12) { top: 90%; left: 70%; animation-delay: 1.8s; }
+    /* Labels floating near particles */
+    .coho-hero-tag {
+      position: absolute;
+      font-size: 0.5625rem;
+      font-family: var(--f-mono);
+      color: var(--charcoal);
+      letter-spacing: 0.05em;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--r-pill);
+      white-space: nowrap;
+      opacity: 0;
+      animation: tagFloat 6s ease-in-out infinite;
+    }
+    .coho-hero-tag:nth-child(13) { top: 8%;  left: 5%;  animation-delay: 0.2s; }
+    .coho-hero-tag:nth-child(14) { top: 22%; right: 2%; animation-delay: 1.2s; }
+    .coho-hero-tag:nth-child(15) { top: 55%; left: -5%; animation-delay: 2.5s; }
+    .coho-hero-tag:nth-child(16) { bottom: 12%; right: 0; animation-delay: 3.2s; }
+    .coho-hero-tag:nth-child(17) { bottom: 25%; left: 2%; animation-delay: 0.8s; }
+
+    @keyframes ringPulse {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50%      { opacity: 1; transform: scale(1.02); }
+    }
+    @keyframes centerGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(252,120,105,0); }
+      50%      { box-shadow: 0 0 30px 5px rgba(252,120,105,0.12); }
+    }
+    @keyframes particleFloat {
+      0%   { opacity: 0; transform: translate(0, 0) scale(1); }
+      20%  { opacity: 0.8; }
+      80%  { opacity: 0.6; transform: translate(calc(50% - 50%), calc(50% - 50%)) scale(0.5); }
+      100% { opacity: 0; transform: translate(calc(50% - 50%), calc(50% - 50%)) scale(0); }
+    }
+    @keyframes tagFloat {
+      0%   { opacity: 0; transform: translateY(0); }
+      15%  { opacity: 0.7; }
+      70%  { opacity: 0.5; transform: translateY(-8px); }
+      100% { opacity: 0; transform: translateY(-12px); }
+    }
+
+    /* ── Proof Bar ── */
+    .coho-proof {
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 0;
+      overflow: hidden;
+    }
+    .coho-proof-track {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+      animation: proofScroll 20s linear infinite;
+      width: max-content;
+    }
+    .coho-proof-track:hover {
+      animation-play-state: paused;
+    }
+    .coho-proof-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .coho-proof-v {
+      font-size: 2rem;
+      font-weight: 300;
+      background: var(--salmon-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+    .coho-proof-l {
+      font-size: 0.8125rem;
+      color: var(--charcoal);
+      font-weight: 300;
+      line-height: 1.4;
+    }
+    .coho-proof-sep {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+    @keyframes proofScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── Orchestration Flow (vertical timeline) ── */
+    .coho-flow {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .coho-flow-header {
+      margin-bottom: 3rem;
+    }
+    .coho-flow-header p {
+      color: var(--grey);
+      max-width: 42rem;
+      margin-top: 0.75rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* Vertical timeline */
+    .coho-timeline {
+      position: relative;
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    /* Center spine */
+    .coho-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+      transform: translateX(-50%);
+    }
+    /* Animated fill on the spine */
+    .coho-timeline-fill {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 2px;
+      height: 0%;
+      background: var(--salmon);
+      transform: translateX(-50%);
+      transition: height 0.6s ease;
+      z-index: 1;
+    }
+
+    /* Each step */
+    .coho-step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 48px 1fr;
+      gap: 0;
+      align-items: start;
+      padding: 2rem 0;
+      opacity: 0.3;
+      transition: opacity 0.5s ease;
+    }
+    .coho-step.active {
+      opacity: 1;
+    }
+    /* Dot on the spine */
+    .coho-step-dot {
+      grid-column: 2;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      position: relative;
+      z-index: 2;
+      transition: border-color 0.5s ease, box-shadow 0.5s ease;
+    }
+    .coho-step.active .coho-step-dot {
+      border-color: var(--salmon);
+      box-shadow: 0 0 16px rgba(252,120,105,0.25);
+    }
+    .coho-step-dot svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--charcoal);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.5s ease;
+    }
+    .coho-step.active .coho-step-dot svg {
+      stroke: var(--salmon);
+    }
+    /* Step number */
+    .coho-step-num {
+      position: absolute;
+      top: -8px;
+      right: -4px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--dark);
+      border: 1.5px solid var(--border);
+      font-size: 0.5625rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.5s ease, color 0.5s ease;
+    }
+    .coho-step.active .coho-step-num {
+      border-color: var(--salmon);
+      color: var(--salmon);
+    }
+
+    /* Content card — alternating sides */
+    .coho-step-content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 1.5rem;
+      transition: border-color 0.5s ease;
+    }
+    .coho-step.active .coho-step-content {
+      border-color: var(--salmon-bdr);
+    }
+    .coho-step-content h3 {
+      font-size: 1rem;
+      margin-bottom: 0.375rem;
+    }
+    .coho-step-content p {
+      font-size: 0.8125rem;
+      color: var(--grey);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+    .coho-step-content .coho-step-detail {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.6875rem;
+      font-family: var(--f-mono);
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+
+    /* Odd steps: content on LEFT */
+    .coho-step:nth-child(odd) .coho-step-content {
+      grid-column: 1;
+      grid-row: 1;
+      text-align: right;
+    }
+    .coho-step:nth-child(odd) .coho-step-dot {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: center;
+    }
+    .coho-step:nth-child(odd) .coho-step-spacer {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    /* Even steps: content on RIGHT */
+    .coho-step:nth-child(even) .coho-step-spacer {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .coho-step:nth-child(even) .coho-step-dot {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: center;
+    }
+    .coho-step:nth-child(even) .coho-step-content {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    /* ── Agent Cards ── */
+    .coho-agents {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .coho-agents-header {
+      margin-bottom: 3rem;
+    }
+    .coho-agents-header p {
+      color: var(--grey);
+      max-width: 42rem;
+      margin-top: 0.75rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .coho-agent-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .coho-agent-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .coho-agent-card:hover {
+      border-color: var(--border-2);
+      transform: translateY(-2px);
+    }
+    .coho-agent-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--salmon-dim);
+      border: 1px solid var(--salmon-bdr);
+      border-radius: 50%;
+    }
+    .coho-agent-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--salmon);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .coho-agent-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .coho-agent-card p {
+      font-size: 0.8125rem;
+      color: var(--grey);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* ── Data Sources ── */
+    .coho-sources {
+      padding: 5rem 0;
+      background: var(--dark-2);
+      border-bottom: 1px solid var(--border);
+    }
+    .coho-sources-header {
+      margin-bottom: 3rem;
+    }
+    .coho-sources-header p {
+      color: var(--grey);
+      max-width: 42rem;
+      margin-top: 0.75rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .coho-tiers {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 48rem;
+    }
+    .coho-tier {
+      display: grid;
+      grid-template-columns: 7rem 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 1.5rem 1.75rem;
+      transition: border-color 0.2s;
+    }
+    .coho-tier:hover {
+      border-color: var(--border-2);
+    }
+    .coho-tier-badge {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--salmon);
+      padding-top: 0.2rem;
+    }
+    .coho-tier h4 {
+      font-size: 1rem;
+      margin-bottom: 0.375rem;
+    }
+    .coho-tier p {
+      font-size: 0.8125rem;
+      color: var(--grey);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+    .coho-tier-arrow {
+      text-align: center;
+      color: var(--charcoal);
+      font-size: 0.6875rem;
+      font-family: var(--f-mono);
+      padding: 0.5rem 0 0.5rem 4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .coho-tier-arrow::before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 12px;
+      background: var(--border);
+      margin: 0 auto;
+    }
+    .coho-tier-arrow svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--salmon);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+    }
+    .coho-lineage-callout {
+      background: var(--salmon-dim);
+      border: 1px solid var(--salmon-bdr);
+      border-radius: var(--r-card);
+      padding: 1.25rem 1.5rem;
+      margin-top: 1.5rem;
+      max-width: 48rem;
+      font-size: 0.875rem;
+      color: var(--salmon-light);
+      line-height: 1.6;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .coho-lineage-callout svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--salmon);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── Before/After Comparison ── */
+    .coho-compare {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .coho-compare-header {
+      margin-bottom: 3rem;
+    }
+    .coho-compare-header p {
+      color: var(--grey);
+      max-width: 42rem;
+      margin-top: 0.75rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .coho-compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .coho-compare-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 2rem;
+    }
+    .coho-compare-card--old {
+      border-color: var(--border);
+    }
+    .coho-compare-card--new {
+      border-color: var(--salmon-bdr);
+    }
+    .coho-compare-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+    }
+    .coho-compare-card--old .coho-compare-label {
+      color: var(--charcoal);
+    }
+    .coho-compare-card--new .coho-compare-label {
+      color: var(--salmon);
+    }
+    .coho-compare-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .coho-compare-list li {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      font-size: 0.875rem;
+      color: var(--grey);
+      line-height: 1.55;
+      font-weight: 300;
+    }
+    .coho-bullet-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .coho-bullet-icon svg {
+      width: 10px;
+      height: 10px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+    }
+    .coho-bullet-x {
+      background: rgba(255,255,255,0.04);
+      color: var(--charcoal);
+    }
+    .coho-bullet-check {
+      background: var(--salmon-dim);
+      color: var(--salmon);
+    }
+
+    /* ── Use Case Snapshots ── */
+    .coho-cases {
+      padding: 5rem 0;
+      background: var(--dark-2);
+      border-bottom: 1px solid var(--border);
+    }
+    .coho-cases-header {
+      margin-bottom: 3rem;
+    }
+    .coho-cases-header p {
+      color: var(--grey);
+      max-width: 42rem;
+      margin-top: 0.75rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .coho-case-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .coho-case-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .coho-case-card:hover {
+      border-color: var(--border-2);
+      transform: translateY(-2px);
+    }
+    .coho-case-scenario {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--salmon);
+      font-family: var(--f-mono);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.02em;
+    }
+    .coho-case-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.625rem;
+    }
+    .coho-case-card > p {
+      font-size: 0.8125rem;
+      color: var(--grey);
+      line-height: 1.65;
+      font-weight: 300;
+      flex: 1;
+    }
+    .coho-case-result {
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+    .coho-case-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--salmon);
+      background: var(--salmon-dim);
+      border: 1px solid var(--salmon-bdr);
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--r-pill);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Bottom CTA ── */
+    .coho-cta {
+      padding: 5rem 0;
+    }
+    .coho-cta-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 3.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .coho-cta-box::before {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 300px;
+      background: radial-gradient(ellipse at center, rgba(252,120,105,0.06), transparent 70%);
+      pointer-events: none;
+    }
+    .coho-cta-box h2 {
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+    .coho-cta-box p {
+      color: var(--grey);
+      max-width: 28rem;
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+      position: relative;
+      font-weight: 300;
+    }
+    .coho-cta-btns {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      position: relative;
+      flex-wrap: wrap;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 991px) {
+      .coho-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .coho-hero-text {
+        text-align: center;
+      }
+      .coho-hero-text p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .coho-hero-btns {
+        justify-content: center;
+      }
+      .coho-hero-visual {
+        max-width: 300px;
+      }
+      .coho-agent-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      /* Timeline: single column on tablet */
+      .coho-timeline::before {
+        left: 24px;
+      }
+      .coho-timeline-fill {
+        left: 24px;
+      }
+      .coho-step {
+        grid-template-columns: 48px 1fr;
+        gap: 0 1rem;
+      }
+      .coho-step-spacer {
+        display: none;
+      }
+      .coho-step:nth-child(odd) .coho-step-content,
+      .coho-step:nth-child(even) .coho-step-content {
+        grid-column: 2;
+        grid-row: 1;
+        text-align: left;
+      }
+      .coho-step:nth-child(odd) .coho-step-dot,
+      .coho-step:nth-child(even) .coho-step-dot {
+        grid-column: 1;
+        grid-row: 1;
+      }
+      /* Show all steps active on tablet */
+      .coho-step {
+        opacity: 1;
+      }
+      .coho-step .coho-step-dot {
+        border-color: var(--salmon);
+      }
+      .coho-step .coho-step-dot svg {
+        stroke: var(--salmon);
+      }
+      .coho-step .coho-step-num {
+        border-color: var(--salmon);
+        color: var(--salmon);
+      }
+      .coho-step .coho-step-content {
+        border-color: var(--salmon-bdr);
+      }
+    }
+
+    @media (max-width: 767px) {
+      .coho-agent-grid {
+        grid-template-columns: 1fr;
+      }
+      .coho-compare-grid {
+        grid-template-columns: 1fr;
+      }
+      .coho-case-grid {
+        grid-template-columns: 1fr;
+      }
+      .coho-tier {
+        grid-template-columns: 1fr;
+      }
+      .coho-tier-badge {
+        margin-bottom: 0.25rem;
+      }
+      .coho-tier-arrow {
+        padding-left: 1.5rem;
+      }
+    }
+
+    @media (max-width: 479px) {
+      .coho-hero {
+        padding: 5rem 0 2.5rem;
+      }
+      .coho-cta-box {
+        padding: 2.5rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><img src="/images/salmon_logo.svg" alt="Salmon"></a>
+    <div class="nav-links">
+      <div class="nav-dropdown">
+        <a class="nav-link nav-dropdown-trigger" href="/solutions/">Solutions</a>
+        <div class="nav-dropdown-menu">
+          <a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a>
+          <a class="nav-dropdown-item" href="/solutions/gtm.html">GTM & Prospecting</a>
+          <a class="nav-dropdown-item" href="/solutions/kyc.html">KYC & Compliance</a>
+          <a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a>
+          <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
+        </div>
+      </div>
+      <a class="nav-link" href="/data.html">Data</a>
+      <a class="nav-link active" href="/coho.html">Coho</a>
+      <a class="nav-link" href="/pricing.html">Pricing</a>
+      <div class="nav-dropdown">
+        <a class="nav-link nav-dropdown-trigger">Company</a>
+        <div class="nav-dropdown-menu">
+          <a class="nav-dropdown-item" href="/story.html">Our Story</a>
+          <a class="nav-dropdown-item" href="/how-we-work.html">How It Works</a>
+          <a class="nav-dropdown-item" href="/security.html">Security</a>
+        </div>
+      </div>
+    </div>
+    <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta hide-mobile">Book a Demo</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- Mobile nav overlay -->
+<div class="nav-mobile-overlay" id="mobileNav">
+  <div class="nav-dropdown">
+    <a class="nav-link nav-dropdown-trigger">Solutions</a>
+    <div class="nav-dropdown-menu">
+      <a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a>
+      <a class="nav-dropdown-item" href="/solutions/gtm.html">GTM & Prospecting</a>
+      <a class="nav-dropdown-item" href="/solutions/kyc.html">KYC & Compliance</a>
+      <a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a>
+      <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
+    </div>
+  </div>
+  <a class="nav-link" href="/data.html">Data</a>
+  <a class="nav-link active" href="/coho.html">Coho</a>
+  <a class="nav-link" href="/pricing.html">Pricing</a>
+  <a class="nav-link" href="/story.html">Our Story</a>
+  <a class="nav-link" href="/how-we-work.html">How It Works</a>
+  <a class="nav-link" href="/security.html">Security</a>
+  <a href="/contact-us.html" class="btn btn-primary mt-md" style="width:100%;text-align:center;">Book a Demo</a>
+</div>
+
+<main>
+
+  <!-- ════════════════════ Section 1: Hero ════════════════════ -->
+  <section class="coho-hero">
+    <div class="container">
+      <div class="coho-hero-grid">
+        <div class="coho-hero-text">
+          <span class="eyebrow">Coho Engine</span>
+          <h1>The AI that researches like your best analyst. At machine speed.</h1>
+          <p>Coho is Salmon's orchestration engine &mdash; a system of specialized AI agents that discover, verify, and deliver data with human-grade reasoning and full explainability.</p>
+          <div class="coho-hero-btns">
+            <a href="/contact-us.html" class="btn btn-primary btn-lg">Book a Demo</a>
+            <a href="#orchestration" class="btn btn-outline btn-lg">See How It Works</a>
+          </div>
+        </div>
+        <div class="coho-hero-visual">
+          <!-- Concentric rings -->
+          <div class="coho-hero-ring"></div>
+          <div class="coho-hero-ring"></div>
+          <div class="coho-hero-ring"></div>
+          <!-- Center icon -->
+          <div class="coho-hero-center">
+            <svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.9V18h8v-3.1A7 7 0 0 0 12 2z"/></svg>
+          </div>
+          <!-- Floating data particles -->
+          <div class="coho-particle"></div>
+          <div class="coho-particle"></div>
+          <div class="coho-particle"></div>
+          <div class="coho-particle"></div>
+          <div class="coho-particle"></div>
+          <div class="coho-particle"></div>
+          <div class="coho-particle"></div>
+          <div class="coho-particle"></div>
+          <!-- Floating data labels -->
+          <span class="coho-hero-tag">email_verified</span>
+          <span class="coho-hero-tag">title: CRO</span>
+          <span class="coho-hero-tag">company_match</span>
+          <span class="coho-hero-tag">confidence: 97%</span>
+          <span class="coho-hero-tag">source: linkedin</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ Section 2: Proof Bar (scrolling ticker) ════════════════════ -->
+  <div class="coho-proof">
+    <div class="coho-proof-track">
+      <div class="coho-proof-item"><span class="coho-proof-v">95%+</span><span class="coho-proof-l">Verification accuracy</span></div>
+      <div class="coho-proof-sep"></div>
+      <div class="coho-proof-item"><span class="coho-proof-v">&lt;2min</span><span class="coho-proof-l">Average time to resolve a contact</span></div>
+      <div class="coho-proof-sep"></div>
+      <div class="coho-proof-item"><span class="coho-proof-v">40x</span><span class="coho-proof-l">Faster than manual workflows</span></div>
+      <div class="coho-proof-sep"></div>
+      <div class="coho-proof-item"><span class="coho-proof-v">100%</span><span class="coho-proof-l">Data lineage &amp; explainability</span></div>
+      <div class="coho-proof-sep"></div>
+      <!-- Duplicate set for seamless loop -->
+      <div class="coho-proof-item"><span class="coho-proof-v">95%+</span><span class="coho-proof-l">Verification accuracy</span></div>
+      <div class="coho-proof-sep"></div>
+      <div class="coho-proof-item"><span class="coho-proof-v">&lt;2min</span><span class="coho-proof-l">Average time to resolve a contact</span></div>
+      <div class="coho-proof-sep"></div>
+      <div class="coho-proof-item"><span class="coho-proof-v">40x</span><span class="coho-proof-l">Faster than manual workflows</span></div>
+      <div class="coho-proof-sep"></div>
+      <div class="coho-proof-item"><span class="coho-proof-v">100%</span><span class="coho-proof-l">Data lineage &amp; explainability</span></div>
+      <div class="coho-proof-sep"></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════ Section 3: Orchestration Flow ════════════════════ -->
+  <section class="coho-flow" id="orchestration">
+    <div class="container">
+      <div class="coho-flow-header">
+        <span class="eyebrow">The Orchestration Engine</span>
+        <h2>Five stages. One intelligent loop.</h2>
+        <p>Coho doesn't run a static pipeline. It orchestrates a reasoning graph that adapts in real time &mdash; revisiting earlier stages when confidence is low, escalating to premium sources when needed, and learning from every resolution.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="coho-timeline">
+        <div class="coho-timeline-fill"></div>
+
+        <!-- Step 1: Source -->
+        <div class="coho-step active" data-step="0">
+          <div class="coho-step-content">
+            <h3>Source</h3>
+            <p>Coho deploys search agents across the open web, partner APIs, and your own data. Multiple agents work in parallel, each optimized for different source types and geographies.</p>
+            <div class="coho-step-detail">Open web &bull; LinkedIn &bull; SEC filings &bull; Business registries &bull; 200+ live sources</div>
+          </div>
+          <div class="coho-step-dot">
+            <span class="coho-step-num">1</span>
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="coho-step-spacer"></div>
+        </div>
+
+        <!-- Step 2: Enrich -->
+        <div class="coho-step" data-step="1">
+          <div class="coho-step-spacer"></div>
+          <div class="coho-step-dot">
+            <span class="coho-step-num">2</span>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 22 8.5 12 15 2 8.5 12 2"/><polyline points="2 15.5 12 22 22 15.5"/></svg>
+          </div>
+          <div class="coho-step-content">
+            <h3>Enrich</h3>
+            <p>Raw signals are normalized, deduplicated, and merged into a unified record. Missing fields are filled from the highest-confidence available source.</p>
+            <div class="coho-step-detail">Emails &bull; Direct dials &bull; Titles &bull; Firmographics &bull; Technographics &bull; Intent signals</div>
+          </div>
+        </div>
+
+        <!-- Step 3: Reason -->
+        <div class="coho-step" data-step="2">
+          <div class="coho-step-content">
+            <h3>Reason</h3>
+            <p>The reasoning engine resolves conflicts between sources. When data disagrees, Coho determines which signal is most current and reliable &mdash; and documents why.</p>
+            <div class="coho-step-detail">Title normalization &bull; Tenure estimation &bull; Contradiction resolution &bull; Confidence scoring</div>
+          </div>
+          <div class="coho-step-dot">
+            <span class="coho-step-num">3</span>
+            <svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.9V18h8v-3.1A7 7 0 0 0 12 2z"/></svg>
+          </div>
+          <div class="coho-step-spacer"></div>
+        </div>
+
+        <!-- Step 4: Verify -->
+        <div class="coho-step" data-step="3">
+          <div class="coho-step-spacer"></div>
+          <div class="coho-step-dot">
+            <span class="coho-step-num">4</span>
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </div>
+          <div class="coho-step-content">
+            <h3>Verify</h3>
+            <p>Every data point is cross-referenced against independent verification signals. Employment records, company affiliations, and identity markers are all validated before delivery.</p>
+            <div class="coho-step-detail">Employment status &bull; Company affiliation &bull; Identity markers &bull; Multi-source triangulation</div>
+          </div>
+        </div>
+
+        <!-- Step 5: Deliver -->
+        <div class="coho-step" data-step="4">
+          <div class="coho-step-content">
+            <h3>Deliver</h3>
+            <p>The verified, enriched record is pushed directly into your CRM or data warehouse, schema-mapped to your existing fields. Full data lineage attached to every field.</p>
+            <div class="coho-step-detail">Salesforce &bull; HubSpot &bull; Snowflake &bull; API &bull; Schema-mapped &bull; Full provenance</div>
+          </div>
+          <div class="coho-step-dot">
+            <span class="coho-step-num">5</span>
+            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2" fill="none"/></svg>
+          </div>
+          <div class="coho-step-spacer"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ Section 4: Agent Breakdown ════════════════════ -->
+  <section class="coho-agents">
+    <div class="container">
+      <div class="coho-agents-header">
+        <span class="eyebrow">Specialized Agents</span>
+        <h2>Four agent types. One coordinated system.</h2>
+        <p>Each agent is purpose-built for a specific part of the research process. Coho coordinates them dynamically &mdash; deploying the right agent at the right moment based on what the data requires.</p>
+      </div>
+      <div class="coho-agent-grid">
+
+        <div class="coho-agent-card">
+          <div class="coho-agent-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+          <h3>Search Agents</h3>
+          <p>Discover across the open web, business registries, social networks, and licensed directories. Coho deploys multiple search agents in parallel, each specialized for different source types.</p>
+        </div>
+
+        <div class="coho-agent-card">
+          <div class="coho-agent-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.9V18h8v-3.1A7 7 0 0 0 12 2z"/></svg>
+          </div>
+          <h3>Reasoning Agents</h3>
+          <p>Resolve conflicts between sources. When LinkedIn says &ldquo;VP of Sales&rdquo; and a press release says &ldquo;CRO,&rdquo; the reasoning agent determines which is current, which is stale, and why.</p>
+        </div>
+
+        <div class="coho-agent-card">
+          <div class="coho-agent-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </div>
+          <h3>Verification Agents</h3>
+          <p>Cross-reference every data point against independent signals &mdash; employment records, company affiliations, identity markers. Nothing ships unverified.</p>
+        </div>
+
+        <div class="coho-agent-card">
+          <div class="coho-agent-icon">
+            <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </div>
+          <h3>Memory Agents</h3>
+          <p>Store prior resolution pathways, cache intermediate results, and optimize future lookups. The system gets faster and more accurate with every query it processes.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ Section 5: Data Sources ════════════════════ -->
+  <section class="coho-sources">
+    <div class="container">
+      <div class="coho-sources-header">
+        <span class="eyebrow">Intelligent Source Selection</span>
+        <h2>Three tiers of data. One decision framework.</h2>
+        <p>Coho doesn't query every source every time. It starts with the fastest, cheapest signals and escalates only when needed &mdash; saving cost and latency while maximizing accuracy.</p>
+      </div>
+
+      <div class="coho-tiers">
+        <div class="coho-tier" style="border-left: 3px solid var(--salmon);">
+          <div class="coho-tier-badge">Tier 1</div>
+          <div>
+            <h4>Open Web</h4>
+            <p>Public websites, directories, social networks, business registries. Free, fast, and always checked first. Coho pulls from hundreds of live sources in parallel.</p>
+          </div>
+        </div>
+
+        <div class="coho-tier-arrow">
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          escalates if needed
+        </div>
+
+        <div class="coho-tier" style="border-left: 3px solid rgba(252,120,105,0.5);">
+          <div class="coho-tier-badge">Tier 2</div>
+          <div>
+            <h4>Partner APIs</h4>
+            <p>Licensed datasets from providers like Equifax and ContactOut. Used when open-web signals are insufficient or conflicting. Cost-aware routing ensures premium sources are only called when they add value.</p>
+          </div>
+        </div>
+
+        <div class="coho-tier-arrow">
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          escalates if needed
+        </div>
+
+        <div class="coho-tier" style="border-left: 3px solid rgba(252,120,105,0.25);">
+          <div class="coho-tier-badge">Tier 3</div>
+          <div>
+            <h4>Customer Data</h4>
+            <p>Your CRM, Snowflake tables, proprietary datasets. Coho cross-references your own data to resolve gaps and validate external signals &mdash; grounding every decision in your system of record.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="coho-lineage-callout">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Every output is tagged with its source origin, the decision trace Coho used, and a confidence score. Full data lineage and explainability on every record delivered.
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ Section 6: Before/After ════════════════════ -->
+  <section class="coho-compare">
+    <div class="container">
+      <div class="coho-compare-header">
+        <span class="eyebrow">A Fundamentally Different Approach</span>
+        <h2>Traditional pipeline vs. Coho reasoning graph.</h2>
+        <p>Most data tools run a fixed sequence: query, return, done. Coho thinks. It tests hypotheses, resolves inconsistencies, and self-corrects before delivering a result.</p>
+      </div>
+
+      <div class="coho-compare-grid">
+        <!-- Old way -->
+        <div class="coho-compare-card coho-compare-card--old">
+          <div class="coho-compare-label">
+            <span class="coho-bullet-icon coho-bullet-x"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+            Traditional Pipeline
+          </div>
+          <ul class="coho-compare-list">
+            <li>
+              <span class="coho-bullet-icon coho-bullet-x"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+              Linear, fixed-step processing with no ability to revisit
+            </li>
+            <li>
+              <span class="coho-bullet-icon coho-bullet-x"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+              Static database lookups that decay the moment they're cached
+            </li>
+            <li>
+              <span class="coho-bullet-icon coho-bullet-x"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+              No conflict resolution &mdash; last write wins, errors persist
+            </li>
+            <li>
+              <span class="coho-bullet-icon coho-bullet-x"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+              Batch processing means data is stale by the time it's delivered
+            </li>
+            <li>
+              <span class="coho-bullet-icon coho-bullet-x"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+              No explainability or audit trail on any record
+            </li>
+          </ul>
+        </div>
+
+        <!-- New way -->
+        <div class="coho-compare-card coho-compare-card--new">
+          <div class="coho-compare-label">
+            <span class="coho-bullet-icon coho-bullet-check"><svg viewBox="0 0 24 24"><polyline points="4 12 9 17 20 6"/></svg></span>
+            Coho Reasoning Graph
+          </div>
+          <ul class="coho-compare-list">
+            <li>
+              <span class="coho-bullet-icon coho-bullet-check"><svg viewBox="0 0 24 24"><polyline points="4 12 9 17 20 6"/></svg></span>
+              Adaptive graph that revisits and branches based on intermediate results
+            </li>
+            <li>
+              <span class="coho-bullet-icon coho-bullet-check"><svg viewBox="0 0 24 24"><polyline points="4 12 9 17 20 6"/></svg></span>
+              Live interrogation of current sources at the moment of need
+            </li>
+            <li>
+              <span class="coho-bullet-icon coho-bullet-check"><svg viewBox="0 0 24 24"><polyline points="4 12 9 17 20 6"/></svg></span>
+              AI-driven conflict resolution with confidence scoring on every field
+            </li>
+            <li>
+              <span class="coho-bullet-icon coho-bullet-check"><svg viewBox="0 0 24 24"><polyline points="4 12 9 17 20 6"/></svg></span>
+              Real-time processing &mdash; results delivered in seconds, not days
+            </li>
+            <li>
+              <span class="coho-bullet-icon coho-bullet-check"><svg viewBox="0 0 24 24"><polyline points="4 12 9 17 20 6"/></svg></span>
+              Full data lineage and decision trace on every record
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ Section 7: Use Case Snapshots ════════════════════ -->
+  <section class="coho-cases">
+    <div class="container">
+      <div class="coho-cases-header">
+        <span class="eyebrow">Coho in Action</span>
+        <h2>Real conflicts. Resolved in seconds.</h2>
+        <p>These aren't hypothetical scenarios. They're patterns Coho resolves thousands of times per day across every customer deployment.</p>
+      </div>
+
+      <div class="coho-case-grid">
+        <div class="coho-case-card">
+          <div class="coho-case-scenario">"VP of Sales" vs "CRO"</div>
+          <h3>Title Conflict Resolution</h3>
+          <p>LinkedIn shows VP of Sales. A recent press release says CRO. Coho's reasoning agent checks the dates, cross-references the company's org chart, and confirms the CRO title is current &mdash; the LinkedIn update is three weeks behind.</p>
+          <div class="coho-case-result">
+            <span class="coho-case-badge">
+              <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="4 12 9 17 20 6"/></svg>
+              Resolved: CRO (high confidence)
+            </span>
+          </div>
+        </div>
+
+        <div class="coho-case-card">
+          <div class="coho-case-scenario">Changed companies, stale CRM</div>
+          <h3>Employment Verification</h3>
+          <p>Your CRM shows a contact at Stripe. Coho's verification agent detects a new company domain in email headers, confirms the role at Plaid via multiple independent signals, and updates the record with full provenance.</p>
+          <div class="coho-case-result">
+            <span class="coho-case-badge">
+              <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="4 12 9 17 20 6"/></svg>
+              Updated: Plaid, Head of Ops
+            </span>
+          </div>
+        </div>
+
+        <div class="coho-case-card">
+          <div class="coho-case-scenario">Missing direct dial + tech stack</div>
+          <h3>Data Gap Filling</h3>
+          <p>A new lead comes in with just name and company. Coho's search agents find the direct line via a partner API, reasoning agents determine the correct title from three conflicting sources, and the complete profile ships to your CRM in 90 seconds.</p>
+          <div class="coho-case-result">
+            <span class="coho-case-badge">
+              <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="4 12 9 17 20 6"/></svg>
+              Enriched: 12 fields added
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ Section 8: Bottom CTA ════════════════════ -->
+  <section class="coho-cta">
+    <div class="container">
+      <div class="coho-cta-box">
+        <span class="eyebrow" style="margin-bottom: 1rem; display: block;">Get Started</span>
+        <h2>See Coho run on your data.</h2>
+        <p>No slides, no pitch deck. We run Coho on your actual records and show you what changes. 30 minutes.</p>
+        <div class="coho-cta-btns">
+          <a href="/contact-us.html" class="btn btn-primary btn-lg">Book a Demo</a>
+          <a href="/data.html" class="btn btn-outline btn-lg">Explore Data Capabilities</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><img src="/images/salmon_logo.svg" alt="Salmon"><p>The real-time data engine that keeps your CRM accurate, current, and trusted.</p></div>
+      <div class="footer-col"><h4>Solutions</h4><a href="/solutions/crm.html">CRM Enrichment</a><a href="/solutions/gtm.html">GTM & Prospecting</a><a href="/solutions/kyc.html">KYC & Compliance</a><a href="/solutions/intel.html">Account Intelligence</a><a href="/solutions/api.html">Enterprise Data API</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="/story.html">Our Story</a><a href="/how-we-work.html">How It Works</a><a href="/coho.html">Coho Engine</a><a href="/security.html">Security</a><a href="/data.html">Data</a></div>
+      <div class="footer-col"><h4>Compare</h4><a href="/compare/zoominfo.html">vs ZoomInfo</a><a href="/compare/clay.html">vs Clay</a><a href="#">vs Apollo <span class="text-xs text-grey">(soon)</span></a><a href="#">vs Crustdata <span class="text-xs text-grey">(soon)</span></a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-service.html">Terms & Conditions</a><a href="/contact-us.html">Contact Us</a><a href="/support.html">Support</a><a href="mailto:hello@salmonrun.ai">hello@salmonrun.ai</a></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2025 Salmon Inc. All rights reserved.</p></div>
+  </div>
+</footer>
+
+<!-- Mobile nav JS -->
+<script>
+  document.querySelector('.nav-toggle').addEventListener('click', function() {
+    const overlay = document.getElementById('mobileNav');
+    const expanded = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', !expanded);
+    overlay.classList.toggle('active');
+  });
+</script>
+
+<!-- Scroll-triggered vertical timeline animation -->
+<script>
+(function() {
+  var timeline = document.querySelector('.coho-timeline');
+  if (!timeline) return;
+
+  var steps = timeline.querySelectorAll('.coho-step');
+  var fill = timeline.querySelector('.coho-timeline-fill');
+
+  function isMobile() {
+    return window.innerWidth <= 991;
+  }
+
+  // On mobile, CSS handles everything — all steps visible
+  if (isMobile()) return;
+
+  // Remove active from all but first step on load
+  steps.forEach(function(step) {
+    if (step.getAttribute('data-step') !== '0') {
+      step.classList.remove('active');
+    }
+  });
+
+  var ticking = false;
+
+  function onScroll() {
+    if (isMobile()) return;
+
+    var timelineRect = timeline.getBoundingClientRect();
+    var timelineTop = timelineRect.top;
+    var timelineHeight = timelineRect.height;
+    var trigger = window.innerHeight * 0.65;
+
+    // Calculate how far the scroll trigger has traveled through the timeline
+    var scrolledInto = trigger - timelineTop;
+    var fillPct = Math.max(0, Math.min(100, (scrolledInto / timelineHeight) * 100));
+
+    if (fill) {
+      fill.style.height = fillPct + '%';
+    }
+
+    // Activate steps as the fill line passes them
+    steps.forEach(function(step) {
+      var stepRect = step.getBoundingClientRect();
+      var stepMid = stepRect.top + stepRect.height * 0.4;
+      if (stepMid < trigger) {
+        step.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(function() {
+        onScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Handle resize
+  window.addEventListener('resize', function() {
+    if (isMobile()) {
+      steps.forEach(function(s) { s.classList.add('active'); });
+      if (fill) fill.style.height = '100%';
+    }
+  });
+
+  // Initial check
+  onScroll();
+})();
+</script>
+
+<!-- Intersection Observer for fade-up animations -->
+<script>
+(function() {
+  var els = document.querySelectorAll('.anim-fade-up');
+  if (!els.length) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(function(el) { observer.observe(el); });
+})();
+</script>
+
+<!-- LinkedIn Insight -->
+<script type="text/javascript">
+_linkedin_partner_id = "8028276";
+window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+</script>
+<script type="text/javascript">
+(function(l) {
+if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+window.lintrk.q=[]}
+var s = document.getElementsByTagName("script")[0];
+var b = document.createElement("script");
+b.type = "text/javascript";b.async = true;
+b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+s.parentNode.insertBefore(b, s);})(window.lintrk);
+</script>
+<noscript><img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=8028276&fmt=gif"></noscript>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+# Salmon — Netlify Configuration
+
+[build]
+  publish = "."
+
+# Redirects
+[[redirects]]
+  from = "/book-demo"
+  to = "/contact-us.html"
+  status = 301
+
+[[redirects]]
+  from = "/book-demo/"
+  to = "/contact-us.html"
+  status = 301
+
+[[redirects]]
+  from = "/demo"
+  to = "/demo.html"
+  status = 200
+
+# Clean URLs — serve .html files without extension
+[[redirects]]
+  from = "/solutions"
+  to = "/solutions/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/solutions/"
+  to = "/solutions/index.html"
+  status = 200
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Cache static assets
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/videos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>KYC & Compliance — Salmon</title>
+  <meta name="description" content="Manual identity verification takes days, creates onboarding friction, and still misses things. Salmon verifies in real time against sanctions lists, adverse media, and professional credential sources.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- OG -->
+  <meta property="og:title" content="KYC & Compliance — Salmon">
+  <meta property="og:description" content="Your KYC process is costing you customers, not protecting you. Salmon verifies in real time.">
+  <meta property="og:image" content="/images/OG-Image.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="256x256" href="/images/Favicon-256-x-256.png">
+  <link rel="shortcut icon" href="/images/Favicon-256-x-256.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/main.css">
+
+  <style>
+    /* Solution page styles */
+    .sol-hero { padding: 8rem 0 4rem; border-bottom: 1px solid var(--border); position: relative; }
+    .sol-hero::before { content:''; position:absolute; top:-20%; right:-10%; width:600px; height:600px; background:radial-gradient(ellipse at center,rgba(252,120,105,0.05),transparent 65%); pointer-events:none; }
+    .sol-h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.08; white-space: pre-line; margin-bottom: 1.25rem; }
+    .sol-sub { font-size: clamp(0.9375rem, 1.5vw, 1.0625rem); font-weight: 300; color: var(--grey); max-width: 36rem; line-height: 1.7; margin-bottom: 2rem; }
+    .sol-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    /* Proof bar */
+    .sol-proof { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border-bottom: 1px solid var(--border); }
+    .sol-proof-item { background: var(--dark-2); padding: 2rem 1.5rem; text-align: center; }
+    .sol-proof-v { font-size: 2.25rem; font-weight: 600; background: var(--salmon-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip:text; line-height:1; margin-bottom: 0.5rem; }
+    .sol-proof-l { font-size: 0.75rem; color: var(--charcoal); font-family: var(--f-mono); line-height: 1.5; }
+
+    /* Punch cards */
+    .sol-punch { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    .sol-pc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-card); padding: 1.75rem 1.5rem; transition: border-color 0.2s, transform 0.2s; }
+    .sol-pc:hover { border-color: var(--border-2); transform: translateY(-2px); }
+    .sol-pc-icon { margin-bottom: 0.75rem; width: 28px; height: 28px; color: var(--grey); }
+    .sol-pc-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .sol-pc-t { font-size: 0.9375rem; font-weight: 500; color: var(--white); margin-bottom: 0.5rem; }
+    .sol-pc-b { font-size: 0.8125rem; font-weight: 300; color: var(--charcoal); line-height: 1.65; }
+
+    /* Narrative */
+    .sol-narrative { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .sol-narrative-body p { font-size: 0.9375rem; color: var(--light-grey); line-height: 1.75; margin-bottom: 1.25rem; }
+    .sol-narrative-body p strong { color: var(--white); font-weight: 600; }
+    .sol-comp { background: var(--dark-2); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 1rem 1.25rem; margin-bottom: 0.625rem; }
+    .sol-comp-name { font-size: 0.8125rem; font-weight: 500; color: var(--white); margin-bottom: 0.25rem; }
+    .sol-comp-desc { font-size: 0.75rem; color: var(--charcoal); line-height: 1.55; }
+    .sol-narrative-tag { display: inline-block; background: var(--salmon-dim); border: 1px solid var(--salmon-bdr); color: var(--salmon); border-radius: var(--r-sm); padding: 0.75rem 1rem; font-size: 0.8125rem; line-height: 1.55; margin-top: 1rem; font-style: italic; }
+
+    /* Testimonial */
+    .sol-testi { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-card); padding: 2.5rem; position: relative; }
+    .sol-testi::before { content:'"'; position:absolute; top:0.5rem; left:1rem; font-size:6rem; color:var(--salmon); opacity:0.06; font-weight:700; line-height:1; }
+    .sol-testi q { display: block; font-size: 1.0625rem; font-weight: 300; color: var(--light-grey); line-height: 1.7; font-style: italic; margin-bottom: 1.25rem; }
+    .sol-testi-attr strong { display: block; font-size: 0.8125rem; font-weight: 600; color: var(--white); margin-bottom: 0.25rem; }
+    .sol-testi-attr span { font-size: 0.6875rem; color: var(--charcoal); font-family: var(--f-mono); }
+
+    /* Objections */
+    .sol-objs { display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: var(--r-card); overflow: hidden; }
+    .sol-obj { background: var(--surface); padding: 1.25rem 1.5rem; cursor: pointer; transition: background 0.15s; }
+    .sol-obj:hover { background: var(--dark-2); }
+    .sol-obj-q { font-size: 0.9375rem; font-weight: 500; color: var(--light-grey); display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .sol-obj-toggle { color: var(--salmon); font-size: 1.25rem; transition: transform 0.2s; }
+    .sol-obj-toggle.open { transform: rotate(45deg); }
+    .sol-obj-a { font-size: 0.8125rem; color: var(--grey); line-height: 1.65; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+
+    /* CTA block */
+    .sol-cta { background: var(--surface); border: 1px solid var(--border-2); border-radius: var(--r-card); padding: 3.5rem; text-align: center; position: relative; overflow: hidden; }
+    .sol-cta::before { content:''; position:absolute; bottom:-60px; left:50%; transform:translateX(-50%); width:500px; height:300px; background:radial-gradient(ellipse at center,rgba(252,120,105,0.08),transparent 70%); pointer-events:none; }
+    .sol-cta h2 { margin-bottom: 0.75rem; position: relative; }
+    .sol-cta p { font-weight: 300; color: var(--grey); max-width: 28rem; margin: 0 auto 2rem; position: relative; }
+    .sol-cta .btn { position: relative; }
+
+    @media (max-width: 767px) {
+      .sol-proof { grid-template-columns: 1fr; }
+      .sol-punch { grid-template-columns: 1fr; }
+      .sol-narrative { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <!-- GA -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0ZW1JGTHR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C0ZW1JGTHR');
+  </script>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo"><img src="/images/salmon_logo.svg" alt="Salmon"></a>
+      <div class="nav-links">
+        <div class="nav-dropdown">
+          <a class="nav-link nav-dropdown-trigger" href="/solutions/">Solutions</a>
+          <div class="nav-dropdown-menu">
+            <a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a>
+            <a class="nav-dropdown-item" href="/solutions/gtm.html">GTM & Prospecting</a>
+            <a class="nav-dropdown-item" href="/solutions/kyc.html">KYC & Compliance</a>
+            <a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a>
+            <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
+          </div>
+        </div>
+        <a class="nav-link" href="/data.html">Data</a>
+        <a class="nav-link" href="/coho.html">Coho</a>
+        <a class="nav-link" href="/pricing.html">Pricing</a>
+        <div class="nav-dropdown">
+          <a class="nav-link nav-dropdown-trigger">Company</a>
+          <div class="nav-dropdown-menu">
+            <a class="nav-dropdown-item" href="/story.html">Our Story</a>
+            <a class="nav-dropdown-item" href="/how-we-work.html">How It Works</a>
+            <a class="nav-dropdown-item" href="/security.html">Security</a>
+          </div>
+        </div>
+      </div>
+      <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta hide-mobile">Book a Demo</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="sol-hero">
+      <div class="container">
+        <span class="eyebrow">Compliance & Identity Verification</span>
+        <h1 class="sol-h1">Real-time verification.
+Continuous monitoring. Full audit trail.</h1>
+        <p class="sol-sub">Manual KYC costs $25&ndash;40 per case and takes 45+ minutes. Salmon screens against sanctions lists, PEP registries, and adverse media in seconds &mdash; and keeps monitoring after approval.</p>
+        <div class="sol-btns">
+          <a href="/contact-us.html" class="btn btn-primary">See a live KYC check</a>
+          <a href="/solutions/" class="btn btn-ghost">Back to all solutions &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proof bar -->
+    <div class="sol-proof">
+      <div class="sol-proof-item">
+        <div class="sol-proof-v">3&times;</div>
+        <div class="sol-proof-l">faster KYC onboarding vs. manual</div>
+      </div>
+      <div class="sol-proof-item">
+        <div class="sol-proof-v">99.1%</div>
+        <div class="sol-proof-l">identity match accuracy</div>
+      </div>
+      <div class="sol-proof-item">
+        <div class="sol-proof-v">&lt; 2hrs</div>
+        <div class="sol-proof-l">from application to approval (vs. 3&ndash;4 days)</div>
+      </div>
+    </div>
+
+    <!-- Punch cards -->
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">What you get</span>
+        <h2>What changes on day one.</h2>
+        <div class="sol-punch" style="margin-top: 2rem;">
+          <div class="sol-pc">
+            <div class="sol-pc-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <div class="sol-pc-t">Multi-source screening in one pass</div>
+            <div class="sol-pc-b">Sanctions lists, PEP registries, adverse media, licensed datasets &mdash; all cross-referenced before you see the result.</div>
+          </div>
+          <div class="sol-pc">
+            <div class="sol-pc-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+            <div class="sol-pc-t">Ongoing monitoring, not one-time checks</div>
+            <div class="sol-pc-b">Continuous post-approval screening. New sanctions exposure or status changes trigger alerts automatically.</div>
+          </div>
+          <div class="sol-pc">
+            <div class="sol-pc-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+            <div class="sol-pc-t">Audit-ready from day one</div>
+            <div class="sol-pc-b">Source attribution, confidence scores, timestamps, and reasoning traces on every output.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Narrative -->
+    <section class="section" style="background: var(--dark-2);">
+      <div class="container">
+        <div class="sol-narrative">
+          <div>
+            <span class="eyebrow">The real problem</span>
+            <h2 style="margin-bottom: 1.5rem;">Every day of KYC friction is a day a legitimate customer waits to give you money.</h2>
+            <div class="sol-narrative-body">
+              <p>Every day your KYC process takes is a day a legitimate customer is waiting to give you money. Legacy verification tools were built for a world with weekly batch jobs and compliance teams who had time to review manually. That world is gone.</p>
+              <p>The modern compliance challenge is three-pronged: speed (applicants expect near-instant decisions), accuracy (fraud is more sophisticated and synthetic identities are harder to detect), and continuity (a clean onboarding doesn't mean a clean customer in 18 months). Point-in-time verification solves one third of the problem.</p>
+              <p>Salmon's Coho engine handles all three. Real-time verification at point of application. Multi-source triangulation that catches what single-source APIs miss. And continuous post-onboarding monitoring that flags changes to your approved customer base before they become your compliance team's problem.</p>
+            </div>
+          </div>
+          <div>
+            <span class="eyebrow">How the market works</span>
+            <div style="display: flex; flex-direction: column; gap: 0.625rem; margin-top: 1.25rem;">
+              <div class="sol-comp">
+                <div class="sol-comp-name">Jumio / Persona</div>
+                <div class="sol-comp-desc">Document-based identity verification. Strong for consumer ID, limited coverage of professional credentials, employment, and business legitimacy.</div>
+              </div>
+              <div class="sol-comp">
+                <div class="sol-comp-name">LexisNexis / OFAC APIs</div>
+                <div class="sol-comp-desc">Sanctions and watchlist screening. Single-purpose, not comprehensive identity or credential verification.</div>
+              </div>
+              <div class="sol-comp">
+                <div class="sol-comp-name">Manual review team</div>
+                <div class="sol-comp-desc">Thorough but slow. At scale, you're either creating a bottleneck or building a large headcount you don't want.</div>
+              </div>
+            </div>
+            <div class="sol-narrative-tag">"Salmon replaces the patchwork. One integration, real-time, continuous."</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">Practitioner perspective</span>
+        <div class="sol-testi">
+          <q>KYC onboarding used to take 3&ndash;4 days of manual review. With Salmon's real-time verification we're under 2 hours. The compliance team finally has bandwidth for strategy, not paperwork.</q>
+          <div class="sol-testi-attr">
+            <strong>Chief Compliance Officer</strong>
+            <span>FinTech Platform &middot; $200M+ deposits under management &middot; Banking & Insurance</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Objections / FAQ -->
+    <section class="section" style="background: var(--dark-2);">
+      <div class="container">
+        <span class="eyebrow">Common questions</span>
+        <h2>Things we hear on every call.</h2>
+        <div class="sol-objs" style="margin-top: 1.75rem;">
+          <div class="sol-obj">
+            <div class="sol-obj-q">We're already integrated with a KYC vendor.<span class="sol-obj-toggle">+</span></div>
+            <div class="sol-obj-a" style="display:none">Salmon sits on top of existing KYC workflows or replaces them. If your current vendor is slow, narrow, or missing coverage in specific industries or geographies, Salmon fills the gap &mdash; or becomes the primary layer.</div>
+          </div>
+          <div class="sol-obj">
+            <div class="sol-obj-q">What data sources do you use?<span class="sol-obj-toggle">+</span></div>
+            <div class="sol-obj-a" style="display:none">Open web, partnered professional datasets (Equifax, ContactOut, and others), sanctions registries, PEP lists, adverse media feeds, and customer-owned data. Source and confidence score are returned on every field.</div>
+          </div>
+          <div class="sol-obj">
+            <div class="sol-obj-q">What about GDPR / CCPA?<span class="sol-obj-toggle">+</span></div>
+            <div class="sol-obj-a" style="display:none">Salmon is GDPR and CCPA compliant. We process only publicly available and licensed data, no private user scraping. SOC 2 in progress.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="sol-cta">
+          <span class="eyebrow" style="margin-bottom: 1rem; display: block;">Next step</span>
+          <h2>See it running on your data.</h2>
+          <p>No slides. We run Coho on your actual records and show you what changes. 30 minutes.</p>
+          <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; position: relative;">
+            <a href="/contact-us.html" class="btn btn-primary">Book a 30-min demo</a>
+            <a href="/solutions/" class="btn btn-ghost">Try the live explorer &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="/images/salmon_logo.svg" alt="Salmon">
+          <p>The real-time data engine that keeps your CRM accurate, current, and trusted.</p>
+        </div>
+        <div class="footer-col"><h4>Solutions</h4>
+          <a href="/solutions/crm.html">CRM Enrichment</a>
+          <a href="/solutions/gtm.html">GTM & Prospecting</a>
+          <a href="/solutions/kyc.html">KYC & Compliance</a>
+          <a href="/solutions/intel.html">Account Intelligence</a>
+          <a href="/solutions/api.html">Enterprise Data API</a>
+        </div>
+        <div class="footer-col"><h4>Company</h4>
+          <a href="/story.html">Our Story</a>
+          <a href="/how-we-work.html">How It Works</a><a href="/coho.html">Coho Engine</a>
+          <a href="/security.html">Security</a>
+          <a href="/data.html">Data</a>
+        </div>
+        <div class="footer-col"><h4>Compare</h4>
+          <a href="/compare/zoominfo.html">vs ZoomInfo</a>
+          <a href="/compare/clay.html">vs Clay</a>
+          <a href="#">vs Apollo <span class="text-xs text-grey">(soon)</span></a>
+          <a href="#">vs Crustdata <span class="text-xs text-grey">(soon)</span></a>
+        </div>
+        <div class="footer-col"><h4>Legal</h4>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-of-service.html">Terms & Conditions</a>
+          <a href="/contact-us.html">Contact Us</a>
+          <a href="/support.html">Support</a>
+          <a href="mailto:hello@salmonrun.ai">hello@salmonrun.ai</a>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 Salmon Inc. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <!-- Accordion JS -->
+  <script>
+    document.querySelectorAll('.sol-obj').forEach(el => {
+      el.addEventListener('click', () => {
+        const a = el.querySelector('.sol-obj-a');
+        const toggle = el.querySelector('.sol-obj-toggle');
+        if (a.style.display === 'block') {
+          a.style.display = 'none';
+          toggle.classList.remove('open');
+        } else {
+          a.style.display = 'block';
+          toggle.classList.add('open');
+        }
+      });
+    });
+  </script>
+
+  <!-- LinkedIn Partner ID -->
+  <script type="text/javascript">
+    _linkedin_partner_id = "8028276";
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+  </script>
+</body>
+</html>

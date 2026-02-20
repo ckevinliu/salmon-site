@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CRM Data & Revenue Ops — Salmon</title>
+  <meta name="description" content="B2B contact data decays at 30-40% per year. Every stale title, dead email, and wrong company is a conversation your reps are having with the wrong framing.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- OG -->
+  <meta property="og:title" content="CRM Data & Revenue Ops — Salmon">
+  <meta property="og:description" content="30-40% of your CRM is wrong right now. Salmon fixes that continuously.">
+  <meta property="og:image" content="/images/OG-Image.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="256x256" href="/images/Favicon-256-x-256.png">
+  <link rel="shortcut icon" href="/images/Favicon-256-x-256.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/main.css">
+
+  <style>
+    /* Solution page styles */
+    .sol-hero { padding: 8rem 0 4rem; border-bottom: 1px solid var(--border); position: relative; }
+    .sol-hero::before { content:''; position:absolute; top:-20%; right:-10%; width:600px; height:600px; background:radial-gradient(ellipse at center,rgba(252,120,105,0.05),transparent 65%); pointer-events:none; }
+    .sol-h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.08; white-space: pre-line; margin-bottom: 1.25rem; }
+    .sol-sub { font-size: clamp(0.9375rem, 1.5vw, 1.0625rem); font-weight: 300; color: var(--grey); max-width: 36rem; line-height: 1.7; margin-bottom: 2rem; }
+    .sol-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    /* Proof bar */
+    .sol-proof { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border-bottom: 1px solid var(--border); }
+    .sol-proof-item { background: var(--dark-2); padding: 2rem 1.5rem; text-align: center; }
+    .sol-proof-v { font-size: 2.25rem; font-weight: 600; background: var(--salmon-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip:text; line-height:1; margin-bottom: 0.5rem; }
+    .sol-proof-l { font-size: 0.75rem; color: var(--charcoal); font-family: var(--f-mono); line-height: 1.5; }
+
+    /* Punch cards */
+    .sol-punch { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    .sol-pc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-card); padding: 1.75rem 1.5rem; transition: border-color 0.2s, transform 0.2s; }
+    .sol-pc:hover { border-color: var(--border-2); transform: translateY(-2px); }
+    .sol-pc-icon { margin-bottom: 0.75rem; width: 28px; height: 28px; color: var(--grey); }
+    .sol-pc-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .sol-pc-t { font-size: 0.9375rem; font-weight: 500; color: var(--white); margin-bottom: 0.5rem; }
+    .sol-pc-b { font-size: 0.8125rem; font-weight: 300; color: var(--charcoal); line-height: 1.65; }
+
+    /* Narrative */
+    .sol-narrative { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .sol-narrative-body p { font-size: 0.9375rem; color: var(--light-grey); line-height: 1.75; margin-bottom: 1.25rem; }
+    .sol-narrative-body p strong { color: var(--white); font-weight: 600; }
+    .sol-comp { background: var(--dark-2); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 1rem 1.25rem; margin-bottom: 0.625rem; }
+    .sol-comp-name { font-size: 0.8125rem; font-weight: 500; color: var(--white); margin-bottom: 0.25rem; }
+    .sol-comp-desc { font-size: 0.75rem; color: var(--charcoal); line-height: 1.55; }
+    .sol-narrative-tag { display: inline-block; background: var(--salmon-dim); border: 1px solid var(--salmon-bdr); color: var(--salmon); border-radius: var(--r-sm); padding: 0.75rem 1rem; font-size: 0.8125rem; line-height: 1.55; margin-top: 1rem; font-style: italic; }
+
+    /* Testimonial */
+    .sol-testi { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-card); padding: 2.5rem; position: relative; }
+    .sol-testi::before { content:'"'; position:absolute; top:0.5rem; left:1rem; font-size:6rem; color:var(--salmon); opacity:0.06; font-weight:700; line-height:1; }
+    .sol-testi q { display: block; font-size: 1.0625rem; font-weight: 300; color: var(--light-grey); line-height: 1.7; font-style: italic; margin-bottom: 1.25rem; }
+    .sol-testi-attr strong { display: block; font-size: 0.8125rem; font-weight: 600; color: var(--white); margin-bottom: 0.25rem; }
+    .sol-testi-attr span { font-size: 0.6875rem; color: var(--charcoal); font-family: var(--f-mono); }
+
+    /* Objections */
+    .sol-objs { display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: var(--r-card); overflow: hidden; }
+    .sol-obj { background: var(--surface); padding: 1.25rem 1.5rem; cursor: pointer; transition: background 0.15s; }
+    .sol-obj:hover { background: var(--dark-2); }
+    .sol-obj-q { font-size: 0.9375rem; font-weight: 500; color: var(--light-grey); display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .sol-obj-toggle { color: var(--salmon); font-size: 1.25rem; transition: transform 0.2s; }
+    .sol-obj-toggle.open { transform: rotate(45deg); }
+    .sol-obj-a { font-size: 0.8125rem; color: var(--grey); line-height: 1.65; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+
+    /* CTA block */
+    .sol-cta { background: var(--surface); border: 1px solid var(--border-2); border-radius: var(--r-card); padding: 3.5rem; text-align: center; position: relative; overflow: hidden; }
+    .sol-cta::before { content:''; position:absolute; bottom:-60px; left:50%; transform:translateX(-50%); width:500px; height:300px; background:radial-gradient(ellipse at center,rgba(252,120,105,0.08),transparent 70%); pointer-events:none; }
+    .sol-cta h2 { margin-bottom: 0.75rem; position: relative; }
+    .sol-cta p { font-weight: 300; color: var(--grey); max-width: 28rem; margin: 0 auto 2rem; position: relative; }
+    .sol-cta .btn { position: relative; }
+
+    @media (max-width: 767px) {
+      .sol-proof { grid-template-columns: 1fr; }
+      .sol-punch { grid-template-columns: 1fr; }
+      .sol-narrative { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <!-- GA -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0ZW1JGTHR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C0ZW1JGTHR');
+  </script>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo"><img src="/images/salmon_logo.svg" alt="Salmon"></a>
+      <div class="nav-links">
+        <div class="nav-dropdown">
+          <a class="nav-link nav-dropdown-trigger" href="/solutions/">Solutions</a>
+          <div class="nav-dropdown-menu">
+            <a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a>
+            <a class="nav-dropdown-item" href="/solutions/gtm.html">GTM & Prospecting</a>
+            <a class="nav-dropdown-item" href="/solutions/kyc.html">KYC & Compliance</a>
+            <a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a>
+            <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
+          </div>
+        </div>
+        <a class="nav-link" href="/data.html">Data</a>
+        <a class="nav-link" href="/coho.html">Coho</a>
+        <a class="nav-link" href="/pricing.html">Pricing</a>
+        <div class="nav-dropdown">
+          <a class="nav-link nav-dropdown-trigger">Company</a>
+          <div class="nav-dropdown-menu">
+            <a class="nav-dropdown-item" href="/story.html">Our Story</a>
+            <a class="nav-dropdown-item" href="/how-we-work.html">How It Works</a>
+            <a class="nav-dropdown-item" href="/security.html">Security</a>
+          </div>
+        </div>
+      </div>
+      <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta hide-mobile">Book a Demo</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="sol-hero">
+      <div class="container">
+        <span class="eyebrow">CRM Data & Revenue Ops</span>
+        <h1 class="sol-h1">Your CRM decays 30&ndash;40%
+every year. Salmon fixes it in real time.</h1>
+        <p class="sol-sub">Stale titles, dead emails, wrong companies. Every bad record is a missed conversation or a wasted touch. Salmon continuously verifies and refreshes your CRM so your reps always work from accurate data.</p>
+        <div class="sol-btns">
+          <a href="/contact-us.html" class="btn btn-primary">Run a free data audit</a>
+          <a href="/solutions/" class="btn btn-ghost">Back to all solutions &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proof bar -->
+    <div class="sol-proof">
+      <div class="sol-proof-item">
+        <div class="sol-proof-v">30&ndash;40%</div>
+        <div class="sol-proof-l">of B2B CRM data decays annually</div>
+      </div>
+      <div class="sol-proof-item">
+        <div class="sol-proof-v">20%</div>
+        <div class="sol-proof-l">of selling time lost chasing bad leads</div>
+      </div>
+      <div class="sol-proof-item">
+        <div class="sol-proof-v">45%</div>
+        <div class="sol-proof-l">reduction in bad data within 30 days</div>
+      </div>
+    </div>
+
+    <!-- Punch cards -->
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">What you get</span>
+        <h2>What changes on day one.</h2>
+        <div class="sol-punch" style="margin-top: 2rem;">
+          <div class="sol-pc">
+            <div class="sol-pc-icon"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+            <div class="sol-pc-t">Always-on refresh</div>
+            <div class="sol-pc-b">Records self-heal as people change roles and companies. No quarterly cleanups, no ops fire drills.</div>
+          </div>
+          <div class="sol-pc">
+            <div class="sol-pc-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            <div class="sol-pc-t">Instant enrichment on every lead</div>
+            <div class="sol-pc-b">New form fills resolve in seconds. Your reps see a complete profile before the first reply.</div>
+          </div>
+          <div class="sol-pc">
+            <div class="sol-pc-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+            <div class="sol-pc-t">Native CRM sync</div>
+            <div class="sol-pc-b">Data lands in your Salesforce or HubSpot fields automatically. No schema changes, no IT tickets.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Narrative -->
+    <section class="section" style="background: var(--dark-2);">
+      <div class="container">
+        <div class="sol-narrative">
+          <div>
+            <span class="eyebrow">The real problem</span>
+            <h2 style="margin-bottom: 1.5rem;">The problem isn't dirty data. It's data that gets dirty faster than you can clean it.</h2>
+            <div class="sol-narrative-body">
+              <p>The standard playbook &mdash; buy a list, import it, run a quarterly clean &mdash; was designed for a world where people stayed in their jobs for five years. The average B2B professional now changes roles every <strong>18&ndash;24 months</strong>. By the time your quarterly refresh runs, <strong>10&ndash;15%</strong> of your database has moved.</p>
+              <p>Most RevOps teams are spending 2&ndash;3 hours per week on manual verification tasks that should take seconds. Your ops people are doing busywork your CRM vendor should handle automatically. They're not.</p>
+              <p>Salmon treats your CRM as a living system, not a static file. Coho monitors every record for changes &mdash; role shifts, company pivots, contact departures, tech stack changes &mdash; and updates your database in real time. Your team opens Salesforce and the data is accurate. That's the entire job.</p>
+            </div>
+          </div>
+          <div>
+            <span class="eyebrow">How the market works</span>
+            <div style="display: flex; flex-direction: column; gap: 0.625rem; margin-top: 1.25rem;">
+              <div class="sol-comp">
+                <div class="sol-comp-name">ZoomInfo</div>
+                <div class="sol-comp-desc">Pre-built static database. High cost, broad coverage, decays at the same rate as everything else &mdash; just slower to acknowledge it.</div>
+              </div>
+              <div class="sol-comp">
+                <div class="sol-comp-name">Clearbit / Clay</div>
+                <div class="sol-comp-desc">Point-in-time enrichment. Great for onboarding flows, but doesn't continuously maintain what's already in your CRM.</div>
+              </div>
+              <div class="sol-comp">
+                <div class="sol-comp-name">Internal data team</div>
+                <div class="sol-comp-desc">Expensive, slow, and the first thing cut in a downturn. Salmon runs 24/7 at a fraction of the cost.</div>
+              </div>
+            </div>
+            <div class="sol-narrative-tag">"One CRM enrichment subscription. Always-fresh data. No headcount required."</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">Practitioner perspective</span>
+        <div class="sol-testi">
+          <q>We were manually cleaning our Salesforce every quarter &mdash; a full sprint for two ops people. Salmon runs continuously. Went from 38% bad data to under 6% in 30 days.</q>
+          <div class="sol-testi-attr">
+            <strong>Head of Revenue Operations</strong>
+            <span>Series C SaaS &middot; 700 employees &middot; Salesforce + Outreach stack</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Objections / FAQ -->
+    <section class="section" style="background: var(--dark-2);">
+      <div class="container">
+        <span class="eyebrow">Common questions</span>
+        <h2>Things we hear on every call.</h2>
+        <div class="sol-objs" style="margin-top: 1.75rem;">
+          <div class="sol-obj">
+            <div class="sol-obj-q">We just ran a big data clean.<span class="sol-obj-toggle">+</span></div>
+            <div class="sol-obj-a" style="display:none">Great. That data is already decaying. In 6 months, 15&ndash;20% will be stale again. Salmon keeps it clean continuously instead of letting it drift back.</div>
+          </div>
+          <div class="sol-obj">
+            <div class="sol-obj-q">Our CRM admin handles this.<span class="sol-obj-toggle">+</span></div>
+            <div class="sol-obj-a" style="display:none">How many hours a week? At what cost? Salmon automates the verification and refresh loop so your admin focuses on architecture and strategy, not manual lookups.</div>
+          </div>
+          <div class="sol-obj">
+            <div class="sol-obj-q">How long does implementation take?<span class="sol-obj-toggle">+</span></div>
+            <div class="sol-obj-a" style="display:none">Under a week for most teams. We connect to your Salesforce or HubSpot, map your field schema, run a pilot on a segment, and expand from there. No engineering resources required.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="sol-cta">
+          <span class="eyebrow" style="margin-bottom: 1rem; display: block;">Next step</span>
+          <h2>See it running on your data.</h2>
+          <p>No slides. We run Coho on your actual records and show you what changes. 30 minutes.</p>
+          <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; position: relative;">
+            <a href="/contact-us.html" class="btn btn-primary">Book a 30-min demo</a>
+            <a href="/solutions/" class="btn btn-ghost">Try the live explorer &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="/images/salmon_logo.svg" alt="Salmon">
+          <p>The real-time data engine that keeps your CRM accurate, current, and trusted.</p>
+        </div>
+        <div class="footer-col"><h4>Solutions</h4>
+          <a href="/solutions/crm.html">CRM Enrichment</a>
+          <a href="/solutions/gtm.html">GTM & Prospecting</a>
+          <a href="/solutions/kyc.html">KYC & Compliance</a>
+          <a href="/solutions/intel.html">Account Intelligence</a>
+          <a href="/solutions/api.html">Enterprise Data API</a>
+        </div>
+        <div class="footer-col"><h4>Company</h4>
+          <a href="/story.html">Our Story</a>
+          <a href="/how-we-work.html">How It Works</a><a href="/coho.html">Coho Engine</a>
+          <a href="/security.html">Security</a>
+          <a href="/data.html">Data</a>
+        </div>
+        <div class="footer-col"><h4>Compare</h4>
+          <a href="/compare/zoominfo.html">vs ZoomInfo</a>
+          <a href="/compare/clay.html">vs Clay</a>
+          <a href="#">vs Apollo <span class="text-xs text-grey">(soon)</span></a>
+          <a href="#">vs Crustdata <span class="text-xs text-grey">(soon)</span></a>
+        </div>
+        <div class="footer-col"><h4>Legal</h4>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-of-service.html">Terms & Conditions</a>
+          <a href="/contact-us.html">Contact Us</a>
+          <a href="/support.html">Support</a>
+          <a href="mailto:hello@salmonrun.ai">hello@salmonrun.ai</a>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 Salmon Inc. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <!-- Accordion JS -->
+  <script>
+    document.querySelectorAll('.sol-obj').forEach(el => {
+      el.addEventListener('click', () => {
+        const a = el.querySelector('.sol-obj-a');
+        const toggle = el.querySelector('.sol-obj-toggle');
+        if (a.style.display === 'block') {
+          a.style.display = 'none';
+          toggle.classList.remove('open');
+        } else {
+          a.style.display = 'block';
+          toggle.classList.add('open');
+        }
+      });
+    });
+  </script>
+
+  <!-- LinkedIn Partner ID -->
+  <script type="text/javascript">
+    _linkedin_partner_id = "8028276";
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+  </script>
+</body>
+</html>

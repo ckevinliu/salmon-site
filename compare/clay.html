@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Salmon vs Clay — Automated Research vs DIY Data Ops</title>
+  <meta name="description" content="Clay is a powerful workflow builder. Salmon is the finished product. See the honest comparison for teams evaluating both.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- OG -->
+  <meta property="og:title" content="Salmon vs Clay — Automated Research vs DIY Data Ops">
+  <meta property="og:description" content="Clay builds the machine. Salmon is the machine.">
+  <meta property="og:image" content="/images/OG-Image.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="256x256" href="/images/Favicon-256-x-256.png">
+  <link rel="shortcut icon" href="/images/Favicon-256-x-256.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/main.css">
+
+  <style>
+    /* ── Hero ── */
+    .compare-hero {
+      padding: 8rem 0 5rem;
+    }
+    .vs-pill {
+      display: inline-flex;
+      align-items: center;
+      background: var(--salmon-dim);
+      border: 1px solid var(--salmon-bdr);
+      border-radius: var(--r-pill);
+      padding: 0.375rem 1rem;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--salmon);
+      margin-bottom: 2rem;
+    }
+    .compare-hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4.25rem);
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.75rem;
+      max-width: 36rem;
+    }
+    .compare-hero h1 em { font-style: normal; color: var(--salmon); }
+    .hero-sub {
+      font-size: 1.25rem;
+      font-weight: 300;
+      color: var(--grey);
+      max-width: 34rem;
+      line-height: 1.6;
+      margin-bottom: 1.75rem;
+    }
+    .hero-note {
+      display: inline-block;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 1rem 1.375rem;
+      font-size: 0.9375rem;
+      font-weight: 300;
+      color: var(--grey);
+      max-width: 34rem;
+      line-height: 1.55;
+    }
+    .hero-note strong { color: var(--white); font-weight: 600; }
+
+    /* ── Architecture ── */
+    .arch-intro h2 {
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.25rem;
+      max-width: 40rem;
+    }
+    .arch-intro p {
+      color: var(--grey);
+      font-weight: 300;
+      max-width: 40rem;
+      line-height: 1.65;
+      margin-bottom: 3.5rem;
+    }
+    .arch-intro p strong { color: var(--white); font-weight: 600; }
+
+    .arch-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .arch-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 2rem;
+    }
+    .arch-card.is-salmon {
+      border-color: var(--salmon-bdr);
+      background: var(--salmon-dim);
+    }
+    .arch-tag {
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.625rem;
+      border-radius: var(--r-pill);
+      margin-bottom: 1.25rem;
+      background: rgba(255,255,255,0.07);
+      color: var(--grey);
+      border: 1px solid var(--border);
+    }
+    .arch-card.is-salmon .arch-tag {
+      background: var(--salmon-dim);
+      color: var(--salmon);
+      border-color: var(--salmon-bdr);
+    }
+    .arch-card h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 0.375rem;
+    }
+    .arch-card .arch-sub {
+      font-size: 0.875rem;
+      color: var(--grey);
+      font-style: italic;
+      margin-bottom: 1.75rem;
+    }
+    .step-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+    }
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      color: var(--grey);
+    }
+    .step-item strong { color: var(--white); font-weight: 600; }
+    .step-num {
+      width: 1.375rem;
+      height: 1.375rem;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.125rem;
+      color: var(--grey);
+    }
+    .arch-card.is-salmon .step-num {
+      background: var(--salmon-dim);
+      border-color: var(--salmon-bdr);
+      color: var(--salmon);
+    }
+    .cost-tag {
+      display: inline-block;
+      font-size: 0.625rem;
+      font-weight: 700;
+      color: var(--red);
+      background: var(--red-dim);
+      border: 1px solid rgba(217,80,64,0.2);
+      padding: 0.125rem 0.5rem;
+      border-radius: var(--r-pill);
+      margin-left: 0.375rem;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+
+    /* ── Comparison table ── */
+    .table-title {
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      margin-bottom: 3rem;
+      max-width: 26rem;
+    }
+    .table-wrap {
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      overflow: hidden;
+    }
+    .table-head {
+      display: grid;
+      grid-template-columns: 2fr 1.4fr 1.5fr;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .th {
+      padding: 1rem 1.75rem;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+    .th.s { background: var(--salmon-dim); color: var(--salmon); border-left: 2px solid var(--salmon); }
+    .table-row {
+      display: grid;
+      grid-template-columns: 2fr 1.4fr 1.5fr;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .table-row:last-child { border-bottom: none; }
+    .table-row:hover { background: rgba(255,255,255,0.02); }
+    .td {
+      padding: 1.125rem 1.75rem;
+      font-size: 0.9375rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      line-height: 1.45;
+    }
+    .td.lbl { font-weight: 600; color: var(--white); align-items: center; }
+    .td.cl  { color: var(--grey); }
+    .td.s   { border-left: 2px solid var(--salmon); background: rgba(252,120,105,0.04); color: var(--white); font-weight: 500; }
+    .ck { color: var(--green); flex-shrink: 0; margin-top: 0.125rem; }
+    .cx { color: var(--red); font-weight: 700; flex-shrink: 0; margin-top: 0.125rem; }
+    .tl { color: var(--grey); flex-shrink: 0; margin-top: 0.125rem; }
+
+    /* ── Use cases ── */
+    .uc-title {
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      margin-bottom: 3rem;
+    }
+    .uc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .uc-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 1.75rem;
+    }
+    .uc-tag {
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.625rem;
+      border-radius: var(--r-pill);
+      margin-bottom: 0.75rem;
+      background: var(--salmon-dim);
+      color: var(--salmon);
+      border: 1px solid var(--salmon-bdr);
+    }
+    .uc-tag.clay {
+      background: rgba(255,255,255,0.05);
+      color: var(--grey);
+      border-color: var(--border);
+    }
+    .uc-card h4 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.625rem;
+      line-height: 1.3;
+    }
+    .uc-card p {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: var(--grey);
+      line-height: 1.6;
+    }
+
+    /* ── Bottom line ── */
+    .bl-wrap { max-width: 48rem; }
+    .bl-wrap h2 {
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+    .bl-wrap p {
+      color: var(--grey);
+      font-weight: 300;
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .bl-wrap p strong { color: var(--white); font-weight: 600; }
+    .callout {
+      background: var(--salmon-dim);
+      border: 1px solid var(--salmon-bdr);
+      border-radius: var(--r-card);
+      padding: 1.75rem 2rem;
+      margin-top: 2.5rem;
+    }
+    .callout p {
+      font-size: 1.125rem;
+      color: var(--white);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .callout p em { font-style: italic; color: var(--salmon); }
+
+    /* ── FAQ ── */
+    .faq-title {
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      margin-bottom: 3rem;
+    }
+    .faq-list {
+      max-width: 48rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.5rem 0;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--white);
+      text-align: left;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+    }
+    .faq-q::after {
+      content: '+';
+      font-size: 1.25rem;
+      color: var(--salmon);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .faq-item.open .faq-q::after {
+      content: '-';
+    }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-item.open .faq-a {
+      max-height: 12rem;
+      padding-bottom: 1.5rem;
+    }
+    .faq-a p {
+      font-size: 0.9375rem;
+      font-weight: 300;
+      color: var(--grey);
+      line-height: 1.65;
+    }
+
+    /* ── CTA ── */
+    .cta-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4rem;
+    }
+    .cta-left h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 300;
+      letter-spacing: -0.015em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .cta-left p { color: var(--grey); font-weight: 300; max-width: 28rem; }
+    .cta-buttons { display: flex; flex-direction: column; gap: 0.75rem; flex-shrink: 0; }
+
+    /* ── Responsive ── */
+    @media (max-width: 991px) {
+      .arch-grid, .uc-grid { grid-template-columns: 1fr; }
+      .cta-inner { flex-direction: column; gap: 2.5rem; text-align: center; }
+      .cta-left p { margin: 0 auto; }
+      .cta-buttons { align-items: center; }
+    }
+    @media (max-width: 767px) {
+      .table-head, .table-row { grid-template-columns: 1.5fr 1fr 1.1fr; }
+      .td, .th { padding: 0.875rem 1rem; font-size: 0.8125rem; }
+    }
+  </style>
+
+  <!-- GA -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0ZW1JGTHR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C0ZW1JGTHR');
+  </script>
+</head>
+<body>
+
+  <!-- ═══ NAV ═══ -->
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo"><img src="/images/salmon_logo.svg" alt="Salmon"></a>
+      <div class="nav-links">
+        <div class="nav-dropdown">
+          <a class="nav-link nav-dropdown-trigger" href="/solutions/">Solutions</a>
+          <div class="nav-dropdown-menu">
+            <a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a>
+            <a class="nav-dropdown-item" href="/solutions/gtm.html">GTM & Prospecting</a>
+            <a class="nav-dropdown-item" href="/solutions/kyc.html">KYC & Compliance</a>
+            <a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a>
+            <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
+          </div>
+        </div>
+        <a class="nav-link" href="/data.html">Data</a>
+        <a class="nav-link" href="/coho.html">Coho</a>
+        <a class="nav-link" href="/pricing.html">Pricing</a>
+        <div class="nav-dropdown">
+          <a class="nav-link nav-dropdown-trigger">Company</a>
+          <div class="nav-dropdown-menu">
+            <a class="nav-dropdown-item" href="/story.html">Our Story</a>
+            <a class="nav-dropdown-item" href="/how-we-work.html">How It Works</a>
+            <a class="nav-dropdown-item" href="/security.html">Security</a>
+          </div>
+        </div>
+      </div>
+      <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta hide-mobile">Book a Demo</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay -->
+  <div class="nav-mobile-overlay">
+    <a class="nav-link" href="/solutions/">Solutions</a>
+    <div class="nav-dropdown-menu">
+      <a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a>
+      <a class="nav-dropdown-item" href="/solutions/gtm.html">GTM & Prospecting</a>
+      <a class="nav-dropdown-item" href="/solutions/kyc.html">KYC & Compliance</a>
+      <a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a>
+      <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
+    </div>
+    <a class="nav-link" href="/data.html">Data</a>
+        <a class="nav-link" href="/coho.html">Coho</a>
+    <a class="nav-link" href="/pricing.html">Pricing</a>
+    <a class="nav-link" href="/story.html">Our Story</a>
+    <a class="nav-link" href="/how-we-work.html">How It Works</a>
+    <a class="nav-link" href="/security.html">Security</a>
+    <a class="nav-link" href="/contact-us.html" style="color: var(--salmon); font-weight: 600;">Book a Demo</a>
+  </div>
+
+  <main>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="compare-hero">
+      <div class="container">
+        <div class="vs-pill">Salmon vs Clay</div>
+        <h1>Clay builds the machine.<br>Salmon <em>is</em> the machine.</h1>
+        <p class="hero-sub">Clay is powerful — if you have an ops team to run it. Salmon is the research engine for teams who want the answer, not the tooling.</p>
+        <div class="hero-note">
+          <strong>Note:</strong> If Clay is working for you, this page isn't an attack. It's an honest comparison for teams evaluating both — including whether you'd use them together.
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ ARCHITECTURE ═══ -->
+    <section class="section section-surface section-bordered">
+      <div class="container">
+        <div class="arch-intro">
+          <span class="eyebrow">The fundamental difference</span>
+          <h2>Clay is a platform you build on. Salmon is what you'd build.</h2>
+          <p>Clay is genuinely impressive infrastructure for data enrichment workflows. But "infrastructure" is the key word. Clay gives you the pipes — you still have to design the plumbing, buy credits for every source, and maintain it when things break. <strong>Salmon ships the finished thing.</strong></p>
+        </div>
+
+        <div class="arch-grid">
+          <div class="arch-card">
+            <div class="arch-tag">Clay workflow</div>
+            <h3>What you're signing up for</h3>
+            <p class="arch-sub">What it actually takes to run Clay at scale</p>
+            <ul class="step-list">
+              <li class="step-item">
+                <span class="step-num">1</span>
+                <span>Pick and configure your data sources (Apollo, Hunter, Clearbit...) <span class="cost-tag">+ credits each</span></span>
+              </li>
+              <li class="step-item">
+                <span class="step-num">2</span>
+                <span>Build enrichment waterfall logic in Clay's table interface</span>
+              </li>
+              <li class="step-item">
+                <span class="step-num">3</span>
+                <span>Write Claygent prompts for AI-assisted research steps</span>
+              </li>
+              <li class="step-item">
+                <span class="step-num">4</span>
+                <span>Monitor source quality and handle API rate limits and failures</span>
+              </li>
+              <li class="step-item">
+                <span class="step-num">5</span>
+                <span>Rebuild workflows when sources change or go down</span>
+              </li>
+              <li class="step-item">
+                <span class="step-num">6</span>
+                <span><strong>Output quality is bounded by the sources you configured</strong></span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="arch-card is-salmon">
+            <div class="arch-tag">Salmon research</div>
+            <h3>What you actually do</h3>
+            <p class="arch-sub">The full workflow, handled end-to-end</p>
+            <ul class="step-list">
+              <li class="step-item">
+                <span class="step-num">1</span>
+                <span>Describe what you need — in plain language or upload a CSV</span>
+              </li>
+              <li class="step-item">
+                <span class="step-num">2</span>
+                <span>Coho, our AI orchestration layer, selects and sequences the right sources automatically</span>
+              </li>
+              <li class="step-item">
+                <span class="step-num">3</span>
+                <span>Multi-source triangulation across open web, partner APIs, and your data — in one pass</span>
+              </li>
+              <li class="step-item">
+                <span class="step-num">4</span>
+                <span>Recursive reasoning resolves conflicts. Every output confidence-scored.</span>
+              </li>
+              <li class="step-item">
+                <span class="step-num">5</span>
+                <span><strong>Results delivered to CRM, API, or CSV. Done.</strong></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ COMPARISON TABLE ═══ -->
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">Side by side</span>
+        <div class="table-title">What you're actually comparing</div>
+        <div class="table-wrap">
+          <div class="table-head">
+            <div class="th">Dimension</div>
+            <div class="th">Clay</div>
+            <div class="th s">Salmon</div>
+          </div>
+          <div class="table-row">
+            <div class="td lbl">Product type</div>
+            <div class="td cl">Workflow builder / enrichment platform</div>
+            <div class="td s"><span class="ck">&#10003;</span> Fully managed research engine</div>
+          </div>
+          <div class="table-row">
+            <div class="td lbl">Data sourcing</div>
+            <div class="td cl">You configure sources + pay credits per source</div>
+            <div class="td s"><span class="ck">&#10003;</span> All sources included, Salmon selects automatically</div>
+          </div>
+          <div class="table-row">
+            <div class="td lbl">Setup required</div>
+            <div class="td cl">Significant — waterfall logic, prompt engineering, table configs</div>
+            <div class="td s"><span class="ck">&#10003;</span> None — describe what you need</div>
+          </div>
+          <div class="table-row">
+            <div class="td lbl">Ongoing maintenance</div>
+            <div class="td cl">High — sources drift, workflows break, ops oversight needed</div>
+            <div class="td s"><span class="ck">&#10003;</span> Zero — Salmon maintains and adapts automatically</div>
+          </div>
+          <div class="table-row">
+            <div class="td lbl">Real-time web research</div>
+            <div class="td cl"><span class="tl">~</span> Claygent can browse but depth is limited</div>
+            <div class="td s"><span class="ck">&#10003;</span> Full open web + recursive reasoning</div>
+          </div>
+          <div class="table-row">
+            <div class="td lbl">Multi-source triangulation</div>
+            <div class="td cl"><span class="tl">~</span> You design the waterfall logic</div>
+            <div class="td s"><span class="ck">&#10003;</span> Automatic — Coho resolves conflicts</div>
+          </div>
+          <div class="table-row">
+            <div class="td lbl">Confidence scoring</div>
+            <div class="td cl"><span class="cx">&#10005;</span> No built-in output confidence</div>
+            <div class="td s"><span class="ck">&#10003;</span> Every field scored with reasoning trace</div>
+          </div>
+          <div class="table-row">
+            <div class="td lbl">Pricing model</div>
+            <div class="td cl">Credits x rows x sources — scales unpredictably</div>
+            <div class="td s"><span class="ck">&#10003;</span> Flat monthly, unlimited research queries</div>
+          </div>
+          <div class="table-row">
+            <div class="td lbl">Who runs it</div>
+            <div class="td cl">Ops or technical team required</div>
+            <div class="td s"><span class="ck">&#10003;</span> Any team member — SDR, RevOps, Compliance</div>
+          </div>
+          <div class="table-row">
+            <div class="td lbl">Compliance use cases</div>
+            <div class="td cl"><span class="cx">&#10005;</span> Not designed for KYC / sanctions screening</div>
+            <div class="td s"><span class="ck">&#10003;</span> KYC, KYB, AML, adverse media built-in</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ USE CASES ═══ -->
+    <section class="section section-surface section-bordered">
+      <div class="container">
+        <span class="eyebrow">Honest assessment</span>
+        <div class="uc-title">When to use each</div>
+        <div class="uc-grid">
+          <div class="uc-card">
+            <div class="uc-tag clay">Clay wins</div>
+            <h4>You have a technical ops team and want full control</h4>
+            <p>If you have a Clay power user and want to custom-build your enrichment stack across 50+ sources, Clay's flexibility is hard to beat. You get granular control over every step.</p>
+          </div>
+          <div class="uc-card">
+            <div class="uc-tag">Salmon wins</div>
+            <h4>You want research outcomes, not infrastructure</h4>
+            <p>If you'd rather describe what you need than configure how to get it, Salmon is faster, simpler, and more consistent. No workflow to build. No credits to track. Just answers.</p>
+          </div>
+          <div class="uc-card">
+            <div class="uc-tag clay">Clay wins</div>
+            <h4>You're already deep in the Clay ecosystem</h4>
+            <p>If your outbound stack is built on Clay workflows, switching costs are real. Staying makes sense if it's working for you.</p>
+          </div>
+          <div class="uc-card">
+            <div class="uc-tag">Salmon wins</div>
+            <h4>Your research questions are complex or compliance-related</h4>
+            <p>KYC/KYB, sanctions checks, adverse media, executive diligence — these aren't Clay's primary use case. Salmon was built for multi-step reasoning across diverse sources.</p>
+          </div>
+          <div class="uc-card">
+            <div class="uc-tag">Salmon wins</div>
+            <h4>You need predictable costs at scale</h4>
+            <p>Clay's per-credit model can surprise you when queries hit expensive sources multiple times. Salmon's flat pricing means no credit anxiety and no surprise invoices.</p>
+          </div>
+          <div class="uc-card">
+            <div class="uc-tag">Salmon wins</div>
+            <h4>Multiple teams need to use the data</h4>
+            <p>Clay workflows are typically owned by one ops person. Salmon is usable by SDRs, RevOps, marketing, and compliance — no configuration knowledge required.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ BOTTOM LINE ═══ -->
+    <section class="section">
+      <div class="container">
+        <div class="bl-wrap">
+          <span class="eyebrow">The bottom line</span>
+          <h2>Different tools for a different mindset.</h2>
+          <p>Clay is a genuinely great product — it's popular for good reason. It gives technical operators incredible flexibility to build exactly the enrichment stack they want.</p>
+          <p>But Clay puts the work on you. <strong>Every query you run through Clay is the result of workflows your team designed, sources your team selected, and logic your team maintains.</strong> The output is only as good as what you built.</p>
+          <p>Salmon is opinionated by design. You describe what you need. Coho, our AI orchestration system, figures out the rest — which sources to use, how to resolve conflicts, how deep to go. You're buying the research, not the research tools.</p>
+          <div class="callout">
+            <p>The best analogy: <em>Clay is the kitchen. Salmon is the chef.</em> Both make food. One of them requires a lot more from you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FAQ ═══ -->
+    <section class="section section-surface section-bordered">
+      <div class="container">
+        <span class="eyebrow">Common questions</span>
+        <div class="faq-title">Salmon vs Clay FAQ</div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q">Can I use Salmon and Clay together?</button>
+            <div class="faq-a"><p>Yes. Some teams use Clay for outbound workflow orchestration and Salmon as a data source within those workflows via API. They complement each other if your team has the ops capacity for Clay.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">Is Salmon really easier to use than Clay?</button>
+            <div class="faq-a"><p>Fundamentally different. Clay requires building and maintaining enrichment workflows. Salmon requires describing what you need. If you have a dedicated ops person, Clay's flexibility is powerful. If you want answers without infrastructure, Salmon is simpler by design.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">How does pricing compare?</button>
+            <div class="faq-a"><p>Clay charges per credit, per row, per source — costs scale with complexity. Salmon is flat monthly pricing with unlimited research queries. For teams running complex, multi-source enrichment, Salmon is typically more predictable and often less expensive.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">What about data quality?</button>
+            <div class="faq-a"><p>Clay's output quality depends on which sources you configure and how well your waterfall logic handles conflicts. Salmon's AI orchestration automatically selects the best sources, triangulates across them, and confidence-scores every output. Quality is built in, not bolted on.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">Can Salmon handle compliance use cases?</button>
+            <div class="faq-a"><p>Yes — KYC, KYB, AML screening, adverse media checks, and sanctions screening are core Salmon use cases. Clay wasn't designed for compliance workflows and lacks the built-in reasoning and audit trail these use cases require.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-inner">
+          <div class="cta-left">
+            <h2>Skip the build.<br>Get the answer.</h2>
+            <p>Show us a research question your team has been solving manually or through Clay. We'll show you what Salmon does with it in real time.</p>
+          </div>
+          <div class="cta-buttons">
+            <a href="/contact-us.html" class="btn btn-primary btn-lg">Book a Demo</a>
+            <a href="mailto:hello@salmonrun.ai" class="btn btn-outline btn-lg">Talk to us directly</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><img src="/images/salmon_logo.svg" alt="Salmon"><p>The real-time data engine that keeps your CRM accurate, current, and trusted.</p></div>
+        <div class="footer-col"><h4>Solutions</h4><a href="/solutions/crm.html">CRM Enrichment</a><a href="/solutions/gtm.html">GTM & Prospecting</a><a href="/solutions/kyc.html">KYC & Compliance</a><a href="/solutions/intel.html">Account Intelligence</a><a href="/solutions/api.html">Enterprise Data API</a></div>
+        <div class="footer-col"><h4>Company</h4><a href="/story.html">Our Story</a><a href="/how-we-work.html">How It Works</a><a href="/coho.html">Coho Engine</a><a href="/security.html">Security</a><a href="/data.html">Data</a></div>
+        <div class="footer-col"><h4>Compare</h4><a href="/compare/zoominfo.html">vs ZoomInfo</a><a href="/compare/clay.html">vs Clay</a><a href="#">vs Apollo <span class="text-xs text-grey">(soon)</span></a><a href="#">vs Crustdata <span class="text-xs text-grey">(soon)</span></a></div>
+        <div class="footer-col"><h4>Legal</h4><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-service.html">Terms & Conditions</a><a href="/contact-us.html">Contact Us</a><a href="/support.html">Support</a><a href="mailto:hello@salmonrun.ai">hello@salmonrun.ai</a></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 Salmon Inc. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script src="/js/nav.js"></script>
+
+  <!-- FAQ accordion -->
+  <script>
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+  <!-- LinkedIn Partner ID -->
+  <script type="text/javascript">
+    _linkedin_partner_id = "8028276";
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+  </script>
+</body>
+</html>

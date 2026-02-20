@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Data Capabilities — Salmon</title>
+  <meta name="description" content="Explore everything Salmon can find, verify, and deliver. Filter by data type or team to see exactly what Salmon delivers.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- OG -->
+  <meta property="og:title" content="Data Capabilities — Salmon">
+  <meta property="og:description" content="Filter by data type or team to see exactly what Salmon delivers — on contacts, companies, and the signals that matter.">
+  <meta property="og:image" content="/images/OG-Image.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Salmon">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Data Capabilities — Salmon">
+  <meta name="twitter:description" content="Filter by data type or team to see exactly what Salmon delivers.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="256x256" href="/images/Favicon-256-x-256.png">
+  <link rel="shortcut icon" href="/images/Favicon-256-x-256.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/main.css">
+
+  <!-- GA -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0ZW1JGTHR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C0ZW1JGTHR');
+  </script>
+
+  <style>
+    /* ── Page Header ── */
+    .data-hero {
+      padding: 8rem 0 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-hero h1 {
+      margin-bottom: 1rem;
+      max-width: 30rem;
+    }
+    .data-hero p {
+      font-size: 1.0625rem;
+      color: var(--grey);
+      max-width: 30rem;
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* ── Filter Bar ── */
+    .filter-bar {
+      position: sticky;
+      top: 4rem;
+      z-index: 90;
+      background: rgba(31,31,31,0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .filter-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+      height: 56px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+    }
+    .filter-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border);
+      margin: 0 0.75rem;
+      flex-shrink: 0;
+    }
+    .chip {
+      height: 30px;
+      padding: 0 0.9rem;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--grey);
+      font-family: var(--f);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .chip:hover {
+      border-color: var(--charcoal);
+      color: var(--white);
+    }
+    .chip.on {
+      background: var(--salmon-dim);
+      border-color: var(--salmon-bdr);
+      color: var(--salmon);
+      font-weight: 500;
+    }
+    .filter-count {
+      margin-left: auto;
+      font-size: 0.8125rem;
+      color: var(--charcoal);
+      flex-shrink: 0;
+    }
+    .filter-count b {
+      color: var(--grey);
+      font-weight: 500;
+    }
+
+    /* ── Grid Area ── */
+    .grid-area {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 2.5rem var(--pad) 6rem;
+    }
+
+    /* Category box */
+    .cat-box {
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .cat-header {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 1rem 1.375rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .cat-pip {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .cat-title {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+    }
+    .cat-count {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      color: var(--border);
+      margin-left: 0.25rem;
+    }
+
+    /* Tiles */
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--border);
+      gap: 1px;
+    }
+    .tile {
+      background: var(--dark);
+      padding: 1.5rem 1.375rem 1.625rem;
+      transition: background 0.12s;
+      display: flex;
+      flex-direction: column;
+    }
+    .tile:hover {
+      background: var(--surface);
+    }
+    .tile.hidden {
+      display: none;
+    }
+    .tile-icon {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 0.875rem;
+      color: var(--grey);
+      flex-shrink: 0;
+    }
+    .tile-icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .tile-name {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--white);
+      line-height: 1.3;
+      margin-bottom: 0.375rem;
+    }
+    .tile-desc {
+      font-size: 0.8125rem;
+      font-weight: 300;
+      color: var(--grey);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .tile-teams {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-top: 1rem;
+    }
+    .t-tag {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      border: 1px solid var(--border);
+      padding: 0.1rem 0.4rem;
+      border-radius: 0.25rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* Empty state */
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--charcoal);
+      font-size: 0.9375rem;
+    }
+    .empty-state.show {
+      display: block;
+    }
+
+    /* ── Bottom CTA ── */
+    .cta-area {
+      max-width: var(--max-w);
+      margin: 0 auto 5rem;
+      padding: 0 var(--pad);
+    }
+    .cta-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2.5rem;
+    }
+    .cta-box h3 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+    .cta-box p {
+      font-size: 0.9375rem;
+      color: var(--grey);
+      max-width: 26rem;
+      font-weight: 300;
+    }
+    .cta-btns {
+      display: flex;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 860px) {
+      .tiles { grid-template-columns: repeat(2, 1fr); }
+      .cta-box { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 520px) {
+      .tiles { grid-template-columns: 1fr; }
+      .filter-inner { overflow-x: auto; flex-wrap: nowrap; gap: 0.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><img src="/images/salmon_logo.svg" alt="Salmon"></a>
+    <div class="nav-links">
+      <div class="nav-dropdown">
+        <a class="nav-link nav-dropdown-trigger" href="/solutions/">Solutions</a>
+        <div class="nav-dropdown-menu">
+          <a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a>
+          <a class="nav-dropdown-item" href="/solutions/gtm.html">GTM & Prospecting</a>
+          <a class="nav-dropdown-item" href="/solutions/kyc.html">KYC & Compliance</a>
+          <a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a>
+          <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
+        </div>
+      </div>
+      <a class="nav-link active" href="/data.html">Data</a>
+        <a class="nav-link" href="/coho.html">Coho</a>
+      <a class="nav-link" href="/pricing.html">Pricing</a>
+      <div class="nav-dropdown">
+        <a class="nav-link nav-dropdown-trigger">Company</a>
+        <div class="nav-dropdown-menu">
+          <a class="nav-dropdown-item" href="/story.html">Our Story</a>
+          <a class="nav-dropdown-item" href="/how-we-work.html">How It Works</a>
+          <a class="nav-dropdown-item" href="/security.html">Security</a>
+        </div>
+      </div>
+    </div>
+    <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta hide-mobile">Book a Demo</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- Mobile nav overlay -->
+<div class="nav-mobile-overlay" id="mobileNav">
+  <div class="nav-dropdown">
+    <a class="nav-link nav-dropdown-trigger">Solutions</a>
+    <div class="nav-dropdown-menu">
+      <a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a>
+      <a class="nav-dropdown-item" href="/solutions/gtm.html">GTM & Prospecting</a>
+      <a class="nav-dropdown-item" href="/solutions/kyc.html">KYC & Compliance</a>
+      <a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a>
+      <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
+    </div>
+  </div>
+  <a class="nav-link" href="/data.html">Data</a>
+        <a class="nav-link" href="/coho.html">Coho</a>
+  <a class="nav-link" href="/pricing.html">Pricing</a>
+  <a class="nav-link" href="/story.html">Our Story</a>
+  <a class="nav-link" href="/how-we-work.html">How It Works</a>
+  <a class="nav-link" href="/security.html">Security</a>
+  <a href="/contact-us.html" class="btn btn-primary mt-md" style="width:100%;text-align:center;">Book a Demo</a>
+</div>
+
+<!-- Page Header -->
+<div class="data-hero">
+  <div class="container">
+    <span class="eyebrow">Data Capabilities</span>
+    <h1>Everything Salmon can find and verify</h1>
+    <p>Filter by data type or team to see exactly what Salmon delivers &mdash; on contacts, companies, and the signals that matter for your workflow.</p>
+  </div>
+</div>
+
+<!-- Filter Bar -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <div class="filter-group" id="catGroup">
+      <button class="chip on" data-cat="all">All</button>
+      <button class="chip" data-cat="contact">Contact</button>
+      <button class="chip" data-cat="company">Company</button>
+      <button class="chip" data-cat="signals">Signals</button>
+      <button class="chip" data-cat="verification">Verification</button>
+    </div>
+    <div class="filter-divider"></div>
+    <div class="filter-group" id="teamGroup">
+      <button class="chip on" data-team="all">All teams</button>
+      <button class="chip" data-team="sales">Sales</button>
+      <button class="chip" data-team="revops">RevOps</button>
+      <button class="chip" data-team="marketing">Marketing</button>
+      <button class="chip" data-team="compliance">Compliance</button>
+      <button class="chip" data-team="engineering">Engineering</button>
+    </div>
+    <span class="filter-count" id="cnt"><b>36</b> capabilities</span>
+  </div>
+</div>
+
+<!-- Grid -->
+<div class="grid-area">
+
+  <!-- CONTACT -->
+  <div class="cat-box" id="box-contact">
+    <div class="cat-header">
+      <div class="cat-pip" style="background:#7eb8f7"></div>
+      <span class="cat-title">Contact data</span>
+      <span class="cat-count" id="count-contact"></span>
+    </div>
+    <div class="tiles" id="tiles-contact">
+      <div class="tile" data-cat="contact" data-teams="sales,revops,compliance">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+        <div class="tile-name">Full identity profile</div>
+        <div class="tile-desc">Full name, aliases, headshot, LinkedIn URL, and professional bio — sourced and cross-verified in real time.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">RevOps</span><span class="t-tag">Compliance</span></div>
+      </div>
+      <div class="tile" data-cat="contact" data-teams="sales,revops,marketing">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/><path d="M12 12v4M10 14h4"/></svg></div>
+        <div class="tile-name">Current role &amp; seniority</div>
+        <div class="tile-desc">Title, department, function, and seniority level — normalized across sources for consistency.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">RevOps</span><span class="t-tag">Marketing</span></div>
+      </div>
+      <div class="tile" data-cat="contact" data-teams="sales,compliance">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg></div>
+        <div class="tile-name">Employment history</div>
+        <div class="tile-desc">Past roles, employers, and tenure — including gaps and overlaps resolved by Coho's reasoning layer.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">Compliance</span></div>
+      </div>
+      <div class="tile" data-cat="contact" data-teams="sales,marketing,revops">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div class="tile-name">Verified email &amp; phone</div>
+        <div class="tile-desc">Corporate email and direct dial — verified against live sources, not cached databases.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">Marketing</span><span class="t-tag">RevOps</span></div>
+      </div>
+      <div class="tile" data-cat="contact" data-teams="compliance,engineering">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div class="tile-name">Education &amp; credentials</div>
+        <div class="tile-desc">Degrees, institutions, professional licenses, and certifications — validated for medical, legal, and technical roles.</div>
+        <div class="tile-teams"><span class="t-tag">Compliance</span><span class="t-tag">Engineering</span></div>
+      </div>
+      <div class="tile" data-cat="contact" data-teams="sales,marketing">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>
+        <div class="tile-name">Social &amp; digital presence</div>
+        <div class="tile-desc">LinkedIn, public handles, podcast appearances, media mentions, and publications linked to the contact.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">Marketing</span></div>
+      </div>
+      <div class="tile" data-cat="contact" data-teams="sales,compliance">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+        <div class="tile-name">Board &amp; advisory affiliations</div>
+        <div class="tile-desc">Board seats, investor roles, and advisory positions — mapped to reveal influence networks and secondary relationships.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">Compliance</span></div>
+      </div>
+      <div class="tile" data-cat="contact" data-teams="compliance">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <div class="tile-name">Person-level risk signals</div>
+        <div class="tile-desc">Sanctions exposure, PEP status, adverse media, legal history, and connections to flagged entities.</div>
+        <div class="tile-teams"><span class="t-tag">Compliance</span></div>
+      </div>
+      <div class="tile" data-cat="contact" data-teams="sales,revops">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="tile-name">CRM engagement history</div>
+        <div class="tile-desc">Recent opens, clicks, and interactions — surfaced as contact-level engagement context for your team.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">RevOps</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPANY -->
+  <div class="cat-box" id="box-company">
+    <div class="cat-header">
+      <div class="cat-pip" style="background:#a78bfa"></div>
+      <span class="cat-title">Company data</span>
+      <span class="cat-count" id="count-company"></span>
+    </div>
+    <div class="tiles" id="tiles-company">
+      <div class="tile" data-cat="company" data-teams="sales,revops,marketing,compliance,engineering">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="tile-name">Core firmographics</div>
+        <div class="tile-desc">Name, HQ, founding year, revenue range, employee count, and NAICS/SIC industry classification.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">RevOps</span><span class="t-tag">Marketing</span></div>
+      </div>
+      <div class="tile" data-cat="company" data-teams="sales,revops">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="6"/><path d="M8 6H4v14h16V6h-4"/><path d="M8 6h8"/><line x1="8" y1="12" x2="10" y2="12"/><line x1="8" y1="16" x2="10" y2="16"/><line x1="14" y1="12" x2="16" y2="12"/><line x1="14" y1="16" x2="16" y2="16"/></svg></div>
+        <div class="tile-name">Org structure &amp; hierarchies</div>
+        <div class="tile-desc">Divisions, departments, subsidiaries, and leadership hierarchies — including decision-maker mapping per account.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">RevOps</span></div>
+      </div>
+      <div class="tile" data-cat="company" data-teams="sales,compliance,revops">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="tile-name">Financial intelligence</div>
+        <div class="tile-desc">Funding rounds, investor history, IPO status, and valuation proxies — from filings, news, and partner data.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">Compliance</span><span class="t-tag">RevOps</span></div>
+      </div>
+      <div class="tile" data-cat="company" data-teams="sales,revops,engineering">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <div class="tile-name">Technographics</div>
+        <div class="tile-desc">Technologies in use: CRM, marketing automation, cloud, AI tools, and integration partners — updated continuously.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">RevOps</span><span class="t-tag">Engineering</span></div>
+      </div>
+      <div class="tile" data-cat="company" data-teams="sales,marketing,revops">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        <div class="tile-name">Headcount &amp; hiring trends</div>
+        <div class="tile-desc">Headcount growth or contraction, active hiring areas, and department-level staffing signals from job posting analysis.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">Marketing</span><span class="t-tag">RevOps</span></div>
+      </div>
+      <div class="tile" data-cat="company" data-teams="sales,marketing">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="tile-name">Partnerships &amp; affiliations</div>
+        <div class="tile-desc">Channel partners, co-marketing relationships, and ecosystem affiliations sourced from public and partner data.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">Marketing</span></div>
+      </div>
+      <div class="tile" data-cat="company" data-teams="compliance,sales">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <div class="tile-name">Entity risk indicators</div>
+        <div class="tile-desc">Legal disputes, layoffs, negative press, regulatory actions, and sanctions exposure — continuously monitored.</div>
+        <div class="tile-teams"><span class="t-tag">Compliance</span><span class="t-tag">Sales</span></div>
+      </div>
+      <div class="tile" data-cat="company" data-teams="sales,compliance">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg></div>
+        <div class="tile-name">M&amp;A activity</div>
+        <div class="tile-desc">Acquisitions, mergers, divestitures, and partnership announcements — flagged as high-priority engagement triggers.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">Compliance</span></div>
+      </div>
+      <div class="tile" data-cat="company" data-teams="sales,marketing">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="tile-name">Office &amp; location data</div>
+        <div class="tile-desc">HQ, regional offices, and franchise locations — including new office openings and geographic expansion signals.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">Marketing</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGNALS -->
+  <div class="cat-box" id="box-signals">
+    <div class="cat-header">
+      <div class="cat-pip" style="background:#4ade80"></div>
+      <span class="cat-title">Intent &amp; event signals</span>
+      <span class="cat-count" id="count-signals"></span>
+    </div>
+    <div class="tiles" id="tiles-signals">
+      <div class="tile" data-cat="signals" data-teams="sales,revops,marketing">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <div class="tile-name">Buying intent</div>
+        <div class="tile-desc">Job postings, content engagement, and keyword signals from web activity — triangulated into a real-time intent score.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">Marketing</span><span class="t-tag">RevOps</span></div>
+      </div>
+      <div class="tile" data-cat="signals" data-teams="sales,revops">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="12" y1="1" x2="12" y2="4"/></svg></div>
+        <div class="tile-name">New executive hire</div>
+        <div class="tile-desc">A new VP, CRO, or C-suite at a target account — a high-priority moment to re-engage or establish a relationship.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">RevOps</span></div>
+      </div>
+      <div class="tile" data-cat="signals" data-teams="sales,marketing,revops">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/><path d="M19 3l2 2-2 2"/><path d="M5 21l-2-2 2-2"/></svg></div>
+        <div class="tile-name">Funding round detected</div>
+        <div class="tile-desc">Real-time alerts when a target account closes a round — with investor details and implied growth trajectory.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">Marketing</span></div>
+      </div>
+      <div class="tile" data-cat="signals" data-teams="sales,revops">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="tile-name">Champion moved jobs</div>
+        <div class="tile-desc">Track contacts who advocated for you — get alerted when they move to a new company so you can follow them in.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">RevOps</span></div>
+      </div>
+      <div class="tile" data-cat="signals" data-teams="sales,revops,engineering">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"/></svg></div>
+        <div class="tile-name">Tech stack migration</div>
+        <div class="tile-desc">When a company drops or adopts new technology — including competitor tools, CRM migrations, or cloud switches.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">Engineering</span></div>
+      </div>
+      <div class="tile" data-cat="signals" data-teams="sales,marketing">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div class="tile-name">Product launch</div>
+        <div class="tile-desc">When a target account launches a new product or enters a new market — a trigger for upsell or competitive monitoring.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">Marketing</span></div>
+      </div>
+      <div class="tile" data-cat="signals" data-teams="sales,marketing,revops">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+        <div class="tile-name">News &amp; media mentions</div>
+        <div class="tile-desc">A company or exec in press or industry media — surfaced as a warm outreach moment with full coverage context.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">Marketing</span></div>
+      </div>
+      <div class="tile" data-cat="signals" data-teams="sales,revops">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+        <div class="tile-name">Job change detected</div>
+        <div class="tile-desc">A CRM contact changed roles or employers — triggers automatic record updates and optional outreach workflows.</div>
+        <div class="tile-teams"><span class="t-tag">Sales</span><span class="t-tag">RevOps</span></div>
+      </div>
+      <div class="tile" data-cat="signals" data-teams="marketing,revops">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/><line x1="20" y1="8" x2="20" y2="14"/></svg></div>
+        <div class="tile-name">Hiring burst signal</div>
+        <div class="tile-desc">Rapid headcount growth in a target function — a company tripling their sales org is likely buying sales tools.</div>
+        <div class="tile-teams"><span class="t-tag">Marketing</span><span class="t-tag">RevOps</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERIFICATION -->
+  <div class="cat-box" id="box-verification">
+    <div class="cat-header">
+      <div class="cat-pip" style="background:#fc7869"></div>
+      <span class="cat-title">Verification layer</span>
+      <span class="cat-count" id="count-verification"></span>
+    </div>
+    <div class="tiles" id="tiles-verification">
+      <div class="tile" data-cat="verification" data-teams="sales,revops,marketing,compliance,engineering">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="tile-name">Multi-source triangulation</div>
+        <div class="tile-desc">Every data point cross-referenced across open web, partnered APIs, and customer-owned sources. No single source trusted blindly.</div>
+        <div class="tile-teams"><span class="t-tag">RevOps</span><span class="t-tag">Compliance</span><span class="t-tag">Engineering</span></div>
+      </div>
+      <div class="tile" data-cat="verification" data-teams="compliance,revops">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+        <div class="tile-name">Sanctions &amp; watchlist screening</div>
+        <div class="tile-desc">Real-time screening against OFAC, PEP lists, and global sanctions registries — with live monitoring for changes.</div>
+        <div class="tile-teams"><span class="t-tag">Compliance</span></div>
+      </div>
+      <div class="tile" data-cat="verification" data-teams="sales,revops,compliance,engineering">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <div class="tile-name">Confidence scoring</div>
+        <div class="tile-desc">Every output tagged with a confidence score, data origin, and decision trace — so your team knows how reliable each field is.</div>
+        <div class="tile-teams"><span class="t-tag">RevOps</span><span class="t-tag">Compliance</span><span class="t-tag">Engineering</span></div>
+      </div>
+      <div class="tile" data-cat="verification" data-teams="revops,engineering">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4"/></svg></div>
+        <div class="tile-name">Recursive AI re-checking</div>
+        <div class="tile-desc">When signals conflict, Coho re-runs targeted sub-queries until discrepancies are resolved — not just flagged.</div>
+        <div class="tile-teams"><span class="t-tag">RevOps</span><span class="t-tag">Engineering</span></div>
+      </div>
+      <div class="tile" data-cat="verification" data-teams="revops,sales">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+        <div class="tile-name">Continuous refresh</div>
+        <div class="tile-desc">Coho monitors for changes and proactively updates records — no batch cycles, no manual list cleaning required.</div>
+        <div class="tile-teams"><span class="t-tag">RevOps</span><span class="t-tag">Sales</span></div>
+      </div>
+      <div class="tile" data-cat="verification" data-teams="compliance,sales,revops">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+        <div class="tile-name">Identity resolution</div>
+        <div class="tile-desc">Match and deduplicate across name variants, company aliases, and email domains — one person, one record.</div>
+        <div class="tile-teams"><span class="t-tag">Compliance</span><span class="t-tag">RevOps</span></div>
+      </div>
+      <div class="tile" data-cat="verification" data-teams="compliance,engineering">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div class="tile-name">GDPR &amp; CCPA compliance</div>
+        <div class="tile-desc">Ethically sourced data, encrypted handling, privacy-by-design. No scraping of private or sensitive user data.</div>
+        <div class="tile-teams"><span class="t-tag">Compliance</span><span class="t-tag">Engineering</span></div>
+      </div>
+      <div class="tile" data-cat="verification" data-teams="engineering,revops">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+        <div class="tile-name">Customer data integration</div>
+        <div class="tile-desc">Securely ingest your existing CRM, Snowflake tables, or proprietary data as a verification source — not just an output.</div>
+        <div class="tile-teams"><span class="t-tag">Engineering</span><span class="t-tag">RevOps</span></div>
+      </div>
+      <div class="tile" data-cat="verification" data-teams="revops,engineering">
+        <div class="tile-icon"><svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+        <div class="tile-name">Data lineage &amp; explainability</div>
+        <div class="tile-desc">Every output includes its source, query path, and reasoning trace — audit-ready and explainable to stakeholders.</div>
+        <div class="tile-teams"><span class="t-tag">RevOps</span><span class="t-tag">Engineering</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" id="emptyState">No capabilities match your current filters. Try a different combination.</div>
+
+</div>
+
+<!-- CTA -->
+<div class="cta-area">
+  <div class="cta-box">
+    <div>
+      <h3>See Salmon research a prospect live</h3>
+      <p>Drop in a name or company. We'll show you what Coho finds, verifies, and delivers — in under 5 seconds.</p>
+    </div>
+    <div class="cta-btns">
+      <a href="/contact-us.html" class="btn btn-primary">Book a Demo</a>
+      <a href="/solutions/" class="btn btn-outline">Explore Solutions</a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><img src="/images/salmon_logo.svg" alt="Salmon"><p>The real-time data engine that keeps your CRM accurate, current, and trusted.</p></div>
+      <div class="footer-col"><h4>Solutions</h4><a href="/solutions/crm.html">CRM Enrichment</a><a href="/solutions/gtm.html">GTM & Prospecting</a><a href="/solutions/kyc.html">KYC & Compliance</a><a href="/solutions/intel.html">Account Intelligence</a><a href="/solutions/api.html">Enterprise Data API</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="/story.html">Our Story</a><a href="/how-we-work.html">How It Works</a><a href="/coho.html">Coho Engine</a><a href="/security.html">Security</a><a href="/data.html">Data</a></div>
+      <div class="footer-col"><h4>Compare</h4><a href="/compare/zoominfo.html">vs ZoomInfo</a><a href="/compare/clay.html">vs Clay</a><a href="#">vs Apollo <span class="text-xs text-grey">(soon)</span></a><a href="#">vs Crustdata <span class="text-xs text-grey">(soon)</span></a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-service.html">Terms & Conditions</a><a href="/contact-us.html">Contact Us</a><a href="/support.html">Support</a><a href="mailto:hello@salmonrun.ai">hello@salmonrun.ai</a></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2025 Salmon Inc. All rights reserved.</p></div>
+  </div>
+</footer>
+
+<!-- Filter JS -->
+<script>
+  const tiles     = document.querySelectorAll('.tile');
+  const cats      = ['contact','company','signals','verification'];
+  let activeCat   = 'all';
+  let activeTeam  = 'all';
+
+  function run() {
+    let total = 0;
+    cats.forEach(cat => {
+      const box   = document.getElementById('box-' + cat);
+      const group = document.getElementById('tiles-' + cat);
+      const cntEl = document.getElementById('count-' + cat);
+      let vis = 0;
+      group.querySelectorAll('.tile').forEach(t => {
+        const catOk  = activeCat === 'all' || t.dataset.cat === activeCat;
+        const teamOk = activeTeam === 'all' || t.dataset.teams.split(',').includes(activeTeam);
+        if (catOk && teamOk) { t.classList.remove('hidden'); vis++; total++; }
+        else                  { t.classList.add('hidden'); }
+      });
+      box.style.display = vis ? '' : 'none';
+      cntEl.textContent = vis ? vis : '';
+    });
+    document.getElementById('cnt').innerHTML = '<b>' + total + '</b> capabilities';
+    document.getElementById('emptyState').classList.toggle('show', total === 0);
+  }
+
+  document.getElementById('catGroup').addEventListener('click', e => {
+    const btn = e.target.closest('.chip');
+    if (!btn || !btn.dataset.cat) return;
+    document.querySelectorAll('#catGroup .chip').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    activeCat = btn.dataset.cat;
+    run();
+  });
+
+  document.getElementById('teamGroup').addEventListener('click', e => {
+    const btn = e.target.closest('.chip');
+    if (!btn || !btn.dataset.team) return;
+    document.querySelectorAll('#teamGroup .chip').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    activeTeam = btn.dataset.team;
+    run();
+  });
+
+  run();
+</script>
+
+<!-- Mobile nav JS -->
+<script>
+  document.querySelector('.nav-toggle').addEventListener('click', function() {
+    const overlay = document.getElementById('mobileNav');
+    const expanded = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', !expanded);
+    overlay.classList.toggle('active');
+  });
+</script>
+
+<!-- LinkedIn Insight -->
+<script type="text/javascript">
+_linkedin_partner_id = "8028276";
+window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+</script>
+<script type="text/javascript">
+(function(l) {
+if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+window.lintrk.q=[]}
+var s = document.getElementsByTagName("script")[0];
+var b = document.createElement("script");
+b.type = "text/javascript";b.async = true;
+b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+s.parentNode.insertBefore(b, s);})(window.lintrk);
+</script>
+<noscript><img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=8028276&fmt=gif"></noscript>
+
+</body>
+</html>
