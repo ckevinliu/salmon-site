@@ -19,196 +19,12 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/solutions-hub.css">
 
-  <style>
-    /* ── Hero ── */
-    .sol-hub-hero {
-      padding: 8rem 0 4rem;
-      text-align: center;
-    }
-    .sol-hub-hero h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 300;
-      letter-spacing: -0.03em;
-      line-height: 1.08;
-      margin-bottom: 1.25rem;
-    }
-    .sol-hub-hero p {
-      font-size: 1.125rem;
-      font-weight: 300;
-      color: var(--grey);
-      max-width: 34rem;
-      margin: 0 auto;
-      line-height: 1.65;
-    }
-
-    /* ── Tab bar ── */
-    .tab-bar {
-      position: sticky;
-      top: 4rem;
-      z-index: 90;
-      background: rgba(31,31,31,0.97);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .tab-bar-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 var(--pad);
-      display: flex;
-      gap: 0;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .tab-btn {
-      flex-shrink: 0;
-      padding: 1rem 1.5rem;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--grey);
-      background: none;
-      border: none;
-      border-bottom: 2px solid transparent;
-      cursor: pointer;
-      transition: color 0.15s, border-color 0.15s;
-      font-family: var(--f);
-      white-space: nowrap;
-    }
-    .tab-btn:hover { color: var(--white); }
-    .tab-btn.active {
-      color: var(--salmon);
-      border-bottom-color: var(--salmon);
-      font-weight: 500;
-    }
-
-    /* ── Tab panels ── */
-    .tab-panel {
-      display: none;
-      animation: fadeIn 0.3s ease;
-    }
-    .tab-panel.active { display: block; }
-
-    /* ── Solution card layout ── */
-    .sol-card-hero {
-      padding: 4rem 0 3rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .sol-card-hero h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 300;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      white-space: pre-line;
-      margin-bottom: 1rem;
-    }
-    .sol-card-sub {
-      font-size: 1.0625rem;
-      font-weight: 300;
-      color: var(--grey);
-      max-width: 36rem;
-      line-height: 1.7;
-      margin-bottom: 2rem;
-    }
-    .sol-card-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-
-    /* Stats row */
-    .sol-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .sol-stat {
-      background: var(--dark-2);
-      padding: 2rem 1.5rem;
-      text-align: center;
-    }
-    .sol-stat-v {
-      font-size: 2.25rem;
-      font-weight: 600;
-      background: var(--salmon-grad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-    .sol-stat-l {
-      font-size: 0.75rem;
-      color: var(--charcoal);
-      font-family: var(--f-mono);
-      line-height: 1.5;
-    }
-
-    /* Feature cards */
-    .sol-features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-    }
-    .sol-feat {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-card);
-      padding: 1.75rem 1.5rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .sol-feat:hover { border-color: var(--border-2); transform: translateY(-2px); }
-    .sol-feat-icon { margin-bottom: 0.75rem; width: 28px; height: 28px; color: var(--grey); }
-    .sol-feat-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-    .sol-feat-t { font-size: 0.9375rem; font-weight: 500; color: var(--white); margin-bottom: 0.5rem; }
-    .sol-feat-b { font-size: 0.8125rem; font-weight: 300; color: var(--charcoal); line-height: 1.65; }
-
-    /* Deep link */
-    .sol-deep {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--salmon);
-      margin-top: 2rem;
-      transition: gap 0.2s;
-    }
-    .sol-deep:hover { gap: 0.75rem; }
-
-    /* ── Bottom CTA ── */
-    .hub-cta {
-      text-align: center;
-    }
-    .hub-cta h2 {
-      font-size: clamp(2rem, 4vw, 2.75rem);
-      font-weight: 300;
-      letter-spacing: -0.015em;
-      line-height: 1.1;
-      margin-bottom: 1.25rem;
-    }
-    .hub-cta p {
-      font-size: 1.125rem;
-      font-weight: 300;
-      color: var(--grey);
-      max-width: 28rem;
-      margin: 0 auto 2rem;
-      line-height: 1.6;
-    }
-
-    @media (max-width: 767px) {
-      .sol-stats { grid-template-columns: 1fr; }
-      .sol-features { grid-template-columns: 1fr; }
-      .tab-btn { padding: 0.875rem 1rem; font-size: 0.8125rem; }
-    }
-  </style>
 
   <!-- GA -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0ZW1JGTHR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-C0ZW1JGTHR');
-  </script>
+  <script src="/js/analytics.js"></script>
 </head>
 <body>
 
@@ -228,18 +44,20 @@
           </div>
         </div>
         <a class="nav-link" href="/data.html">Data</a>
-        <a class="nav-link" href="/coho.html">Coho</a>
-        <a class="nav-link" href="/pricing.html">Pricing</a>
+        <a class="nav-link" href="/engine.html">AI Engine</a>
+        <a class="nav-link" href="/blog/">Blog</a>
         <div class="nav-dropdown">
           <a class="nav-link nav-dropdown-trigger">Company</a>
           <div class="nav-dropdown-menu">
-            <a class="nav-dropdown-item" href="/story.html">Our Story</a>
+            <a class="nav-dropdown-item" href="/customers.html">Customers</a><a class="nav-dropdown-item" href="/story.html">Our Story</a>
             <a class="nav-dropdown-item" href="/how-we-work.html">How It Works</a>
-            <a class="nav-dropdown-item" href="/security.html">Security</a>
           </div>
         </div>
       </div>
-      <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta hide-mobile">Book a Demo</a>
+      <div class="nav-cta-group hide-mobile">
+        <a href="/demo.html" class="btn btn-outline btn-sm nav-cta">Try Salmon</a>
+        <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta">Book a Demo</a>
+      </div>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </nav>
@@ -255,12 +73,12 @@
       <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
     </div>
     <a class="nav-link" href="/data.html">Data</a>
-        <a class="nav-link" href="/coho.html">Coho</a>
-    <a class="nav-link" href="/pricing.html">Pricing</a>
-    <a class="nav-link" href="/story.html">Our Story</a>
+        <a class="nav-link" href="/engine.html">AI Engine</a>
+    <a class="nav-link" href="/blog/">Blog</a>
+    <a class="nav-link" href="/customers.html">Customers</a><a class="nav-link" href="/story.html">Our Story</a>
     <a class="nav-link" href="/how-we-work.html">How It Works</a>
-    <a class="nav-link" href="/security.html">Security</a>
-    <a class="nav-link" href="/contact-us.html" style="color: var(--salmon); font-weight: 600;">Book a Demo</a>
+    <a class="nav-link" href="/demo.html" style="color: var(--salmon); font-weight: 500;">Try Salmon</a>
+    <a class="nav-link" href="/contact-us.html" style="color: var(--salmon); font-weight: 500;">Book a Demo</a>
   </div>
 
   <main>
@@ -323,7 +141,7 @@ every year. Salmon fixes it in real time.</h2>
           <span class="eyebrow">GTM &amp; Prospecting</span>
           <h2>From ICP brief to verified list.
 Minutes, not days.</h2>
-          <p class="sol-card-sub">Describe your ideal customer. Coho finds the companies, qualifies the contacts, verifies the data, and delivers a signal-rich list directly into your CRM &mdash; ready to work.</p>
+          <p class="sol-card-sub">Describe your ideal customer. Salmon finds the companies, qualifies the contacts, verifies the data, and delivers a signal-rich list directly into your CRM &mdash; ready to work.</p>
           <div class="sol-card-btns">
             <a href="/contact-us.html" class="btn btn-primary">See a list built for your ICP</a>
             <a href="/solutions/gtm.html" class="btn btn-ghost">See how it works &rarr;</a>
@@ -332,13 +150,13 @@ Minutes, not days.</h2>
       </section>
       <div class="sol-stats">
         <div class="sol-stat"><div class="sol-stat-v">5&ndash;6 hrs</div><div class="sol-stat-l">of analyst work per list &mdash; eliminated</div></div>
-        <div class="sol-stat"><div class="sol-stat-v">3&times;</div><div class="sol-stat-l">more pipeline, same headcount</div></div>
+        <div class="sol-stat"><div class="sol-stat-v">3.2&times;</div><div class="sol-stat-l">more pipeline, same headcount</div></div>
         <div class="sol-stat"><div class="sol-stat-v">&lt; 1 day</div><div class="sol-stat-l">from ICP brief to verified list in CRM</div></div>
       </div>
       <section class="section">
         <div class="container">
           <div class="sol-features">
-            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><div class="sol-feat-t">Precision targeting, not database filtering</div><div class="sol-feat-b">Coho researches and qualifies against your exact ICP criteria. No generic lists to clean afterward.</div></div>
+            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><div class="sol-feat-t">Precision targeting, not database filtering</div><div class="sol-feat-b">Salmon researches and qualifies against your exact ICP criteria. No generic lists to clean afterward.</div></div>
             <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"/></svg></div><div class="sol-feat-t">Buying signals included</div><div class="sol-feat-b">Funding rounds, leadership changes, hiring surges &mdash; attached to every prospect at the moment of delivery.</div></div>
             <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div><div class="sol-feat-t">Verified before it hits your CRM</div><div class="sol-feat-b">Emails deliverable. Titles current. Companies active. You get finished leads, not rows to clean.</div></div>
           </div>
@@ -369,7 +187,7 @@ Continuous monitoring. Full audit trail.</h2>
       <section class="section">
         <div class="container">
           <div class="sol-features">
-            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="sol-feat-t">Automated screening, human decisions</div><div class="sol-feat-b">Coho runs sanctions, PEP, and adverse media checks across multiple sources. Your team reviews and approves.</div></div>
+            <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="sol-feat-t">Automated screening, human decisions</div><div class="sol-feat-b">Salmon runs sanctions, PEP, and adverse media checks across multiple sources. Your team reviews and approves.</div></div>
             <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div><div class="sol-feat-t">Audit-ready from day one</div><div class="sol-feat-b">Source attribution, confidence scores, timestamps, and reasoning traces on every output.</div></div>
             <div class="sol-feat"><div class="sol-feat-icon"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4"/></svg></div><div class="sol-feat-t">Ongoing monitoring, not one-time checks</div><div class="sol-feat-b">Continuous screening against global watchlists. Status changes trigger alerts automatically.</div></div>
           </div>
@@ -472,16 +290,16 @@ verification, and signal workflow.</h2>
           <a href="/solutions/api.html">Enterprise Data API</a>
         </div>
         <div class="footer-col"><h4>Company</h4>
+          <a href="/customers.html">Customers</a>
           <a href="/story.html">Our Story</a>
-          <a href="/how-we-work.html">How It Works</a><a href="/coho.html">Coho Engine</a>
-          <a href="/security.html">Security</a>
+          <a href="/how-we-work.html">How It Works</a><a href="/engine.html">AI Engine</a>
+          
           <a href="/data.html">Data</a>
+          <a href="/blog/">Blog</a>
         </div>
         <div class="footer-col"><h4>Compare</h4>
           <a href="/compare/zoominfo.html">vs ZoomInfo</a>
           <a href="/compare/clay.html">vs Clay</a>
-          <a href="#">vs Apollo <span class="text-xs text-grey">(soon)</span></a>
-          <a href="#">vs Crustdata <span class="text-xs text-grey">(soon)</span></a>
         </div>
         <div class="footer-col"><h4>Legal</h4>
           <a href="/privacy-policy.html">Privacy Policy</a>
@@ -491,7 +309,7 @@ verification, and signal workflow.</h2>
           <a href="mailto:hello@salmonrun.ai">hello@salmonrun.ai</a>
         </div>
       </div>
-      <div class="footer-bottom"><p>&copy; 2025 Salmon Inc. All rights reserved.</p></div>
+      <div class="footer-bottom"><p>&copy; 2026 Salmon Labs, Inc. All rights reserved.</p></div>
     </div>
   </footer>
 
@@ -522,11 +340,5 @@ verification, and signal workflow.</h2>
     }
   </script>
 
-  <!-- LinkedIn Partner ID -->
-  <script type="text/javascript">
-    _linkedin_partner_id = "8028276";
-    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-  </script>
 </body>
 </html>

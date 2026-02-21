@@ -25,187 +25,9 @@
 
   <!-- GA -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0ZW1JGTHR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-C0ZW1JGTHR');
-  </script>
+  <script src="/js/analytics.js"></script>
 
-  <style>
-    /* ── Hero ── */
-    .contact-hero {
-      padding: 8rem 0 3rem;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-    }
-    .contact-hero h1 {
-      margin-bottom: 1rem;
-    }
-    .contact-hero p {
-      font-size: clamp(1rem, 1.5vw, 1.125rem);
-      color: var(--grey);
-      max-width: 32rem;
-      margin: 0 auto;
-      line-height: 1.7;
-      font-weight: 300;
-    }
-
-    /* ── Calendly Embed ── */
-    .calendly-section {
-      padding: 3rem 0 5rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .calendly-wrap {
-      max-width: 48rem;
-      margin: 0 auto;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-card);
-      overflow: hidden;
-      min-height: 650px;
-    }
-    .calendly-wrap iframe {
-      width: 100%;
-      height: 650px;
-      border: none;
-    }
-
-    /* ── Contact Form Fallback ── */
-    .contact-form-section {
-      padding: 4rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .contact-form-section h2 {
-      margin-bottom: 0.75rem;
-    }
-    .contact-form-section > .container > p {
-      color: var(--grey);
-      max-width: 32rem;
-      margin-bottom: 2.5rem;
-      line-height: 1.7;
-      font-weight: 300;
-    }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .form-group label {
-      font-size: 0.8125rem;
-      font-weight: 500;
-      color: var(--light-grey);
-      letter-spacing: 0.02em;
-    }
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      width: 100%;
-      background: var(--dark);
-      border: 1px solid var(--border);
-      border-radius: var(--r-sm);
-      color: var(--white);
-      font-family: var(--f);
-      font-size: 0.9375rem;
-      padding: 0.75rem 1rem;
-      transition: border-color 0.2s;
-    }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-      color: var(--charcoal);
-    }
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      outline: none;
-      border-color: var(--salmon-bdr);
-    }
-    .form-group textarea {
-      resize: vertical;
-      min-height: 120px;
-      line-height: 1.5;
-    }
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-    }
-    .form-submit {
-      margin-top: 0.5rem;
-    }
-
-    /* Contact info sidebar */
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-    .contact-info-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-card);
-      padding: 1.75rem;
-    }
-    .contact-info-card h4 {
-      margin-bottom: 0.75rem;
-      font-size: 1rem;
-    }
-    .contact-info-card p {
-      font-size: 0.9375rem;
-      color: var(--grey);
-      line-height: 1.65;
-      font-weight: 300;
-    }
-    .contact-info-card a {
-      color: var(--salmon);
-      transition: color 0.15s;
-    }
-    .contact-info-card a:hover {
-      color: var(--white);
-    }
-
-    .contact-detail {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-top: 0.75rem;
-    }
-    .contact-detail-icon {
-      width: 20px;
-      height: 20px;
-      color: var(--salmon);
-      flex-shrink: 0;
-    }
-    .contact-detail-icon svg {
-      width: 100%;
-      height: 100%;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .contact-detail span {
-      font-size: 0.9375rem;
-      color: var(--grey);
-    }
-
-    @media (max-width: 767px) {
-      .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .form-row { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link rel="stylesheet" href="/css/pages/contact-us.css">
 </head>
 <body>
 
@@ -225,18 +47,20 @@
         </div>
       </div>
       <a class="nav-link" href="/data.html">Data</a>
-        <a class="nav-link" href="/coho.html">Coho</a>
-      <a class="nav-link" href="/pricing.html">Pricing</a>
+        <a class="nav-link" href="/engine.html">AI Engine</a>
+      <a class="nav-link" href="/blog/">Blog</a>
       <div class="nav-dropdown">
         <a class="nav-link nav-dropdown-trigger">Company</a>
         <div class="nav-dropdown-menu">
-          <a class="nav-dropdown-item" href="/story.html">Our Story</a>
+          <a class="nav-dropdown-item" href="/customers.html">Customers</a><a class="nav-dropdown-item" href="/story.html">Our Story</a>
           <a class="nav-dropdown-item" href="/how-we-work.html">How It Works</a>
-          <a class="nav-dropdown-item" href="/security.html">Security</a>
         </div>
       </div>
     </div>
-    <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta hide-mobile">Book a Demo</a>
+    <div class="nav-cta-group hide-mobile">
+        <a href="/demo.html" class="btn btn-outline btn-sm nav-cta">Try Salmon</a>
+        <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta">Book a Demo</a>
+      </div>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -254,12 +78,12 @@
     </div>
   </div>
   <a class="nav-link" href="/data.html">Data</a>
-        <a class="nav-link" href="/coho.html">Coho</a>
-  <a class="nav-link" href="/pricing.html">Pricing</a>
-  <a class="nav-link" href="/story.html">Our Story</a>
+        <a class="nav-link" href="/engine.html">AI Engine</a>
+  <a class="nav-link" href="/blog/">Blog</a>
+  <a class="nav-link" href="/customers.html">Customers</a><a class="nav-link" href="/story.html">Our Story</a>
   <a class="nav-link" href="/how-we-work.html">How It Works</a>
-  <a class="nav-link" href="/security.html">Security</a>
-  <a href="/contact-us.html" class="btn btn-primary mt-md" style="width:100%;text-align:center;">Book a Demo</a>
+  <a href="/demo.html" class="btn btn-outline mt-md" style="width:100%;text-align:center;">Try Salmon</a>
+    <a href="/contact-us.html" class="btn btn-primary mt-sm" style="width:100%;text-align:center;">Book a Demo</a>
 </div>
 
 <main>
@@ -316,7 +140,7 @@
         <div class="contact-info">
           <div class="contact-info-card">
             <h4>What to expect</h4>
-            <p>A 30-minute live demo where we run Salmon's Coho engine on your actual data. You'll see real-time enrichment, verification, and gap-filling &mdash; not a slide deck.</p>
+            <p>A 30-minute live demo where we run Salmon's AI engine on your actual data. You'll see real-time enrichment, verification, and gap-filling &mdash; not a slide deck.</p>
           </div>
           <div class="contact-info-card">
             <h4>Get in touch</h4>
@@ -344,11 +168,12 @@
     <div class="footer-grid">
       <div class="footer-brand"><img src="/images/salmon_logo.svg" alt="Salmon"><p>The real-time data engine that keeps your CRM accurate, current, and trusted.</p></div>
       <div class="footer-col"><h4>Solutions</h4><a href="/solutions/crm.html">CRM Enrichment</a><a href="/solutions/gtm.html">GTM & Prospecting</a><a href="/solutions/kyc.html">KYC & Compliance</a><a href="/solutions/intel.html">Account Intelligence</a><a href="/solutions/api.html">Enterprise Data API</a></div>
-      <div class="footer-col"><h4>Company</h4><a href="/story.html">Our Story</a><a href="/how-we-work.html">How It Works</a><a href="/coho.html">Coho Engine</a><a href="/security.html">Security</a><a href="/data.html">Data</a></div>
-      <div class="footer-col"><h4>Compare</h4><a href="/compare/zoominfo.html">vs ZoomInfo</a><a href="/compare/clay.html">vs Clay</a><a href="#">vs Apollo <span class="text-xs text-grey">(soon)</span></a><a href="#">vs Crustdata <span class="text-xs text-grey">(soon)</span></a></div>
+      <div class="footer-col"><h4>Company</h4><a href="/customers.html">Customers</a><a href="/story.html">Our Story</a><a href="/how-we-work.html">How It Works</a><a href="/engine.html">AI Engine</a><a href="/data.html">Data</a>
+          <a href="/blog/">Blog</a></div>
+      <div class="footer-col"><h4>Compare</h4><a href="/compare/zoominfo.html">vs ZoomInfo</a><a href="/compare/clay.html">vs Clay</a></div>
       <div class="footer-col"><h4>Legal</h4><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-service.html">Terms & Conditions</a><a href="/contact-us.html">Contact Us</a><a href="/support.html">Support</a><a href="mailto:hello@salmonrun.ai">hello@salmonrun.ai</a></div>
     </div>
-    <div class="footer-bottom"><p>&copy; 2025 Salmon Inc. All rights reserved.</p></div>
+    <div class="footer-bottom"><p>&copy; 2026 Salmon Labs, Inc. All rights reserved.</p></div>
   </div>
 </footer>
 
@@ -362,23 +187,6 @@
   });
 </script>
 
-<!-- LinkedIn Insight -->
-<script type="text/javascript">
-_linkedin_partner_id = "8028276";
-window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-</script>
-<script type="text/javascript">
-(function(l) {
-if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
-window.lintrk.q=[]}
-var s = document.getElementsByTagName("script")[0];
-var b = document.createElement("script");
-b.type = "text/javascript";b.async = true;
-b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-s.parentNode.insertBefore(b, s);})(window.lintrk);
-</script>
-<noscript><img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=8028276&fmt=gif"></noscript>
 
 </body>
 </html>

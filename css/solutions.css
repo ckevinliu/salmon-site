@@ -1,0 +1,59 @@
+/* Solution page styles */
+.sol-hero { padding: 8rem 0 4rem; border-bottom: 1px solid var(--border); position: relative; }
+.sol-hero::before { content:''; position:absolute; top:-20%; right:-10%; width:600px; height:600px; background:radial-gradient(ellipse at center,rgba(252,120,105,0.05),transparent 65%); pointer-events:none; }
+.sol-h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.08; white-space: pre-line; margin-bottom: 1.25rem; }
+.sol-sub { font-size: clamp(0.9375rem, 1.5vw, 1.0625rem); font-weight: 300; color: var(--grey); max-width: 36rem; line-height: 1.7; margin-bottom: 2rem; }
+.sol-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+/* Proof bar */
+.sol-proof { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border-bottom: 1px solid var(--border); }
+.sol-proof-item { background: var(--dark-2); padding: 2rem 1.5rem; text-align: center; }
+.sol-proof-v { font-size: 2.25rem; font-weight: 600; background: var(--salmon-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip:text; line-height:1; margin-bottom: 0.5rem; }
+.sol-proof-l { font-size: 0.75rem; color: var(--charcoal); font-family: var(--f-mono); line-height: 1.5; }
+
+/* Punch cards */
+.sol-punch { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+.sol-pc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-card); padding: 1.75rem 1.5rem; transition: border-color 0.2s, transform 0.2s; }
+.sol-pc:hover { border-color: var(--border-2); transform: translateY(-2px); }
+.sol-pc-icon { margin-bottom: 0.75rem; width: 28px; height: 28px; color: var(--grey); }
+.sol-pc-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.sol-pc-t { font-size: 0.9375rem; font-weight: 500; color: var(--white); margin-bottom: 0.5rem; }
+.sol-pc-b { font-size: 0.8125rem; font-weight: 300; color: var(--charcoal); line-height: 1.65; }
+
+/* Narrative */
+.sol-narrative { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+.sol-narrative-body p { font-size: 0.9375rem; color: var(--light-grey); line-height: 1.75; margin-bottom: 1.25rem; }
+.sol-narrative-body p strong { color: var(--white); font-weight: 500; }
+.sol-comp { background: var(--dark-2); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 1rem 1.25rem; margin-bottom: 0.625rem; }
+.sol-comp-name { font-size: 0.8125rem; font-weight: 500; color: var(--white); margin-bottom: 0.25rem; }
+.sol-comp-desc { font-size: 0.75rem; color: var(--charcoal); line-height: 1.55; }
+.sol-narrative-tag { display: inline-block; background: var(--salmon-dim); border: 1px solid var(--salmon-bdr); color: var(--salmon); border-radius: var(--r-sm); padding: 0.75rem 1rem; font-size: 0.8125rem; line-height: 1.55; margin-top: 1rem; font-style: italic; }
+
+/* Testimonial */
+.sol-testi { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-card); padding: 2.5rem; position: relative; }
+.sol-testi::before { content:'"'; position:absolute; top:0.5rem; left:1rem; font-size:6rem; color:var(--salmon); opacity:0.06; font-weight:700; line-height:1; }
+.sol-testi q { display: block; font-size: 1.0625rem; font-weight: 300; color: var(--light-grey); line-height: 1.7; font-style: italic; margin-bottom: 1.25rem; }
+.sol-testi-attr strong { display: block; font-size: 0.8125rem; font-weight: 500; color: var(--white); margin-bottom: 0.25rem; }
+.sol-testi-attr span { font-size: 0.6875rem; color: var(--charcoal); font-family: var(--f-mono); }
+
+/* Objections */
+.sol-objs { display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: var(--r-card); overflow: hidden; }
+.sol-obj { background: var(--surface); padding: 1.25rem 1.5rem; cursor: pointer; transition: background 0.15s; }
+.sol-obj:hover { background: var(--dark-2); }
+.sol-obj-q { font-size: 0.9375rem; font-weight: 500; color: var(--light-grey); display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.sol-obj-toggle { color: var(--salmon); font-size: 1.25rem; transition: transform 0.2s; }
+.sol-obj-toggle.open { transform: rotate(45deg); }
+.sol-obj-a { font-size: 0.8125rem; color: var(--grey); line-height: 1.65; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+
+/* CTA block */
+.sol-cta { background: var(--surface); border: 1px solid var(--border-2); border-radius: var(--r-card); padding: 3.5rem; text-align: center; position: relative; overflow: hidden; }
+.sol-cta::before { content:''; position:absolute; bottom:-60px; left:50%; transform:translateX(-50%); width:500px; height:300px; background:radial-gradient(ellipse at center,rgba(252,120,105,0.08),transparent 70%); pointer-events:none; }
+.sol-cta h2 { margin-bottom: 0.75rem; position: relative; }
+.sol-cta p { font-weight: 300; color: var(--grey); max-width: 28rem; margin: 0 auto 2rem; position: relative; }
+.sol-cta .btn { position: relative; }
+
+@media (max-width: 767px) {
+  .sol-proof { grid-template-columns: 1fr; }
+  .sol-punch { grid-template-columns: 1fr; }
+  .sol-narrative { grid-template-columns: 1fr; }
+}

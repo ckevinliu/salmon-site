@@ -25,282 +25,9 @@
 
   <!-- GA -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0ZW1JGTHR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-C0ZW1JGTHR');
-  </script>
+  <script src="/js/analytics.js"></script>
 
-  <style>
-    /* ── Hero ── */
-    .hw-hero {
-      padding: 8rem 0 4rem;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-    }
-    .hw-hero h1 {
-      margin-bottom: 1rem;
-    }
-    .hw-hero p {
-      font-size: clamp(1rem, 1.5vw, 1.125rem);
-      color: var(--grey);
-      max-width: 40rem;
-      margin: 0 auto 2rem;
-      line-height: 1.7;
-      font-weight: 300;
-    }
-
-    /* ── Process Steps ── */
-    .process {
-      padding: 4rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .process-header {
-      margin-bottom: 3rem;
-    }
-    .process-header p {
-      color: var(--grey);
-      max-width: 36rem;
-      margin-top: 0.75rem;
-      line-height: 1.7;
-      font-weight: 300;
-    }
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    .process-step {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-card);
-      padding: 2rem;
-      position: relative;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .process-step:hover {
-      border-color: var(--border-2);
-      transform: translateY(-2px);
-    }
-    .step-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 2rem;
-      height: 2rem;
-      border-radius: 50%;
-      background: var(--salmon-dim);
-      border: 1px solid var(--salmon-bdr);
-      color: var(--salmon);
-      font-size: 0.8125rem;
-      font-weight: 600;
-      margin-bottom: 1.25rem;
-    }
-    .step-timing {
-      display: inline-block;
-      font-size: 0.6875rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--salmon);
-      background: var(--salmon-dim);
-      border: 1px solid var(--salmon-bdr);
-      padding: 0.2rem 0.6rem;
-      border-radius: var(--r-pill);
-      margin-bottom: 1rem;
-    }
-    .process-step h3 {
-      font-size: 1.25rem;
-      margin-bottom: 0.75rem;
-    }
-    .process-step p {
-      font-size: 0.9375rem;
-      color: var(--grey);
-      line-height: 1.7;
-      font-weight: 300;
-    }
-
-    /* ── Pipeline ── */
-    .pipeline {
-      padding: 4rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .pipeline-header {
-      margin-bottom: 3rem;
-    }
-    .pipeline-header p {
-      color: var(--grey);
-      max-width: 36rem;
-      margin-top: 0.75rem;
-      line-height: 1.7;
-      font-weight: 300;
-    }
-    .pipeline-steps {
-      display: flex;
-      gap: 0;
-      background: var(--border);
-      border-radius: var(--r-card);
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-    .pipeline-step {
-      flex: 1;
-      background: var(--dark);
-      padding: 2rem 1.5rem;
-      text-align: center;
-      position: relative;
-      border-right: 1px solid var(--border);
-    }
-    .pipeline-step:last-child {
-      border-right: none;
-    }
-    .pipeline-step-icon {
-      width: 40px;
-      height: 40px;
-      margin: 0 auto 1rem;
-      color: var(--salmon);
-    }
-    .pipeline-step-icon svg {
-      width: 100%;
-      height: 100%;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .pipeline-step h4 {
-      font-size: 0.9375rem;
-      margin-bottom: 0.5rem;
-    }
-    .pipeline-step p {
-      font-size: 0.8125rem;
-      color: var(--charcoal);
-      line-height: 1.6;
-      font-weight: 300;
-    }
-    .pipeline-arrow {
-      position: absolute;
-      right: -8px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 2;
-      color: var(--salmon);
-      font-size: 0.875rem;
-    }
-
-    /* ── Use Cases ── */
-    .use-cases {
-      padding: 4rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .use-cases-header {
-      margin-bottom: 3rem;
-    }
-    .use-cases-header > p {
-      color: var(--grey);
-      max-width: 40rem;
-      margin-top: 0.75rem;
-      line-height: 1.7;
-      font-weight: 300;
-    }
-    .use-case-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-    }
-    .use-case-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-card);
-      padding: 1.75rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .use-case-card:hover {
-      border-color: var(--border-2);
-      transform: translateY(-2px);
-    }
-    .use-case-icon {
-      width: 32px;
-      height: 32px;
-      margin-bottom: 1rem;
-      color: var(--salmon);
-    }
-    .use-case-icon svg {
-      width: 100%;
-      height: 100%;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .use-case-card h3 {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-    }
-    .use-case-card p {
-      font-size: 0.875rem;
-      color: var(--grey);
-      line-height: 1.65;
-      font-weight: 300;
-    }
-
-    /* ── Bottom CTA ── */
-    .bottom-cta {
-      padding: 4rem 0;
-    }
-    .bottom-cta-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-card);
-      padding: 3.5rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .bottom-cta-box::before {
-      content: '';
-      position: absolute;
-      bottom: -80px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 500px;
-      height: 300px;
-      background: radial-gradient(ellipse at center, rgba(252,120,105,0.06), transparent 70%);
-      pointer-events: none;
-    }
-    .bottom-cta-box h2 {
-      margin-bottom: 0.75rem;
-      position: relative;
-    }
-    .bottom-cta-box p {
-      color: var(--grey);
-      max-width: 28rem;
-      margin: 0 auto 2rem;
-      font-size: 1rem;
-      position: relative;
-      font-weight: 300;
-    }
-    .bottom-cta-btns {
-      display: flex;
-      gap: 0.75rem;
-      justify-content: center;
-      position: relative;
-    }
-
-    @media (max-width: 991px) {
-      .process-steps { grid-template-columns: 1fr; }
-      .pipeline-steps { flex-direction: column; }
-      .pipeline-step { border-right: none; border-bottom: 1px solid var(--border); }
-      .pipeline-step:last-child { border-bottom: none; }
-      .pipeline-arrow { display: none; }
-    }
-    @media (max-width: 767px) {
-      .use-case-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link rel="stylesheet" href="/css/pages/how-we-work.css">
 </head>
 <body>
 
@@ -320,18 +47,20 @@
         </div>
       </div>
       <a class="nav-link" href="/data.html">Data</a>
-        <a class="nav-link" href="/coho.html">Coho</a>
-      <a class="nav-link" href="/pricing.html">Pricing</a>
+        <a class="nav-link" href="/engine.html">AI Engine</a>
+      <a class="nav-link" href="/blog/">Blog</a>
       <div class="nav-dropdown">
         <a class="nav-link nav-dropdown-trigger">Company</a>
         <div class="nav-dropdown-menu">
-          <a class="nav-dropdown-item" href="/story.html">Our Story</a>
+          <a class="nav-dropdown-item" href="/customers.html">Customers</a><a class="nav-dropdown-item" href="/story.html">Our Story</a>
           <a class="nav-dropdown-item" href="/how-we-work.html">How It Works</a>
-          <a class="nav-dropdown-item" href="/security.html">Security</a>
         </div>
       </div>
     </div>
-    <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta hide-mobile">Book a Demo</a>
+    <div class="nav-cta-group hide-mobile">
+        <a href="/demo.html" class="btn btn-outline btn-sm nav-cta">Try Salmon</a>
+        <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta">Book a Demo</a>
+      </div>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -349,12 +78,12 @@
     </div>
   </div>
   <a class="nav-link" href="/data.html">Data</a>
-        <a class="nav-link" href="/coho.html">Coho</a>
-  <a class="nav-link" href="/pricing.html">Pricing</a>
-  <a class="nav-link" href="/story.html">Our Story</a>
+        <a class="nav-link" href="/engine.html">AI Engine</a>
+  <a class="nav-link" href="/blog/">Blog</a>
+  <a class="nav-link" href="/customers.html">Customers</a><a class="nav-link" href="/story.html">Our Story</a>
   <a class="nav-link" href="/how-we-work.html">How It Works</a>
-  <a class="nav-link" href="/security.html">Security</a>
-  <a href="/contact-us.html" class="btn btn-primary mt-md" style="width:100%;text-align:center;">Book a Demo</a>
+  <a href="/demo.html" class="btn btn-outline mt-md" style="width:100%;text-align:center;">Try Salmon</a>
+    <a href="/contact-us.html" class="btn btn-primary mt-sm" style="width:100%;text-align:center;">Book a Demo</a>
 </div>
 
 <main>
@@ -373,9 +102,9 @@
   <section class="pipeline">
     <div class="container">
       <div class="pipeline-header">
-        <span class="eyebrow">The Engine</span>
+        <span class="eyebrow">Your Data Pipeline</span>
         <h2>From raw data to verified intelligence</h2>
-        <p>Salmon's Coho engine runs a 5-stage pipeline on every record. No batch jobs, no stale caches &mdash; real-time verification at the moment of need.</p>
+        <p>Here's what happens to every record Salmon touches. No batch jobs, no stale caches &mdash; real-time verification at the moment of need. (<a href="/engine.html" style="color:var(--salmon);">See the technical deep-dive &rarr;</a>)</p>
       </div>
       <div class="pipeline-steps">
         <div class="pipeline-step">
@@ -391,7 +120,7 @@
             <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </div>
           <h4>Scan</h4>
-          <p>Coho analyzes every record against hundreds of live sources across the open web and licensed datasets.</p>
+          <p>The engine analyzes every record against hundreds of live sources across the open web and licensed datasets.</p>
           <span class="pipeline-arrow">&rarr;</span>
         </div>
         <div class="pipeline-step">
@@ -516,11 +245,12 @@
     <div class="footer-grid">
       <div class="footer-brand"><img src="/images/salmon_logo.svg" alt="Salmon"><p>The real-time data engine that keeps your CRM accurate, current, and trusted.</p></div>
       <div class="footer-col"><h4>Solutions</h4><a href="/solutions/crm.html">CRM Enrichment</a><a href="/solutions/gtm.html">GTM & Prospecting</a><a href="/solutions/kyc.html">KYC & Compliance</a><a href="/solutions/intel.html">Account Intelligence</a><a href="/solutions/api.html">Enterprise Data API</a></div>
-      <div class="footer-col"><h4>Company</h4><a href="/story.html">Our Story</a><a href="/how-we-work.html">How It Works</a><a href="/coho.html">Coho Engine</a><a href="/security.html">Security</a><a href="/data.html">Data</a></div>
-      <div class="footer-col"><h4>Compare</h4><a href="/compare/zoominfo.html">vs ZoomInfo</a><a href="/compare/clay.html">vs Clay</a><a href="#">vs Apollo <span class="text-xs text-grey">(soon)</span></a><a href="#">vs Crustdata <span class="text-xs text-grey">(soon)</span></a></div>
+      <div class="footer-col"><h4>Company</h4><a href="/customers.html">Customers</a><a href="/story.html">Our Story</a><a href="/how-we-work.html">How It Works</a><a href="/engine.html">AI Engine</a><a href="/data.html">Data</a>
+          <a href="/blog/">Blog</a></div>
+      <div class="footer-col"><h4>Compare</h4><a href="/compare/zoominfo.html">vs ZoomInfo</a><a href="/compare/clay.html">vs Clay</a></div>
       <div class="footer-col"><h4>Legal</h4><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-service.html">Terms & Conditions</a><a href="/contact-us.html">Contact Us</a><a href="/support.html">Support</a><a href="mailto:hello@salmonrun.ai">hello@salmonrun.ai</a></div>
     </div>
-    <div class="footer-bottom"><p>&copy; 2025 Salmon Inc. All rights reserved.</p></div>
+    <div class="footer-bottom"><p>&copy; 2026 Salmon Labs, Inc. All rights reserved.</p></div>
   </div>
 </footer>
 
@@ -534,23 +264,6 @@
   });
 </script>
 
-<!-- LinkedIn Insight -->
-<script type="text/javascript">
-_linkedin_partner_id = "8028276";
-window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-</script>
-<script type="text/javascript">
-(function(l) {
-if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
-window.lintrk.q=[]}
-var s = document.getElementsByTagName("script")[0];
-var b = document.createElement("script");
-b.type = "text/javascript";b.async = true;
-b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-s.parentNode.insertBefore(b, s);})(window.lintrk);
-</script>
-<noscript><img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=8028276&fmt=gif"></noscript>
 
 </body>
 </html>

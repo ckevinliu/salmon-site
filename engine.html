@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Coho Engine — Salmon</title>
-  <meta name="description" content="Coho is Salmon's AI orchestration engine — a system of specialized agents that discover, verify, enrich, and deliver data with human-grade reasoning at machine speed.">
+  <title>AI Engine — Salmon</title>
+  <meta name="description" content="Salmon's AI engine — a system of specialized agents that discover, verify, enrich, and deliver data with human-grade reasoning at machine speed.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- OG -->
-  <meta property="og:title" content="Coho Engine — Salmon">
+  <meta property="og:title" content="AI Engine — Salmon">
   <meta property="og:description" content="The AI research engine that replaces manual workflows with real-time, agentic intelligence.">
   <meta property="og:image" content="/images/OG-Image.jpg">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Salmon">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Coho Engine — Salmon">
+  <meta name="twitter:title" content="AI Engine — Salmon">
   <meta name="twitter:description" content="The AI research engine that replaces manual workflows with real-time, agentic intelligence.">
 
   <!-- Favicon -->
@@ -25,25 +25,10 @@
 
   <!-- GA -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0ZW1JGTHR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-C0ZW1JGTHR');
-  </script>
+  <script src="/js/analytics.js"></script>
 
+  <link rel="stylesheet" href="/css/pages/coho.css">
   <style>
-    /* ══════════════════════════════════════════════════════════════════════════
-       Coho Page Styles
-       ══════════════════════════════════════════════════════════════════════════ */
-
-    /* ── Hero ── */
-    .coho-hero {
-      padding: 6rem 0 3rem;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
     .coho-hero::before {
       content: '';
       position: absolute;
@@ -514,7 +499,7 @@
     }
     .coho-tier-badge {
       font-size: 0.6875rem;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--salmon);
@@ -615,7 +600,7 @@
     }
     .coho-compare-label {
       font-size: 0.6875rem;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-bottom: 1.25rem;
@@ -902,18 +887,20 @@
         </div>
       </div>
       <a class="nav-link" href="/data.html">Data</a>
-      <a class="nav-link active" href="/coho.html">Coho</a>
-      <a class="nav-link" href="/pricing.html">Pricing</a>
+      <a class="nav-link active" href="/engine.html">AI Engine</a>
+      <a class="nav-link" href="/blog/">Blog</a>
       <div class="nav-dropdown">
         <a class="nav-link nav-dropdown-trigger">Company</a>
         <div class="nav-dropdown-menu">
-          <a class="nav-dropdown-item" href="/story.html">Our Story</a>
+          <a class="nav-dropdown-item" href="/customers.html">Customers</a><a class="nav-dropdown-item" href="/story.html">Our Story</a>
           <a class="nav-dropdown-item" href="/how-we-work.html">How It Works</a>
-          <a class="nav-dropdown-item" href="/security.html">Security</a>
         </div>
       </div>
     </div>
-    <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta hide-mobile">Book a Demo</a>
+    <div class="nav-cta-group hide-mobile">
+        <a href="/demo.html" class="btn btn-outline btn-sm nav-cta">Try Salmon</a>
+        <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta">Book a Demo</a>
+      </div>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -931,12 +918,12 @@
     </div>
   </div>
   <a class="nav-link" href="/data.html">Data</a>
-  <a class="nav-link active" href="/coho.html">Coho</a>
-  <a class="nav-link" href="/pricing.html">Pricing</a>
-  <a class="nav-link" href="/story.html">Our Story</a>
+  <a class="nav-link active" href="/engine.html">AI Engine</a>
+  <a class="nav-link" href="/blog/">Blog</a>
+  <a class="nav-link" href="/customers.html">Customers</a><a class="nav-link" href="/story.html">Our Story</a>
   <a class="nav-link" href="/how-we-work.html">How It Works</a>
-  <a class="nav-link" href="/security.html">Security</a>
-  <a href="/contact-us.html" class="btn btn-primary mt-md" style="width:100%;text-align:center;">Book a Demo</a>
+  <a href="/demo.html" class="btn btn-outline mt-md" style="width:100%;text-align:center;">Try Salmon</a>
+    <a href="/contact-us.html" class="btn btn-primary mt-sm" style="width:100%;text-align:center;">Book a Demo</a>
 </div>
 
 <main>
@@ -946,9 +933,9 @@
     <div class="container">
       <div class="coho-hero-grid">
         <div class="coho-hero-text">
-          <span class="eyebrow">Coho Engine</span>
+          <span class="eyebrow">AI Engine</span>
           <h1>The AI that researches like your best analyst. At machine speed.</h1>
-          <p>Coho is Salmon's orchestration engine &mdash; a system of specialized AI agents that discover, verify, and deliver data with human-grade reasoning and full explainability.</p>
+          <p>Salmon's AI engine &mdash; a system of specialized agents that discover, verify, and deliver data with human-grade reasoning and full explainability.</p>
           <div class="coho-hero-btns">
             <a href="/contact-us.html" class="btn btn-primary btn-lg">Book a Demo</a>
             <a href="#orchestration" class="btn btn-outline btn-lg">See How It Works</a>
@@ -1012,7 +999,7 @@
       <div class="coho-flow-header">
         <span class="eyebrow">The Orchestration Engine</span>
         <h2>Five stages. One intelligent loop.</h2>
-        <p>Coho doesn't run a static pipeline. It orchestrates a reasoning graph that adapts in real time &mdash; revisiting earlier stages when confidence is low, escalating to premium sources when needed, and learning from every resolution.</p>
+        <p>Salmon's engine doesn't run a static pipeline. It orchestrates a reasoning graph that adapts in real time &mdash; revisiting earlier stages when confidence is low, escalating to premium sources when needed, and learning from every resolution.</p>
       </div>
     </div>
 
@@ -1024,7 +1011,7 @@
         <div class="coho-step active" data-step="0">
           <div class="coho-step-content">
             <h3>Source</h3>
-            <p>Coho deploys search agents across the open web, partner APIs, and your own data. Multiple agents work in parallel, each optimized for different source types and geographies.</p>
+            <p>The engine deploys search agents across the open web, partner APIs, and your own data. Multiple agents work in parallel, each optimized for different source types and geographies.</p>
             <div class="coho-step-detail">Open web &bull; LinkedIn &bull; SEC filings &bull; Business registries &bull; 200+ live sources</div>
           </div>
           <div class="coho-step-dot">
@@ -1052,7 +1039,7 @@
         <div class="coho-step" data-step="2">
           <div class="coho-step-content">
             <h3>Reason</h3>
-            <p>The reasoning engine resolves conflicts between sources. When data disagrees, Coho determines which signal is most current and reliable &mdash; and documents why.</p>
+            <p>The reasoning engine resolves conflicts between sources. When data disagrees, the engine determines which signal is most current and reliable &mdash; and documents why.</p>
             <div class="coho-step-detail">Title normalization &bull; Tenure estimation &bull; Contradiction resolution &bull; Confidence scoring</div>
           </div>
           <div class="coho-step-dot">
@@ -1100,7 +1087,7 @@
       <div class="coho-agents-header">
         <span class="eyebrow">Specialized Agents</span>
         <h2>Four agent types. One coordinated system.</h2>
-        <p>Each agent is purpose-built for a specific part of the research process. Coho coordinates them dynamically &mdash; deploying the right agent at the right moment based on what the data requires.</p>
+        <p>Each agent is purpose-built for a specific part of the research process. The engine coordinates them dynamically &mdash; deploying the right agent at the right moment based on what the data requires.</p>
       </div>
       <div class="coho-agent-grid">
 
@@ -1109,7 +1096,7 @@
             <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
           </div>
           <h3>Search Agents</h3>
-          <p>Discover across the open web, business registries, social networks, and licensed directories. Coho deploys multiple search agents in parallel, each specialized for different source types.</p>
+          <p>Discover across the open web, business registries, social networks, and licensed directories. The engine deploys multiple search agents in parallel, each specialized for different source types.</p>
         </div>
 
         <div class="coho-agent-card">
@@ -1146,7 +1133,7 @@
       <div class="coho-sources-header">
         <span class="eyebrow">Intelligent Source Selection</span>
         <h2>Three tiers of data. One decision framework.</h2>
-        <p>Coho doesn't query every source every time. It starts with the fastest, cheapest signals and escalates only when needed &mdash; saving cost and latency while maximizing accuracy.</p>
+        <p>The engine doesn't query every source every time. It starts with the fastest, cheapest signals and escalates only when needed &mdash; saving cost and latency while maximizing accuracy.</p>
       </div>
 
       <div class="coho-tiers">
@@ -1154,7 +1141,7 @@
           <div class="coho-tier-badge">Tier 1</div>
           <div>
             <h4>Open Web</h4>
-            <p>Public websites, directories, social networks, business registries. Free, fast, and always checked first. Coho pulls from hundreds of live sources in parallel.</p>
+            <p>Public websites, directories, social networks, business registries. Free, fast, and always checked first. It pulls from hundreds of live sources in parallel.</p>
           </div>
         </div>
 
@@ -1180,14 +1167,14 @@
           <div class="coho-tier-badge">Tier 3</div>
           <div>
             <h4>Customer Data</h4>
-            <p>Your CRM, Snowflake tables, proprietary datasets. Coho cross-references your own data to resolve gaps and validate external signals &mdash; grounding every decision in your system of record.</p>
+            <p>Your CRM, Snowflake tables, proprietary datasets. The engine cross-references your own data to resolve gaps and validate external signals &mdash; grounding every decision in your system of record.</p>
           </div>
         </div>
       </div>
 
       <div class="coho-lineage-callout">
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        Every output is tagged with its source origin, the decision trace Coho used, and a confidence score. Full data lineage and explainability on every record delivered.
+        Every output is tagged with its source origin, the decision trace the engine used, and a confidence score. Full data lineage and explainability on every record delivered.
       </div>
     </div>
   </section>
@@ -1197,8 +1184,8 @@
     <div class="container">
       <div class="coho-compare-header">
         <span class="eyebrow">A Fundamentally Different Approach</span>
-        <h2>Traditional pipeline vs. Coho reasoning graph.</h2>
-        <p>Most data tools run a fixed sequence: query, return, done. Coho thinks. It tests hypotheses, resolves inconsistencies, and self-corrects before delivering a result.</p>
+        <h2>Traditional pipeline vs. Salmon's AI engine.</h2>
+        <p>Most data tools run a fixed sequence: query, return, done. Salmon's engine thinks. It tests hypotheses, resolves inconsistencies, and self-corrects before delivering a result.</p>
       </div>
 
       <div class="coho-compare-grid">
@@ -1236,7 +1223,7 @@
         <div class="coho-compare-card coho-compare-card--new">
           <div class="coho-compare-label">
             <span class="coho-bullet-icon coho-bullet-check"><svg viewBox="0 0 24 24"><polyline points="4 12 9 17 20 6"/></svg></span>
-            Coho Reasoning Graph
+            Salmon AI Engine
           </div>
           <ul class="coho-compare-list">
             <li>
@@ -1269,16 +1256,16 @@
   <section class="coho-cases">
     <div class="container">
       <div class="coho-cases-header">
-        <span class="eyebrow">Coho in Action</span>
+        <span class="eyebrow">The Engine in Action</span>
         <h2>Real conflicts. Resolved in seconds.</h2>
-        <p>These aren't hypothetical scenarios. They're patterns Coho resolves thousands of times per day across every customer deployment.</p>
+        <p>These aren't hypothetical scenarios. They're patterns the engine resolves thousands of times per day across every customer deployment.</p>
       </div>
 
       <div class="coho-case-grid">
         <div class="coho-case-card">
           <div class="coho-case-scenario">"VP of Sales" vs "CRO"</div>
           <h3>Title Conflict Resolution</h3>
-          <p>LinkedIn shows VP of Sales. A recent press release says CRO. Coho's reasoning agent checks the dates, cross-references the company's org chart, and confirms the CRO title is current &mdash; the LinkedIn update is three weeks behind.</p>
+          <p>LinkedIn shows VP of Sales. A recent press release says CRO. The reasoning agent checks the dates, cross-references the company's org chart, and confirms the CRO title is current &mdash; the LinkedIn update is three weeks behind.</p>
           <div class="coho-case-result">
             <span class="coho-case-badge">
               <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="4 12 9 17 20 6"/></svg>
@@ -1290,7 +1277,7 @@
         <div class="coho-case-card">
           <div class="coho-case-scenario">Changed companies, stale CRM</div>
           <h3>Employment Verification</h3>
-          <p>Your CRM shows a contact at Stripe. Coho's verification agent detects a new company domain in email headers, confirms the role at Plaid via multiple independent signals, and updates the record with full provenance.</p>
+          <p>Your CRM shows a contact at Stripe. The verification agent detects a new company domain in email headers, confirms the role at Plaid via multiple independent signals, and updates the record with full provenance.</p>
           <div class="coho-case-result">
             <span class="coho-case-badge">
               <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="4 12 9 17 20 6"/></svg>
@@ -1302,7 +1289,7 @@
         <div class="coho-case-card">
           <div class="coho-case-scenario">Missing direct dial + tech stack</div>
           <h3>Data Gap Filling</h3>
-          <p>A new lead comes in with just name and company. Coho's search agents find the direct line via a partner API, reasoning agents determine the correct title from three conflicting sources, and the complete profile ships to your CRM in 90 seconds.</p>
+          <p>A new lead comes in with just name and company. The search agents find the direct line via a partner API, reasoning agents determine the correct title from three conflicting sources, and the complete profile ships to your CRM in 90 seconds.</p>
           <div class="coho-case-result">
             <span class="coho-case-badge">
               <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="4 12 9 17 20 6"/></svg>
@@ -1319,8 +1306,8 @@
     <div class="container">
       <div class="coho-cta-box">
         <span class="eyebrow" style="margin-bottom: 1rem; display: block;">Get Started</span>
-        <h2>See Coho run on your data.</h2>
-        <p>No slides, no pitch deck. We run Coho on your actual records and show you what changes. 30 minutes.</p>
+        <h2>See the engine run on your data.</h2>
+        <p>No slides, no pitch deck. We run Salmon on your actual records and show you what changes. 30 minutes.</p>
         <div class="coho-cta-btns">
           <a href="/contact-us.html" class="btn btn-primary btn-lg">Book a Demo</a>
           <a href="/data.html" class="btn btn-outline btn-lg">Explore Data Capabilities</a>
@@ -1337,11 +1324,12 @@
     <div class="footer-grid">
       <div class="footer-brand"><img src="/images/salmon_logo.svg" alt="Salmon"><p>The real-time data engine that keeps your CRM accurate, current, and trusted.</p></div>
       <div class="footer-col"><h4>Solutions</h4><a href="/solutions/crm.html">CRM Enrichment</a><a href="/solutions/gtm.html">GTM & Prospecting</a><a href="/solutions/kyc.html">KYC & Compliance</a><a href="/solutions/intel.html">Account Intelligence</a><a href="/solutions/api.html">Enterprise Data API</a></div>
-      <div class="footer-col"><h4>Company</h4><a href="/story.html">Our Story</a><a href="/how-we-work.html">How It Works</a><a href="/coho.html">Coho Engine</a><a href="/security.html">Security</a><a href="/data.html">Data</a></div>
-      <div class="footer-col"><h4>Compare</h4><a href="/compare/zoominfo.html">vs ZoomInfo</a><a href="/compare/clay.html">vs Clay</a><a href="#">vs Apollo <span class="text-xs text-grey">(soon)</span></a><a href="#">vs Crustdata <span class="text-xs text-grey">(soon)</span></a></div>
+      <div class="footer-col"><h4>Company</h4><a href="/customers.html">Customers</a><a href="/story.html">Our Story</a><a href="/how-we-work.html">How It Works</a><a href="/engine.html">AI Engine</a><a href="/data.html">Data</a>
+          <a href="/blog/">Blog</a></div>
+      <div class="footer-col"><h4>Compare</h4><a href="/compare/zoominfo.html">vs ZoomInfo</a><a href="/compare/clay.html">vs Clay</a></div>
       <div class="footer-col"><h4>Legal</h4><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-service.html">Terms & Conditions</a><a href="/contact-us.html">Contact Us</a><a href="/support.html">Support</a><a href="mailto:hello@salmonrun.ai">hello@salmonrun.ai</a></div>
     </div>
-    <div class="footer-bottom"><p>&copy; 2025 Salmon Inc. All rights reserved.</p></div>
+    <div class="footer-bottom"><p>&copy; 2026 Salmon Labs, Inc. All rights reserved.</p></div>
   </div>
 </footer>
 
@@ -1446,23 +1434,6 @@
 })();
 </script>
 
-<!-- LinkedIn Insight -->
-<script type="text/javascript">
-_linkedin_partner_id = "8028276";
-window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-</script>
-<script type="text/javascript">
-(function(l) {
-if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
-window.lintrk.q=[]}
-var s = document.getElementsByTagName("script")[0];
-var b = document.createElement("script");
-b.type = "text/javascript";b.async = true;
-b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-s.parentNode.insertBefore(b, s);})(window.lintrk);
-</script>
-<noscript><img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=8028276&fmt=gif"></noscript>
 
 </body>
 </html>

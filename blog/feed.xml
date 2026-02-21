@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Salmon Blog</title>
+    <link>https://salmonrun.ai/blog</link>
+    <description>Insights on CRM data quality, revenue operations, and AI-powered enrichment from the Salmon team.</description>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 20 Feb 2026 12:00:00 GMT</lastBuildDate>
+    <atom:link href="https://salmonrun.ai/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Welcome to the Salmon Blog</title>
+      <link>https://salmonrun.ai/blog/welcome-to-salmon-blog</link>
+      <guid isPermaLink="true">https://salmonrun.ai/blog/welcome-to-salmon-blog</guid>
+      <pubDate>Fri, 20 Feb 2026 12:00:00 GMT</pubDate>
+      <description>We're launching the Salmon blog — a space for insights on CRM data quality, revenue operations, and the future of AI-powered enrichment.</description>
+      <author>Salmon Team</author>
+      <category>Company</category>
+      <category>Announcements</category>
+    </item>
+    <item>
+      <title>Why Your CRM Data Decays 30% Every Year</title>
+      <link>https://salmonrun.ai/blog/crm-data-decay</link>
+      <guid isPermaLink="true">https://salmonrun.ai/blog/crm-data-decay</guid>
+      <pubDate>Wed, 18 Feb 2026 12:00:00 GMT</pubDate>
+      <description>B2B contact data decays at an alarming rate — 30 to 40 percent every year. Here's why it happens, what it actually costs, and what you can do about it.</description>
+      <author>Salmon Team</author>
+      <category>CRM</category>
+      <category>Data Quality</category>
+      <category>RevOps</category>
+    </item>
+  </channel>
+</rss>

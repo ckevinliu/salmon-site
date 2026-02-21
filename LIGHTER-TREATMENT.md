@@ -54,6 +54,14 @@ Changes applied to make the site feel lighter and sharper, inspired by meridian.
 | `.sh-h1` weight | 700 | 300, ls `-0.03em` |
 | `.sh-pill` radius | 2rem | 0.375rem |
 
-## Remaining Pages
+## Inner Pages (Updated)
 
-The global changes in `main.css` (radius, heading weights, button styles, nav, footer, section padding) apply site-wide. Page-specific inline styles on other pages (story, how-we-work, pricing, data, contact, security, solutions, compare) have not been updated yet.
+All inner pages have been audited and updated to match the lighter treatment. Changes applied:
+
+- `pricing.html`: `.tier-card.recommended::before` reduced from 700 → 500
+- `solutions/*.html` (all 5): `strong` elements reduced from 600 → 500
+- `compare/zoominfo.html`: `.problem-card h3` 700→500, `.th` 700→500, `.td.lbl` 600→500, `strong` 600→500
+- `compare/clay.html`: `.arch-tag` 700→500, `.step-num` 700→600, `.th` 700→500, `.uc-tag` 700→500, `strong` 600→500
+- `coho.html`: `.coho-tier-badge` 600→500, `.coho-compare-label` 600→500
+
+Pages that were already compliant: story.html, how-we-work.html, data.html, contact-us.html, security.html

@@ -1,0 +1,10 @@
+    .legal-hero { padding: 8rem 0 2rem; }
+    .legal-content {
+      max-width: 48rem;
+      margin: 0 auto;
+      padding: 2rem var(--pad) 4rem;
+    }
+    .legal-content h2 { font-size: 1.25rem; margin: 2.5rem 0 0.75rem; color: var(--white); }
+    .legal-content p { font-size: 0.9375rem; color: var(--grey); line-height: 1.75; margin-bottom: 1rem; font-weight: 300; }
+    .legal-content a { color: var(--salmon); text-decoration: underline; }
+    .legal-content strong { color: var(--light-grey); }

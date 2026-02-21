@@ -1,0 +1,260 @@
+    /* ── Hero ── */
+    .sec-hero {
+      padding: 8rem 0 4rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .sec-hero h1 {
+      margin-bottom: 1rem;
+    }
+    .sec-hero p {
+      font-size: clamp(1rem, 1.5vw, 1.125rem);
+      font-weight: 300;
+      color: var(--grey);
+      max-width: 36rem;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── Security Features Grid ── */
+    .sec-features {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .sec-features-header {
+      margin-bottom: 3rem;
+    }
+    .sec-features-header p {
+      font-weight: 300;
+      color: var(--grey);
+      max-width: 36rem;
+      margin-top: 0.75rem;
+      line-height: 1.7;
+    }
+    .sec-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .sec-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .sec-card:hover {
+      border-color: var(--border-2);
+      transform: translateY(-2px);
+    }
+    .sec-card-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 1.25rem;
+      color: var(--salmon);
+    }
+    .sec-card-icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .sec-card h3 {
+      font-size: 1.125rem;
+      margin-bottom: 0.5rem;
+    }
+    .sec-card .sec-card-badge {
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--r-pill);
+      margin-bottom: 0.75rem;
+    }
+    .sec-card .badge-active {
+      background: var(--green-dim);
+      color: var(--green);
+      border: 1px solid rgba(90,180,110,0.25);
+    }
+    .sec-card .badge-progress {
+      background: var(--salmon-dim);
+      color: var(--salmon);
+      border: 1px solid var(--salmon-bdr);
+    }
+    .sec-card p {
+      font-size: 0.9375rem;
+      font-weight: 300;
+      color: var(--grey);
+      line-height: 1.65;
+    }
+
+    /* ── Data Practices ── */
+    .data-practices {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .dp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+      margin-top: 2.5rem;
+    }
+    .dp-body p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--grey);
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+    .dp-body p:last-child {
+      margin-bottom: 0;
+    }
+    .dp-list {
+      list-style: none;
+      padding: 0;
+    }
+    .dp-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.875rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9375rem;
+      color: var(--grey);
+      line-height: 1.55;
+    }
+    .dp-list li:last-child {
+      border-bottom: none;
+    }
+    .dp-check {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      color: var(--salmon);
+      margin-top: 2px;
+    }
+    .dp-check svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── Trust Badges ── */
+    .trust-badges {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .trust-badges h2 {
+      margin-bottom: 0.75rem;
+    }
+    .trust-badges > .container > p {
+      font-weight: 300;
+      color: var(--grey);
+      max-width: 36rem;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+    .badges-row {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .trust-badge {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      min-width: 160px;
+      transition: border-color 0.2s;
+    }
+    .trust-badge:hover {
+      border-color: var(--border-2);
+    }
+    .trust-badge-icon {
+      width: 36px;
+      height: 36px;
+      margin: 0 auto 0.75rem;
+      color: var(--salmon);
+    }
+    .trust-badge-icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .trust-badge h4 {
+      font-size: 0.875rem;
+      margin-bottom: 0.25rem;
+    }
+    .trust-badge p {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--charcoal);
+    }
+
+    /* ── Bottom CTA ── */
+    .bottom-cta {
+      padding: 4rem 0;
+    }
+    .bottom-cta-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 3.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .bottom-cta-box::before {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 300px;
+      background: radial-gradient(ellipse at center, rgba(252,120,105,0.06), transparent 70%);
+      pointer-events: none;
+    }
+    .bottom-cta-box h2 {
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+    .bottom-cta-box p {
+      font-weight: 300;
+      color: var(--grey);
+      max-width: 28rem;
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+      position: relative;
+    }
+    .bottom-cta-btns {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      position: relative;
+    }
+
+    @media (max-width: 991px) {
+      .sec-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 767px) {
+      .sec-grid { grid-template-columns: 1fr; }
+      .dp-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }

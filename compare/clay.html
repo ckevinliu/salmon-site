@@ -19,397 +19,11 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="/css/main.css">
-
-  <style>
-    /* ── Hero ── */
-    .compare-hero {
-      padding: 8rem 0 5rem;
-    }
-    .vs-pill {
-      display: inline-flex;
-      align-items: center;
-      background: var(--salmon-dim);
-      border: 1px solid var(--salmon-bdr);
-      border-radius: var(--r-pill);
-      padding: 0.375rem 1rem;
-      font-size: 0.6875rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--salmon);
-      margin-bottom: 2rem;
-    }
-    .compare-hero h1 {
-      font-size: clamp(2.5rem, 5vw, 4.25rem);
-      font-weight: 300;
-      line-height: 1.08;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.75rem;
-      max-width: 36rem;
-    }
-    .compare-hero h1 em { font-style: normal; color: var(--salmon); }
-    .hero-sub {
-      font-size: 1.25rem;
-      font-weight: 300;
-      color: var(--grey);
-      max-width: 34rem;
-      line-height: 1.6;
-      margin-bottom: 1.75rem;
-    }
-    .hero-note {
-      display: inline-block;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-card);
-      padding: 1rem 1.375rem;
-      font-size: 0.9375rem;
-      font-weight: 300;
-      color: var(--grey);
-      max-width: 34rem;
-      line-height: 1.55;
-    }
-    .hero-note strong { color: var(--white); font-weight: 600; }
-
-    /* ── Architecture ── */
-    .arch-intro h2 {
-      font-size: clamp(1.75rem, 3vw, 2.25rem);
-      font-weight: 300;
-      line-height: 1.15;
-      letter-spacing: -0.01em;
-      margin-bottom: 1.25rem;
-      max-width: 40rem;
-    }
-    .arch-intro p {
-      color: var(--grey);
-      font-weight: 300;
-      max-width: 40rem;
-      line-height: 1.65;
-      margin-bottom: 3.5rem;
-    }
-    .arch-intro p strong { color: var(--white); font-weight: 600; }
-
-    .arch-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-    .arch-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-card);
-      padding: 2rem;
-    }
-    .arch-card.is-salmon {
-      border-color: var(--salmon-bdr);
-      background: var(--salmon-dim);
-    }
-    .arch-tag {
-      display: inline-block;
-      font-size: 0.6875rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.625rem;
-      border-radius: var(--r-pill);
-      margin-bottom: 1.25rem;
-      background: rgba(255,255,255,0.07);
-      color: var(--grey);
-      border: 1px solid var(--border);
-    }
-    .arch-card.is-salmon .arch-tag {
-      background: var(--salmon-dim);
-      color: var(--salmon);
-      border-color: var(--salmon-bdr);
-    }
-    .arch-card h3 {
-      font-size: 1.25rem;
-      font-weight: 500;
-      margin-bottom: 0.375rem;
-    }
-    .arch-card .arch-sub {
-      font-size: 0.875rem;
-      color: var(--grey);
-      font-style: italic;
-      margin-bottom: 1.75rem;
-    }
-    .step-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.875rem;
-    }
-    .step-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      font-size: 0.9375rem;
-      line-height: 1.5;
-      color: var(--grey);
-    }
-    .step-item strong { color: var(--white); font-weight: 600; }
-    .step-num {
-      width: 1.375rem;
-      height: 1.375rem;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.6875rem;
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 0.125rem;
-      color: var(--grey);
-    }
-    .arch-card.is-salmon .step-num {
-      background: var(--salmon-dim);
-      border-color: var(--salmon-bdr);
-      color: var(--salmon);
-    }
-    .cost-tag {
-      display: inline-block;
-      font-size: 0.625rem;
-      font-weight: 700;
-      color: var(--red);
-      background: var(--red-dim);
-      border: 1px solid rgba(217,80,64,0.2);
-      padding: 0.125rem 0.5rem;
-      border-radius: var(--r-pill);
-      margin-left: 0.375rem;
-      white-space: nowrap;
-      vertical-align: middle;
-    }
-
-    /* ── Comparison table ── */
-    .table-title {
-      font-size: clamp(1.75rem, 3vw, 2.25rem);
-      font-weight: 300;
-      letter-spacing: -0.01em;
-      line-height: 1.15;
-      margin-bottom: 3rem;
-      max-width: 26rem;
-    }
-    .table-wrap {
-      border: 1px solid var(--border);
-      border-radius: var(--r-card);
-      overflow: hidden;
-    }
-    .table-head {
-      display: grid;
-      grid-template-columns: 2fr 1.4fr 1.5fr;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-    }
-    .th {
-      padding: 1rem 1.75rem;
-      font-size: 0.6875rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--grey);
-    }
-    .th.s { background: var(--salmon-dim); color: var(--salmon); border-left: 2px solid var(--salmon); }
-    .table-row {
-      display: grid;
-      grid-template-columns: 2fr 1.4fr 1.5fr;
-      border-bottom: 1px solid var(--border);
-      transition: background 0.15s;
-    }
-    .table-row:last-child { border-bottom: none; }
-    .table-row:hover { background: rgba(255,255,255,0.02); }
-    .td {
-      padding: 1.125rem 1.75rem;
-      font-size: 0.9375rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-      line-height: 1.45;
-    }
-    .td.lbl { font-weight: 600; color: var(--white); align-items: center; }
-    .td.cl  { color: var(--grey); }
-    .td.s   { border-left: 2px solid var(--salmon); background: rgba(252,120,105,0.04); color: var(--white); font-weight: 500; }
-    .ck { color: var(--green); flex-shrink: 0; margin-top: 0.125rem; }
-    .cx { color: var(--red); font-weight: 700; flex-shrink: 0; margin-top: 0.125rem; }
-    .tl { color: var(--grey); flex-shrink: 0; margin-top: 0.125rem; }
-
-    /* ── Use cases ── */
-    .uc-title {
-      font-size: clamp(1.75rem, 3vw, 2.25rem);
-      font-weight: 300;
-      letter-spacing: -0.01em;
-      line-height: 1.15;
-      margin-bottom: 3rem;
-    }
-    .uc-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-    }
-    .uc-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-card);
-      padding: 1.75rem;
-    }
-    .uc-tag {
-      display: inline-block;
-      font-size: 0.6875rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.625rem;
-      border-radius: var(--r-pill);
-      margin-bottom: 0.75rem;
-      background: var(--salmon-dim);
-      color: var(--salmon);
-      border: 1px solid var(--salmon-bdr);
-    }
-    .uc-tag.clay {
-      background: rgba(255,255,255,0.05);
-      color: var(--grey);
-      border-color: var(--border);
-    }
-    .uc-card h4 {
-      font-size: 1rem;
-      font-weight: 500;
-      margin-bottom: 0.625rem;
-      line-height: 1.3;
-    }
-    .uc-card p {
-      font-size: 0.875rem;
-      font-weight: 300;
-      color: var(--grey);
-      line-height: 1.6;
-    }
-
-    /* ── Bottom line ── */
-    .bl-wrap { max-width: 48rem; }
-    .bl-wrap h2 {
-      font-size: clamp(1.75rem, 3vw, 2.25rem);
-      font-weight: 300;
-      line-height: 1.15;
-      letter-spacing: -0.01em;
-      margin-bottom: 1.5rem;
-    }
-    .bl-wrap p {
-      color: var(--grey);
-      font-weight: 300;
-      line-height: 1.65;
-      margin-bottom: 1rem;
-    }
-    .bl-wrap p strong { color: var(--white); font-weight: 600; }
-    .callout {
-      background: var(--salmon-dim);
-      border: 1px solid var(--salmon-bdr);
-      border-radius: var(--r-card);
-      padding: 1.75rem 2rem;
-      margin-top: 2.5rem;
-    }
-    .callout p {
-      font-size: 1.125rem;
-      color: var(--white);
-      line-height: 1.6;
-      margin: 0;
-    }
-    .callout p em { font-style: italic; color: var(--salmon); }
-
-    /* ── FAQ ── */
-    .faq-title {
-      font-size: clamp(1.75rem, 3vw, 2.25rem);
-      font-weight: 300;
-      letter-spacing: -0.01em;
-      line-height: 1.15;
-      margin-bottom: 3rem;
-    }
-    .faq-list {
-      max-width: 48rem;
-      display: flex;
-      flex-direction: column;
-    }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
-    .faq-q {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 1.5rem 0;
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--white);
-      text-align: left;
-      cursor: pointer;
-      background: none;
-      border: none;
-      font-family: inherit;
-    }
-    .faq-q::after {
-      content: '+';
-      font-size: 1.25rem;
-      color: var(--salmon);
-      flex-shrink: 0;
-      transition: transform 0.2s;
-    }
-    .faq-item.open .faq-q::after {
-      content: '-';
-    }
-    .faq-a {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-    }
-    .faq-item.open .faq-a {
-      max-height: 12rem;
-      padding-bottom: 1.5rem;
-    }
-    .faq-a p {
-      font-size: 0.9375rem;
-      font-weight: 300;
-      color: var(--grey);
-      line-height: 1.65;
-    }
-
-    /* ── CTA ── */
-    .cta-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 4rem;
-    }
-    .cta-left h2 {
-      font-size: clamp(2rem, 4vw, 2.75rem);
-      font-weight: 300;
-      letter-spacing: -0.015em;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-    .cta-left p { color: var(--grey); font-weight: 300; max-width: 28rem; }
-    .cta-buttons { display: flex; flex-direction: column; gap: 0.75rem; flex-shrink: 0; }
-
-    /* ── Responsive ── */
-    @media (max-width: 991px) {
-      .arch-grid, .uc-grid { grid-template-columns: 1fr; }
-      .cta-inner { flex-direction: column; gap: 2.5rem; text-align: center; }
-      .cta-left p { margin: 0 auto; }
-      .cta-buttons { align-items: center; }
-    }
-    @media (max-width: 767px) {
-      .table-head, .table-row { grid-template-columns: 1.5fr 1fr 1.1fr; }
-      .td, .th { padding: 0.875rem 1rem; font-size: 0.8125rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="/css/compare-clay.css">
 
   <!-- GA -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0ZW1JGTHR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-C0ZW1JGTHR');
-  </script>
+  <script src="/js/analytics.js"></script>
 </head>
 <body>
 
@@ -429,18 +43,20 @@
           </div>
         </div>
         <a class="nav-link" href="/data.html">Data</a>
-        <a class="nav-link" href="/coho.html">Coho</a>
-        <a class="nav-link" href="/pricing.html">Pricing</a>
+        <a class="nav-link" href="/engine.html">AI Engine</a>
+        <a class="nav-link" href="/blog/">Blog</a>
         <div class="nav-dropdown">
           <a class="nav-link nav-dropdown-trigger">Company</a>
           <div class="nav-dropdown-menu">
-            <a class="nav-dropdown-item" href="/story.html">Our Story</a>
+            <a class="nav-dropdown-item" href="/customers.html">Customers</a><a class="nav-dropdown-item" href="/story.html">Our Story</a>
             <a class="nav-dropdown-item" href="/how-we-work.html">How It Works</a>
-            <a class="nav-dropdown-item" href="/security.html">Security</a>
           </div>
         </div>
       </div>
-      <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta hide-mobile">Book a Demo</a>
+      <div class="nav-cta-group hide-mobile">
+        <a href="/demo.html" class="btn btn-outline btn-sm nav-cta">Try Salmon</a>
+        <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta">Book a Demo</a>
+      </div>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </nav>
@@ -456,12 +72,12 @@
       <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
     </div>
     <a class="nav-link" href="/data.html">Data</a>
-        <a class="nav-link" href="/coho.html">Coho</a>
-    <a class="nav-link" href="/pricing.html">Pricing</a>
-    <a class="nav-link" href="/story.html">Our Story</a>
+        <a class="nav-link" href="/engine.html">AI Engine</a>
+    <a class="nav-link" href="/blog/">Blog</a>
+    <a class="nav-link" href="/customers.html">Customers</a><a class="nav-link" href="/story.html">Our Story</a>
     <a class="nav-link" href="/how-we-work.html">How It Works</a>
-    <a class="nav-link" href="/security.html">Security</a>
-    <a class="nav-link" href="/contact-us.html" style="color: var(--salmon); font-weight: 600;">Book a Demo</a>
+    <a class="nav-link" href="/demo.html" style="color: var(--salmon); font-weight: 500;">Try Salmon</a>
+    <a class="nav-link" href="/contact-us.html" style="color: var(--salmon); font-weight: 500;">Book a Demo</a>
   </div>
 
   <main>
@@ -531,7 +147,7 @@
               </li>
               <li class="step-item">
                 <span class="step-num">2</span>
-                <span>Coho, our AI orchestration layer, selects and sequences the right sources automatically</span>
+                <span>Salmon's AI orchestration layer, selects and sequences the right sources automatically</span>
               </li>
               <li class="step-item">
                 <span class="step-num">3</span>
@@ -590,7 +206,7 @@
           <div class="table-row">
             <div class="td lbl">Multi-source triangulation</div>
             <div class="td cl"><span class="tl">~</span> You design the waterfall logic</div>
-            <div class="td s"><span class="ck">&#10003;</span> Automatic — Coho resolves conflicts</div>
+            <div class="td s"><span class="ck">&#10003;</span> Automatic — Salmon resolves conflicts</div>
           </div>
           <div class="table-row">
             <div class="td lbl">Confidence scoring</div>
@@ -664,7 +280,7 @@
           <h2>Different tools for a different mindset.</h2>
           <p>Clay is a genuinely great product — it's popular for good reason. It gives technical operators incredible flexibility to build exactly the enrichment stack they want.</p>
           <p>But Clay puts the work on you. <strong>Every query you run through Clay is the result of workflows your team designed, sources your team selected, and logic your team maintains.</strong> The output is only as good as what you built.</p>
-          <p>Salmon is opinionated by design. You describe what you need. Coho, our AI orchestration system, figures out the rest — which sources to use, how to resolve conflicts, how deep to go. You're buying the research, not the research tools.</p>
+          <p>Salmon is opinionated by design. You describe what you need. Salmon's AI engine figures out the rest — which sources to use, how to resolve conflicts, how deep to go. You're buying the research, not the research tools.</p>
           <div class="callout">
             <p>The best analogy: <em>Clay is the kitchen. Salmon is the chef.</em> Both make food. One of them requires a lot more from you.</p>
           </div>
@@ -726,11 +342,12 @@
       <div class="footer-grid">
         <div class="footer-brand"><img src="/images/salmon_logo.svg" alt="Salmon"><p>The real-time data engine that keeps your CRM accurate, current, and trusted.</p></div>
         <div class="footer-col"><h4>Solutions</h4><a href="/solutions/crm.html">CRM Enrichment</a><a href="/solutions/gtm.html">GTM & Prospecting</a><a href="/solutions/kyc.html">KYC & Compliance</a><a href="/solutions/intel.html">Account Intelligence</a><a href="/solutions/api.html">Enterprise Data API</a></div>
-        <div class="footer-col"><h4>Company</h4><a href="/story.html">Our Story</a><a href="/how-we-work.html">How It Works</a><a href="/coho.html">Coho Engine</a><a href="/security.html">Security</a><a href="/data.html">Data</a></div>
-        <div class="footer-col"><h4>Compare</h4><a href="/compare/zoominfo.html">vs ZoomInfo</a><a href="/compare/clay.html">vs Clay</a><a href="#">vs Apollo <span class="text-xs text-grey">(soon)</span></a><a href="#">vs Crustdata <span class="text-xs text-grey">(soon)</span></a></div>
+        <div class="footer-col"><h4>Company</h4><a href="/customers.html">Customers</a><a href="/story.html">Our Story</a><a href="/how-we-work.html">How It Works</a><a href="/engine.html">AI Engine</a><a href="/data.html">Data</a>
+          <a href="/blog/">Blog</a></div>
+        <div class="footer-col"><h4>Compare</h4><a href="/compare/zoominfo.html">vs ZoomInfo</a><a href="/compare/clay.html">vs Clay</a></div>
         <div class="footer-col"><h4>Legal</h4><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-service.html">Terms & Conditions</a><a href="/contact-us.html">Contact Us</a><a href="/support.html">Support</a><a href="mailto:hello@salmonrun.ai">hello@salmonrun.ai</a></div>
       </div>
-      <div class="footer-bottom"><p>&copy; 2025 Salmon Inc. All rights reserved.</p></div>
+      <div class="footer-bottom"><p>&copy; 2026 Salmon Labs, Inc. All rights reserved.</p></div>
     </div>
   </footer>
 
@@ -748,11 +365,5 @@
     });
   </script>
 
-  <!-- LinkedIn Partner ID -->
-  <script type="text/javascript">
-    _linkedin_partner_id = "8028276";
-    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-  </script>
 </body>
 </html>

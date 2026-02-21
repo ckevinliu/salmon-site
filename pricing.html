@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <title>Pricing — Salmon</title>
-  <meta name="description" content="Flexible enterprise pricing that scales with your data needs. Start with Starter or go all-in with Enterprise.">
+  <meta name="description" content="Simple, transparent pricing for the full Salmon platform. Plans based on data volume and use case — no hidden fees.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- OG -->
   <meta property="og:title" content="Pricing — Salmon">
-  <meta property="og:description" content="Plans that scale with your data needs. Flexible enterprise pricing for teams of every size.">
+  <meta property="og:description" content="Simple, transparent pricing. Every plan includes the full Salmon platform.">
   <meta property="og:image" content="/images/OG-Image.jpg">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -19,273 +19,11 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="/css/main.css">
-
-  <style>
-    /* ── Hero ── */
-    .pricing-hero {
-      padding: 8rem 0 4rem;
-      text-align: center;
-    }
-    .pricing-hero h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 300;
-      letter-spacing: -0.03em;
-      line-height: 1.08;
-      margin-bottom: 1.25rem;
-    }
-    .pricing-hero p {
-      font-size: 1.25rem;
-      font-weight: 300;
-      color: var(--grey);
-      max-width: 32rem;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    /* ── Tier cards ── */
-    .tier-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      max-width: 56rem;
-      margin: 0 auto;
-    }
-    .tier-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-card);
-      padding: 2.5rem;
-      display: flex;
-      flex-direction: column;
-    }
-    .tier-card.recommended {
-      border-color: var(--salmon);
-      position: relative;
-    }
-    .tier-card.recommended::before {
-      content: 'Recommended';
-      position: absolute;
-      top: -0.75rem;
-      left: 2rem;
-      background: var(--salmon);
-      color: var(--dark);
-      font-size: 0.6875rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.875rem;
-      border-radius: var(--r-pill);
-    }
-    .tier-name {
-      font-size: 1.5rem;
-      font-weight: 500;
-      color: var(--white);
-      margin-bottom: 0.5rem;
-    }
-    .tier-desc {
-      font-size: 0.9375rem;
-      font-weight: 300;
-      color: var(--grey);
-      line-height: 1.55;
-      margin-bottom: 2rem;
-      min-height: 3rem;
-    }
-    .tier-price {
-      font-size: 1.125rem;
-      font-weight: 500;
-      color: var(--white);
-      margin-bottom: 2rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .tier-price span { color: var(--grey); font-weight: 400; font-size: 0.875rem; }
-    .tier-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      margin-bottom: 2.5rem;
-      flex-grow: 1;
-    }
-    .tier-features li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.625rem;
-      font-size: 0.9375rem;
-      color: var(--grey);
-      line-height: 1.45;
-    }
-    .tier-features li .ck {
-      color: var(--green);
-      flex-shrink: 0;
-      margin-top: 0.125rem;
-      font-size: 0.875rem;
-    }
-    .tier-features .plus-label {
-      font-size: 0.6875rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--salmon);
-      padding: 0.75rem 0 0.25rem;
-    }
-    .tier-cta {
-      margin-top: auto;
-    }
-    .tier-cta .btn {
-      width: 100%;
-      justify-content: center;
-    }
-
-    /* ── Feature comparison ── */
-    .compare-title {
-      font-size: clamp(1.75rem, 3vw, 2.25rem);
-      font-weight: 300;
-      letter-spacing: -0.01em;
-      line-height: 1.15;
-      margin-bottom: 3rem;
-      text-align: center;
-    }
-    .compare-table {
-      max-width: 56rem;
-      margin: 0 auto;
-      border: 1px solid var(--border);
-      border-radius: var(--r-card);
-      overflow: hidden;
-    }
-    .compare-head {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-    }
-    .compare-th {
-      padding: 1rem 1.75rem;
-      font-size: 0.6875rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--grey);
-    }
-    .compare-th:last-child {
-      color: var(--salmon);
-    }
-    .compare-row {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      border-bottom: 1px solid var(--border);
-      transition: background 0.15s;
-    }
-    .compare-row:last-child { border-bottom: none; }
-    .compare-row:hover { background: rgba(255,255,255,0.02); }
-    .compare-td {
-      padding: 1rem 1.75rem;
-      font-size: 0.9375rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      line-height: 1.45;
-    }
-    .compare-td.feature { font-weight: 500; color: var(--white); }
-    .compare-td .ck { color: var(--green); }
-    .compare-td .dash { color: var(--charcoal); }
-
-    /* ── FAQ ── */
-    .faq-title {
-      font-size: clamp(1.75rem, 3vw, 2.25rem);
-      font-weight: 300;
-      letter-spacing: -0.01em;
-      line-height: 1.15;
-      margin-bottom: 3rem;
-      text-align: center;
-    }
-    .faq-list {
-      max-width: 48rem;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-    }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
-    .faq-q {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 1.5rem 0;
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--white);
-      text-align: left;
-      cursor: pointer;
-      background: none;
-      border: none;
-      font-family: inherit;
-    }
-    .faq-q::after {
-      content: '+';
-      font-size: 1.25rem;
-      color: var(--salmon);
-      flex-shrink: 0;
-      transition: transform 0.2s;
-    }
-    .faq-item.open .faq-q::after {
-      content: '-';
-    }
-    .faq-a {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-    }
-    .faq-item.open .faq-a {
-      max-height: 12rem;
-      padding-bottom: 1.5rem;
-    }
-    .faq-a p {
-      font-size: 0.9375rem;
-      font-weight: 300;
-      color: var(--grey);
-      line-height: 1.65;
-    }
-
-    /* ── Bottom CTA ── */
-    .bottom-cta {
-      text-align: center;
-    }
-    .bottom-cta h2 {
-      font-size: clamp(2rem, 4vw, 2.75rem);
-      font-weight: 300;
-      letter-spacing: -0.015em;
-      line-height: 1.1;
-      margin-bottom: 1.25rem;
-    }
-    .bottom-cta p {
-      font-size: 1.125rem;
-      font-weight: 300;
-      color: var(--grey);
-      max-width: 28rem;
-      margin: 0 auto 2rem;
-      line-height: 1.6;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 767px) {
-      .tier-grid { grid-template-columns: 1fr; max-width: 28rem; }
-      .compare-head, .compare-row { grid-template-columns: 1.5fr 1fr 1fr; }
-      .compare-td, .compare-th { padding: 0.875rem 1rem; font-size: 0.8125rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="/css/pricing.css">
 
   <!-- GA -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0ZW1JGTHR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-C0ZW1JGTHR');
-  </script>
+  <script src="/js/analytics.js"></script>
 </head>
 <body>
 
@@ -305,18 +43,20 @@
           </div>
         </div>
         <a class="nav-link" href="/data.html">Data</a>
-        <a class="nav-link" href="/coho.html">Coho</a>
-        <a class="nav-link" href="/pricing.html">Pricing</a>
+        <a class="nav-link" href="/engine.html">AI Engine</a>
+        <a class="nav-link" href="/blog/">Blog</a>
         <div class="nav-dropdown">
           <a class="nav-link nav-dropdown-trigger">Company</a>
           <div class="nav-dropdown-menu">
-            <a class="nav-dropdown-item" href="/story.html">Our Story</a>
+            <a class="nav-dropdown-item" href="/customers.html">Customers</a><a class="nav-dropdown-item" href="/story.html">Our Story</a>
             <a class="nav-dropdown-item" href="/how-we-work.html">How It Works</a>
-            <a class="nav-dropdown-item" href="/security.html">Security</a>
           </div>
         </div>
       </div>
-      <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta hide-mobile">Book a Demo</a>
+      <div class="nav-cta-group hide-mobile">
+        <a href="/demo.html" class="btn btn-outline btn-sm nav-cta">Try Salmon</a>
+        <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta">Book a Demo</a>
+      </div>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </nav>
@@ -332,12 +72,12 @@
       <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
     </div>
     <a class="nav-link" href="/data.html">Data</a>
-        <a class="nav-link" href="/coho.html">Coho</a>
-    <a class="nav-link" href="/pricing.html">Pricing</a>
-    <a class="nav-link" href="/story.html">Our Story</a>
+        <a class="nav-link" href="/engine.html">AI Engine</a>
+    <a class="nav-link" href="/blog/">Blog</a>
+    <a class="nav-link" href="/customers.html">Customers</a><a class="nav-link" href="/story.html">Our Story</a>
     <a class="nav-link" href="/how-we-work.html">How It Works</a>
-    <a class="nav-link" href="/security.html">Security</a>
-    <a class="nav-link" href="/contact-us.html" style="color: var(--salmon); font-weight: 600;">Book a Demo</a>
+    <a class="nav-link" href="/demo.html" style="color: var(--salmon); font-weight: 500;">Try Salmon</a>
+    <a class="nav-link" href="/contact-us.html" style="color: var(--salmon); font-weight: 500;">Book a Demo</a>
   </div>
 
   <main>
@@ -346,51 +86,61 @@
     <section class="pricing-hero">
       <div class="container">
         <span class="eyebrow">Pricing</span>
-        <h1>Plans that scale with your data needs</h1>
-        <p>Flexible enterprise pricing designed for teams of every size. No hidden fees, no credit packs, no surprises.</p>
+        <h1>Simple, transparent pricing</h1>
+        <p>Every plan includes the full Salmon platform. We price based on data volume and use case — no hidden fees, no credit packs.</p>
       </div>
     </section>
 
-    <!-- ═══ TIER CARDS ═══ -->
+    <!-- ═══ PLAN PILLARS ═══ -->
     <section class="section-sm">
       <div class="container">
-        <div class="tier-grid">
+        <div class="plan-grid">
 
           <!-- Starter -->
-          <div class="tier-card">
-            <div class="tier-name">Starter</div>
-            <div class="tier-desc">For teams getting started with data enrichment</div>
-            <div class="tier-price">Custom pricing <span>/ based on usage</span></div>
-            <ul class="tier-features">
+          <div class="plan-card">
+            <div class="plan-name">Starter</div>
+            <div class="plan-tagline">For teams exploring data enrichment</div>
+            <ul class="plan-features">
               <li><span class="ck">&#10003;</span> CRM enrichment</li>
-              <li><span class="ck">&#10003;</span> Basic API access (up to 10k queries/mo)</li>
               <li><span class="ck">&#10003;</span> Email verification</li>
-              <li><span class="ck">&#10003;</span> Contact & company enrichment</li>
-              <li><span class="ck">&#10003;</span> Standard support (email)</li>
-              <li><span class="ck">&#10003;</span> Salesforce & HubSpot integration</li>
+              <li><span class="ck">&#10003;</span> Up to 10k records/mo</li>
+              <li><span class="ck">&#10003;</span> Standard integrations</li>
             </ul>
-            <div class="tier-cta">
+            <div class="plan-cta">
               <a href="/contact-us.html" class="btn btn-outline btn-lg">Get Started</a>
             </div>
           </div>
 
-          <!-- Enterprise -->
-          <div class="tier-card recommended">
-            <div class="tier-name">Enterprise</div>
-            <div class="tier-desc">For organizations that need full-scale data infrastructure</div>
-            <div class="tier-price">Custom pricing <span>/ tailored to your org</span></div>
-            <ul class="tier-features">
-              <li class="plus-label">Everything in Starter, plus:</li>
-              <li><span class="ck">&#10003;</span> Unlimited API queries</li>
+          <!-- Growth -->
+          <div class="plan-card">
+            <div class="plan-name">Growth</div>
+            <div class="plan-tagline">For scaling go-to-market teams</div>
+            <ul class="plan-features">
+              <li class="inherit-label">Everything in Starter, plus:</li>
               <li><span class="ck">&#10003;</span> Custom field schemas</li>
-              <li><span class="ck">&#10003;</span> Dedicated account manager</li>
-              <li><span class="ck">&#10003;</span> SLA & uptime guarantees</li>
-              <li><span class="ck">&#10003;</span> Advanced signal monitoring</li>
-              <li><span class="ck">&#10003;</span> SSO & audit logging</li>
-              <li><span class="ck">&#10003;</span> Custom integrations</li>
-              <li><span class="ck">&#10003;</span> Priority support (Slack + phone)</li>
+              <li><span class="ck">&#10003;</span> Signal monitoring</li>
+              <li><span class="ck">&#10003;</span> Advanced API access</li>
+              <li><span class="ck">&#10003;</span> Dedicated CSM</li>
             </ul>
-            <div class="tier-cta">
+            <div class="plan-cta">
+              <a href="/contact-us.html" class="btn btn-primary btn-lg">Talk to Sales</a>
+            </div>
+          </div>
+
+          <!-- Enterprise -->
+          <div class="plan-card popular">
+            <div class="plan-badge">Most Popular</div>
+            <div class="plan-name">Enterprise</div>
+            <div class="plan-tagline">For organizations that need full-scale data infrastructure</div>
+            <ul class="plan-features">
+              <li class="inherit-label">Everything in Growth, plus:</li>
+              <li><span class="ck">&#10003;</span> Unlimited API</li>
+              <li><span class="ck">&#10003;</span> SSO & audit logging</li>
+              <li><span class="ck">&#10003;</span> SLA guarantees</li>
+              <li><span class="ck">&#10003;</span> Custom integrations</li>
+              <li><span class="ck">&#10003;</span> Priority support</li>
+            </ul>
+            <div class="plan-cta">
               <a href="/contact-us.html" class="btn btn-primary btn-lg">Talk to Sales</a>
             </div>
           </div>
@@ -399,76 +149,35 @@
       </div>
     </section>
 
-    <!-- ═══ FEATURE COMPARISON ═══ -->
+    <!-- ═══ INCLUDED IN EVERY PLAN ═══ -->
     <section class="section-lg">
       <div class="container">
-        <span class="eyebrow text-center" style="text-align:center;">Feature comparison</span>
-        <div class="compare-title">Everything included, at a glance</div>
-        <div class="compare-table">
-          <div class="compare-head">
-            <div class="compare-th">Feature</div>
-            <div class="compare-th">Starter</div>
-            <div class="compare-th">Enterprise</div>
+        <span class="eyebrow text-center" style="text-align:center;">Platform</span>
+        <div class="included-title">What's included in every plan</div>
+        <div class="included-grid">
+          <div class="included-item">
+            <span class="ck">&#10003;</span>
+            <span>Real-time CRM enrichment</span>
           </div>
-          <div class="compare-row">
-            <div class="compare-td feature">CRM enrichment</div>
-            <div class="compare-td"><span class="ck">&#10003;</span></div>
-            <div class="compare-td"><span class="ck">&#10003;</span></div>
+          <div class="included-item">
+            <span class="ck">&#10003;</span>
+            <span>Contact & company data</span>
           </div>
-          <div class="compare-row">
-            <div class="compare-td feature">Contact & company data</div>
-            <div class="compare-td"><span class="ck">&#10003;</span></div>
-            <div class="compare-td"><span class="ck">&#10003;</span></div>
+          <div class="included-item">
+            <span class="ck">&#10003;</span>
+            <span>Email verification</span>
           </div>
-          <div class="compare-row">
-            <div class="compare-td feature">Email verification</div>
-            <div class="compare-td"><span class="ck">&#10003;</span></div>
-            <div class="compare-td"><span class="ck">&#10003;</span></div>
+          <div class="included-item">
+            <span class="ck">&#10003;</span>
+            <span>Salesforce & HubSpot integration</span>
           </div>
-          <div class="compare-row">
-            <div class="compare-td feature">Salesforce & HubSpot</div>
-            <div class="compare-td"><span class="ck">&#10003;</span></div>
-            <div class="compare-td"><span class="ck">&#10003;</span></div>
+          <div class="included-item">
+            <span class="ck">&#10003;</span>
+            <span>AI-powered signal monitoring</span>
           </div>
-          <div class="compare-row">
-            <div class="compare-td feature">API access</div>
-            <div class="compare-td">Up to 10k/mo</div>
-            <div class="compare-td"><span class="ck">&#10003;</span> Unlimited</div>
-          </div>
-          <div class="compare-row">
-            <div class="compare-td feature">Custom field schemas</div>
-            <div class="compare-td"><span class="dash">&mdash;</span></div>
-            <div class="compare-td"><span class="ck">&#10003;</span></div>
-          </div>
-          <div class="compare-row">
-            <div class="compare-td feature">Advanced signal monitoring</div>
-            <div class="compare-td"><span class="dash">&mdash;</span></div>
-            <div class="compare-td"><span class="ck">&#10003;</span></div>
-          </div>
-          <div class="compare-row">
-            <div class="compare-td feature">SSO & audit logging</div>
-            <div class="compare-td"><span class="dash">&mdash;</span></div>
-            <div class="compare-td"><span class="ck">&#10003;</span></div>
-          </div>
-          <div class="compare-row">
-            <div class="compare-td feature">Custom integrations</div>
-            <div class="compare-td"><span class="dash">&mdash;</span></div>
-            <div class="compare-td"><span class="ck">&#10003;</span></div>
-          </div>
-          <div class="compare-row">
-            <div class="compare-td feature">Dedicated account manager</div>
-            <div class="compare-td"><span class="dash">&mdash;</span></div>
-            <div class="compare-td"><span class="ck">&#10003;</span></div>
-          </div>
-          <div class="compare-row">
-            <div class="compare-td feature">SLA & uptime guarantees</div>
-            <div class="compare-td"><span class="dash">&mdash;</span></div>
-            <div class="compare-td"><span class="ck">&#10003;</span></div>
-          </div>
-          <div class="compare-row">
-            <div class="compare-td feature">Priority support (Slack + phone)</div>
-            <div class="compare-td"><span class="dash">&mdash;</span></div>
-            <div class="compare-td"><span class="ck">&#10003;</span></div>
+          <div class="included-item">
+            <span class="ck">&#10003;</span>
+            <span>Dedicated onboarding</span>
           </div>
         </div>
       </div>
@@ -485,20 +194,16 @@
             <div class="faq-a"><p>Yes, we offer a pilot program where we run Salmon against a segment of your CRM. You'll see enrichment results before committing. Contact us to get started.</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-q">What's the minimum contract length?</button>
-            <div class="faq-a"><p>Starter plans are month-to-month. Enterprise plans typically start with an annual agreement, but we're flexible.</p></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-q">Can I upgrade from Starter to Enterprise?</button>
-            <div class="faq-a"><p>Absolutely. Most teams start with Starter and upgrade as they see results. Your data and configurations carry over.</p></div>
+            <button class="faq-q">What's the minimum contract?</button>
+            <div class="faq-a"><p>We're flexible. Plans are available month-to-month or with an annual agreement — whichever works best for your team.</p></div>
           </div>
           <div class="faq-item">
             <button class="faq-q">How does pricing scale?</button>
-            <div class="faq-a"><p>Pricing is based on the volume of records enriched and API calls made. We offer volume discounts for larger deployments. Talk to our team for a custom quote.</p></div>
+            <div class="faq-a"><p>Pricing is based on the number of records enriched. We offer volume discounts for larger deployments. Talk to our team for a custom quote.</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-q">What payment methods do you accept?</button>
-            <div class="faq-a"><p>We accept all major credit cards for Starter plans. Enterprise plans can be invoiced with NET-30 terms.</p></div>
+            <button class="faq-q">Can I switch plans?</button>
+            <div class="faq-a"><p>Yes, you can upgrade or adjust your plan at any time. Your data and configurations carry over seamlessly.</p></div>
           </div>
         </div>
       </div>
@@ -526,11 +231,12 @@
       <div class="footer-grid">
         <div class="footer-brand"><img src="/images/salmon_logo.svg" alt="Salmon"><p>The real-time data engine that keeps your CRM accurate, current, and trusted.</p></div>
         <div class="footer-col"><h4>Solutions</h4><a href="/solutions/crm.html">CRM Enrichment</a><a href="/solutions/gtm.html">GTM & Prospecting</a><a href="/solutions/kyc.html">KYC & Compliance</a><a href="/solutions/intel.html">Account Intelligence</a><a href="/solutions/api.html">Enterprise Data API</a></div>
-        <div class="footer-col"><h4>Company</h4><a href="/story.html">Our Story</a><a href="/how-we-work.html">How It Works</a><a href="/coho.html">Coho Engine</a><a href="/security.html">Security</a><a href="/data.html">Data</a></div>
-        <div class="footer-col"><h4>Compare</h4><a href="/compare/zoominfo.html">vs ZoomInfo</a><a href="/compare/clay.html">vs Clay</a><a href="#">vs Apollo <span class="text-xs text-grey">(soon)</span></a><a href="#">vs Crustdata <span class="text-xs text-grey">(soon)</span></a></div>
+        <div class="footer-col"><h4>Company</h4><a href="/customers.html">Customers</a><a href="/story.html">Our Story</a><a href="/how-we-work.html">How It Works</a><a href="/engine.html">AI Engine</a><a href="/data.html">Data</a>
+          <a href="/blog/">Blog</a></div>
+        <div class="footer-col"><h4>Compare</h4><a href="/compare/zoominfo.html">vs ZoomInfo</a><a href="/compare/clay.html">vs Clay</a></div>
         <div class="footer-col"><h4>Legal</h4><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-service.html">Terms & Conditions</a><a href="/contact-us.html">Contact Us</a><a href="/support.html">Support</a><a href="mailto:hello@salmonrun.ai">hello@salmonrun.ai</a></div>
       </div>
-      <div class="footer-bottom"><p>&copy; 2025 Salmon Inc. All rights reserved.</p></div>
+      <div class="footer-bottom"><p>&copy; 2026 Salmon Labs, Inc. All rights reserved.</p></div>
     </div>
   </footer>
 
@@ -548,11 +254,5 @@
     });
   </script>
 
-  <!-- LinkedIn Partner ID -->
-  <script type="text/javascript">
-    _linkedin_partner_id = "8028276";
-    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-  </script>
 </body>
 </html>

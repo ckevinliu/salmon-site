@@ -1,0 +1,214 @@
+    /* ── Story Hero ── */
+    .story-hero {
+      padding: 8rem 0 4rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .story-hero h1 {
+      margin-bottom: 1rem;
+    }
+    .story-hero p {
+      font-size: clamp(1rem, 1.5vw, 1.125rem);
+      color: var(--grey);
+      max-width: 36rem;
+      margin: 0 auto;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ── Mission Section ── */
+    .mission {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .mission h2 {
+      margin-bottom: 0.75rem;
+    }
+    .mission-body p {
+      color: var(--grey);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+    }
+    .mission-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Callout */
+    .mission-callout {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 2rem;
+      border-left: 3px solid var(--salmon);
+    }
+    .mission-callout p {
+      font-size: 1.125rem;
+      color: var(--light-grey);
+      line-height: 1.65;
+      font-weight: 400;
+    }
+
+    /* ── Promise Section ── */
+    .promise {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .promise-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .promise h2 {
+      margin-bottom: 0.75rem;
+    }
+    .promise-body p {
+      color: var(--grey);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+    }
+    .promise-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── Founders ── */
+    .founders {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .founders-header {
+      margin-bottom: 1rem;
+    }
+    .founders-sub {
+      color: var(--grey);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 36rem;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+    .founders-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .founder-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .founder-card:hover {
+      border-color: var(--border-2);
+    }
+    .founder-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 2px solid var(--border);
+    }
+    .founder-info h3 {
+      font-size: 1.125rem;
+      margin-bottom: 0.25rem;
+    }
+    .founder-info .founder-role {
+      font-size: 0.8125rem;
+      color: var(--salmon);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+    .founder-info p {
+      font-size: 0.875rem;
+      color: var(--grey);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+    .founder-linkedin {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-size: 0.8125rem;
+      color: var(--grey);
+      margin-top: 0.75rem;
+      transition: color 0.15s;
+    }
+    .founder-linkedin:hover {
+      color: var(--salmon);
+    }
+    .founder-linkedin svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ── Bottom CTA ── */
+    .bottom-cta {
+      padding: 4rem 0;
+    }
+    .bottom-cta-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 3.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .bottom-cta-box::before {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 300px;
+      background: radial-gradient(ellipse at center, rgba(252,120,105,0.06), transparent 70%);
+      pointer-events: none;
+    }
+    .bottom-cta-box h2 {
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+    .bottom-cta-box p {
+      color: var(--grey);
+      max-width: 28rem;
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+      font-weight: 300;
+      position: relative;
+    }
+    .bottom-cta-btns {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      position: relative;
+    }
+
+    @media (max-width: 767px) {
+      .mission-grid,
+      .promise-grid,
+      .founders-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .founder-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }

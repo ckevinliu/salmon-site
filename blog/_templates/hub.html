@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Blog — Salmon</title>
+  <meta name="description" content="Insights on CRM data quality, revenue operations, and AI-powered enrichment from the Salmon team.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- OG -->
+  <meta property="og:title" content="Blog — Salmon">
+  <meta property="og:description" content="Insights on CRM data, RevOps, and AI enrichment.">
+  <meta property="og:image" content="/images/OG-Image.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="256x256" href="/images/Favicon-256-x-256.png">
+  <link rel="shortcut icon" href="/images/Favicon-256-x-256.png">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="Salmon Blog" href="/blog/feed.xml">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/blog.css">
+
+  <!-- GA -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0ZW1JGTHR"></script>
+  <script src="/js/analytics.js"></script>
+</head>
+<body>
+
+  {{nav}}
+
+  <main>
+    <!-- Hero -->
+    <section class="blog-hero">
+      <div class="container">
+        <span class="eyebrow">Blog</span>
+        <h1>Insights &amp; ideas</h1>
+        <p>Perspectives on CRM data quality, revenue operations, compliance, and the future of AI-powered enrichment.</p>
+      </div>
+    </section>
+
+    <!-- Filter bar -->
+    <div class="blog-filter-bar">
+      <div class="blog-filter-inner">
+        <div class="blog-search-wrap">
+          <svg class="blog-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" id="blog-search" class="blog-search-input" placeholder="Search posts..." autocomplete="off">
+        </div>
+        <div class="blog-filter-divider"></div>
+        <div class="blog-tags-scroll" id="blog-tags">
+          <button class="chip on" data-tag="all">All</button>
+          {{tagChips}}
+        </div>
+        <span class="blog-filter-count" id="blog-count"><b>{{postCount}}</b> posts</span>
+      </div>
+    </div>
+
+    <!-- Post grid -->
+    <div class="blog-grid-area">
+      <div class="container">
+        <div class="blog-grid" id="blog-grid">
+        {{postCards}}
+        </div>
+        <div class="blog-empty" id="blog-empty">No posts match your search.</div>
+      </div>
+    </div>
+  </main>
+
+  {{footer}}
+
+  <script src="/js/nav.js"></script>
+  <script src="/js/blog.js"></script>
+</body>
+</html>

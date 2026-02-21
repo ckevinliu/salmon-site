@@ -7,52 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" sizes="256x256" href="/images/Favicon-256-x-256.png">
   <link rel="stylesheet" href="/css/main.css">
-  <style>
-    .support-hero { padding: 8rem 0 3rem; text-align: center; }
-    .support-hero p { max-width: 28rem; margin: 0.75rem auto 0; font-weight: 300; }
-    .faq-grid { max-width: 48rem; margin: 0 auto; }
-    .faq-item { border-bottom: 1px solid var(--border); }
-    .faq-q {
-      padding: 1.25rem 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      gap: 1rem;
-    }
-    .faq-q h3 { font-size: 1rem; font-weight: 500; }
-    .faq-toggle {
-      color: var(--salmon);
-      font-size: 1.5rem;
-      transition: transform 0.2s;
-      flex-shrink: 0;
-    }
-    .faq-toggle.open { transform: rotate(45deg); }
-    .faq-a {
-      display: none;
-      padding: 0 0 1.25rem;
-      font-size: 0.9375rem;
-      color: var(--grey);
-      line-height: 1.7;
-      font-weight: 300;
-    }
-    .faq-a a { color: var(--salmon); text-decoration: underline; }
-    .help-block {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-card);
-      padding: 2.5rem;
-      text-align: center;
-      max-width: 36rem;
-      margin: 3rem auto 0;
-    }
-    .help-block img { height: 3rem; margin: 0 auto 1rem; opacity: 0.6; }
-    .help-block h3 { margin-bottom: 0.75rem; }
-    .help-block p { font-size: 0.9375rem; margin-bottom: 0.25rem; font-weight: 300; }
-    .help-block a { color: var(--salmon); }
-  </style>
+  <link rel="stylesheet" href="/css/pages/support.css">
+  <!-- GA -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0ZW1JGTHR"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-C0ZW1JGTHR');</script>
+  <script src="/js/analytics.js"></script>
 </head>
 <body>
   <nav class="nav" role="navigation">
@@ -61,23 +19,26 @@
       <div class="nav-links">
         <div class="nav-dropdown"><a class="nav-link nav-dropdown-trigger" href="/solutions/">Solutions</a><div class="nav-dropdown-menu"><a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a><a class="nav-dropdown-item" href="/solutions/gtm.html">GTM & Prospecting</a><a class="nav-dropdown-item" href="/solutions/kyc.html">KYC & Compliance</a><a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a><a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a></div></div>
         <a class="nav-link" href="/data.html">Data</a>
-        <a class="nav-link" href="/coho.html">Coho</a>
-        <a class="nav-link" href="/pricing.html">Pricing</a>
-        <div class="nav-dropdown"><a class="nav-link nav-dropdown-trigger">Company</a><div class="nav-dropdown-menu"><a class="nav-dropdown-item" href="/story.html">Our Story</a><a class="nav-dropdown-item" href="/how-we-work.html">How It Works</a><a class="nav-dropdown-item" href="/security.html">Security</a></div></div>
+        <a class="nav-link" href="/engine.html">AI Engine</a>
+        <a class="nav-link" href="/blog/">Blog</a>
+        <div class="nav-dropdown"><a class="nav-link nav-dropdown-trigger">Company</a><div class="nav-dropdown-menu"><a class="nav-dropdown-item" href="/customers.html">Customers</a><a class="nav-dropdown-item" href="/story.html">Our Story</a><a class="nav-dropdown-item" href="/how-we-work.html">How It Works</a></div></div>
       </div>
-      <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta hide-mobile">Book a Demo</a>
+      <div class="nav-cta-group hide-mobile">
+        <a href="/demo.html" class="btn btn-outline btn-sm nav-cta">Try Salmon</a>
+        <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta">Book a Demo</a>
+      </div>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </nav>
   <div class="nav-mobile-overlay">
     <a class="nav-link" href="/solutions/">Solutions</a>
     <a class="nav-link" href="/data.html">Data</a>
-        <a class="nav-link" href="/coho.html">Coho</a>
-    <a class="nav-link" href="/pricing.html">Pricing</a>
-    <a class="nav-link" href="/story.html">Our Story</a>
+        <a class="nav-link" href="/engine.html">AI Engine</a>
+    <a class="nav-link" href="/blog/">Blog</a>
+    <a class="nav-link" href="/customers.html">Customers</a><a class="nav-link" href="/story.html">Our Story</a>
     <a class="nav-link" href="/how-we-work.html">How It Works</a>
-    <a class="nav-link" href="/security.html">Security</a>
-    <a class="nav-link" href="/contact-us.html" style="color:var(--salmon);font-weight:600;">Book a Demo</a>
+    <a class="nav-link" href="/demo.html" style="color: var(--salmon); font-weight: 500;">Try Salmon</a>
+    <a class="nav-link" href="/contact-us.html" style="color: var(--salmon); font-weight: 500;">Book a Demo</a>
   </div>
 
   <main>
@@ -142,11 +103,12 @@
       <div class="footer-grid">
         <div class="footer-brand"><img src="/images/salmon_logo.svg" alt="Salmon"><p>The real-time data engine that keeps your CRM accurate, current, and trusted.</p></div>
         <div class="footer-col"><h4>Solutions</h4><a href="/solutions/crm.html">CRM Enrichment</a><a href="/solutions/gtm.html">GTM & Prospecting</a><a href="/solutions/kyc.html">KYC & Compliance</a><a href="/solutions/intel.html">Account Intelligence</a><a href="/solutions/api.html">Enterprise Data API</a></div>
-        <div class="footer-col"><h4>Company</h4><a href="/story.html">Our Story</a><a href="/how-we-work.html">How It Works</a><a href="/coho.html">Coho Engine</a><a href="/security.html">Security</a><a href="/data.html">Data</a></div>
-        <div class="footer-col"><h4>Compare</h4><a href="/compare/zoominfo.html">vs ZoomInfo</a><a href="/compare/clay.html">vs Clay</a><a href="#">vs Apollo <span class="text-xs text-grey">(soon)</span></a><a href="#">vs Crustdata <span class="text-xs text-grey">(soon)</span></a></div>
+        <div class="footer-col"><h4>Company</h4><a href="/customers.html">Customers</a><a href="/story.html">Our Story</a><a href="/how-we-work.html">How It Works</a><a href="/engine.html">AI Engine</a><a href="/data.html">Data</a>
+          <a href="/blog/">Blog</a></div>
+        <div class="footer-col"><h4>Compare</h4><a href="/compare/zoominfo.html">vs ZoomInfo</a><a href="/compare/clay.html">vs Clay</a></div>
         <div class="footer-col"><h4>Legal</h4><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-service.html">Terms & Conditions</a><a href="/contact-us.html">Contact Us</a><a href="/support.html">Support</a><a href="mailto:hello@salmonrun.ai">hello@salmonrun.ai</a></div>
       </div>
-      <div class="footer-bottom"><p>&copy; 2025 Salmon Inc. All rights reserved.</p></div>
+      <div class="footer-bottom"><p>&copy; 2026 Salmon Labs, Inc. All rights reserved.</p></div>
     </div>
   </footer>
 

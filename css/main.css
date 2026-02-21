@@ -48,8 +48,8 @@
   --red-dim:     rgba(217,80,64,0.1);
 
   /* Text */
-  --charcoal:    #7a7a7a;
-  --grey:        #adadad;
+  --charcoal:    #8f8f8f;
+  --grey:        #c2c2c2;
   --light-grey:  #d9d9d9;
   --white:       #fff;
 
@@ -95,13 +95,6 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.02em; font-weight: 30
 h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); letter-spacing: -0.01em; font-weight: 500; }
 h4 { font-weight: 600; }
 h4 { font-size: 1.25rem; }
-.text-salmon { color: var(--salmon); }
-.text-white  { color: var(--white); }
-.text-grey   { color: var(--grey); }
-.text-light  { color: var(--light-grey); }
-.text-sm     { font-size: 0.875rem; }
-.text-xs     { font-size: 0.75rem; }
-.text-mono   { font-family: var(--f-mono); }
 .eyebrow {
   font-size: 0.6875rem;
   font-weight: 600;
@@ -111,13 +104,6 @@ h4 { font-size: 1.25rem; }
   display: block;
   margin-bottom: 0.75rem;
 }
-.gradient-text {
-  background: var(--salmon-grad);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
 /* ── Layout ───────────────────────────────────────────────────────────────── */
 .container {
   width: 100%;
@@ -125,9 +111,6 @@ h4 { font-size: 1.25rem; }
   margin: 0 auto;
   padding: 0 var(--pad);
 }
-.container-md { max-width: var(--max-w-md); margin: 0 auto; padding: 0 var(--pad); }
-.container-sm { max-width: var(--max-w-sm); margin: 0 auto; padding: 0 var(--pad); }
-
 .section {
   padding: 5rem 0;
 }
@@ -143,10 +126,6 @@ h4 { font-size: 1.25rem; }
 .section-surface {
   background: var(--dark-2);
 }
-.section-darker {
-  background: var(--darker);
-}
-
 /* ── Grid ─────────────────────────────────────────────────────────────────── */
 .grid      { display: grid; gap: 1.5rem; }
 .grid-2    { grid-template-columns: repeat(2, 1fr); }
@@ -156,7 +135,6 @@ h4 { font-size: 1.25rem; }
 
 .flex      { display: flex; }
 .flex-col  { flex-direction: column; }
-.flex-wrap { flex-wrap: wrap; }
 .items-center { align-items: center; }
 .justify-between { justify-content: space-between; }
 .justify-center  { justify-content: center; }
@@ -217,13 +195,6 @@ h4 { font-size: 1.25rem; }
   padding: 0.8rem 1.75rem;
   font-size: 0.9375rem;
 }
-.btn-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0;
-  border-radius: 50%;
-}
-
 /* ── Cards ────────────────────────────────────────────────────────────────── */
 .card {
   background: var(--surface);
@@ -236,13 +207,6 @@ h4 { font-size: 1.25rem; }
   border-color: var(--border-2);
   transform: translateY(-2px);
 }
-.card-flat {
-  background: var(--dark-2);
-  border: 1px solid var(--border);
-  border-radius: var(--r-card);
-  padding: 1.75rem;
-}
-
 /* ── Badges / Pills ───────────────────────────────────────────────────────── */
 .badge {
   display: inline-flex;
@@ -381,8 +345,23 @@ h4 { font-size: 1.25rem; }
   color: var(--white);
 }
 
-.nav-cta {
+.nav-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   margin-left: 0.75rem;
+}
+.nav-cta {
+  margin-left: 0;
+}
+.nav-cta.btn-outline {
+  border-color: var(--salmon-bdr);
+  color: var(--salmon-light);
+}
+.nav-cta.btn-outline:hover {
+  border-color: var(--salmon);
+  color: var(--white);
+  background: rgba(252,120,105,0.12);
 }
 
 /* Mobile nav */
@@ -459,30 +438,7 @@ h4 { font-size: 1.25rem; }
   font-size: 0.75rem;
   color: var(--charcoal);
 }
-.footer-social {
-  display: flex;
-  gap: 1rem;
-}
-.footer-social a {
-  color: var(--charcoal);
-  transition: color 0.15s;
-}
-.footer-social a:hover {
-  color: var(--salmon);
-}
-
 /* ── Utilities ────────────────────────────────────────────────────────────── */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
-  border-width: 0;
-}
 .mt-xs { margin-top: 0.5rem; }
 .mt-sm { margin-top: 1rem; }
 .mt-md { margin-top: 1.5rem; }
@@ -534,6 +490,7 @@ h4 { font-size: 1.25rem; }
   /* Mobile nav */
   .nav-links { display: none; }
   .nav-cta.hide-mobile { display: none; }
+  .nav-cta-group.hide-mobile { display: none; }
   .nav-toggle { display: flex; }
   .nav-mobile-overlay {
     position: fixed;

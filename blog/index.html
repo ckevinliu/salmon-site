@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Blog — Salmon</title>
+  <meta name="description" content="Insights on CRM data quality, revenue operations, and AI-powered enrichment from the Salmon team.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- OG -->
+  <meta property="og:title" content="Blog — Salmon">
+  <meta property="og:description" content="Insights on CRM data, RevOps, and AI enrichment.">
+  <meta property="og:image" content="/images/OG-Image.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="256x256" href="/images/Favicon-256-x-256.png">
+  <link rel="shortcut icon" href="/images/Favicon-256-x-256.png">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="Salmon Blog" href="/blog/feed.xml">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/blog.css">
+
+  <!-- GA -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0ZW1JGTHR"></script>
+  <script src="/js/analytics.js"></script>
+</head>
+<body>
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/salmon_logo.svg" alt="Salmon">
+      </a>
+
+      <div class="nav-links">
+        <!-- Solutions dropdown -->
+        <div class="nav-dropdown">
+          <a class="nav-link nav-dropdown-trigger" href="/solutions/">Solutions</a>
+          <div class="nav-dropdown-menu">
+            <a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a>
+            <a class="nav-dropdown-item" href="/solutions/gtm.html">GTM & Prospecting</a>
+            <a class="nav-dropdown-item" href="/solutions/kyc.html">KYC & Compliance</a>
+            <a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a>
+            <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
+          </div>
+        </div>
+
+        <a class="nav-link" href="/data.html">Data</a>
+        <a class="nav-link" href="/engine.html">AI Engine</a>
+        <a class="nav-link" href="/blog/">Blog</a>
+
+        <!-- Company dropdown -->
+        <div class="nav-dropdown">
+          <a class="nav-link nav-dropdown-trigger">Company</a>
+          <div class="nav-dropdown-menu">
+            <a class="nav-dropdown-item" href="/customers.html">Customers</a><a class="nav-dropdown-item" href="/story.html">Our Story</a>
+            <a class="nav-dropdown-item" href="/how-we-work.html">How It Works</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-cta-group hide-mobile">
+        <a href="#crm-showcase-section" class="btn btn-outline btn-sm nav-cta">Try Salmon</a>
+        <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta">Book a Demo</a>
+      </div>
+
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-mobile-overlay">
+    <a class="nav-link" href="/solutions/">Solutions</a>
+    <div class="nav-dropdown-menu">
+      <a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a>
+      <a class="nav-dropdown-item" href="/solutions/gtm.html">GTM & Prospecting</a>
+      <a class="nav-dropdown-item" href="/solutions/kyc.html">KYC & Compliance</a>
+      <a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a>
+      <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
+    </div>
+    <a class="nav-link" href="/data.html">Data</a>
+        <a class="nav-link" href="/engine.html">AI Engine</a>
+    <a class="nav-link" href="/blog/">Blog</a>
+    <a class="nav-link" href="/customers.html">Customers</a><a class="nav-link" href="/story.html">Our Story</a>
+    <a class="nav-link" href="/how-we-work.html">How It Works</a>
+    <a class="nav-link" href="/demo.html" style="color: var(--salmon); font-weight: 500;">Try Salmon</a>
+    <a class="nav-link" href="/contact-us.html" style="color: var(--salmon); font-weight: 500;">Book a Demo</a>
+  </div>
+
+  <main>
+    <!-- Hero -->
+    <section class="blog-hero">
+      <div class="container">
+        <span class="eyebrow">Blog</span>
+        <h1>Insights &amp; ideas</h1>
+        <p>Perspectives on CRM data quality, revenue operations, compliance, and the future of AI-powered enrichment.</p>
+      </div>
+    </section>
+
+    <!-- Filter bar -->
+    <div class="blog-filter-bar">
+      <div class="blog-filter-inner">
+        <div class="blog-search-wrap">
+          <svg class="blog-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" id="blog-search" class="blog-search-input" placeholder="Search posts..." autocomplete="off">
+        </div>
+        <div class="blog-filter-divider"></div>
+        <div class="blog-tags-scroll" id="blog-tags">
+          <button class="chip on" data-tag="all">All</button>
+          <button class="chip" data-tag="Announcements">Announcements</button>
+          <button class="chip" data-tag="CRM">CRM</button>
+          <button class="chip" data-tag="Company">Company</button>
+          <button class="chip" data-tag="Data Quality">Data Quality</button>
+          <button class="chip" data-tag="RevOps">RevOps</button>
+        </div>
+        <span class="blog-filter-count" id="blog-count"><b>2</b> posts</span>
+      </div>
+    </div>
+
+    <!-- Post grid -->
+    <div class="blog-grid-area">
+      <div class="container">
+        <div class="blog-grid" id="blog-grid">
+        <article class="blog-card" data-tags="Company,Announcements" data-title="welcome to the salmon blog" data-excerpt="we're launching the salmon blog — a space for insights on crm data quality, revenue operations, and the future of ai-powered enrichment.">
+          <a href="/blog/welcome-to-salmon-blog.html" class="blog-card-link">
+            
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <time datetime="2026-02-20">Feb 20, 2026</time>
+                <span class="blog-card-dot"></span>
+                <span>2 min read</span>
+              </div>
+              <h3 class="blog-card-title">Welcome to the Salmon Blog</h3>
+              <p class="blog-card-excerpt">We're launching the Salmon blog — a space for insights on CRM data quality, revenue operations, and the future of AI-powered enrichment.</p>
+              <div class="blog-card-tags"><span class="blog-tag-pill">Company</span><span class="blog-tag-pill">Announcements</span></div>
+            </div>
+          </a>
+        </article>
+        <article class="blog-card" data-tags="CRM,Data Quality,RevOps" data-title="why your crm data decays 30% every year" data-excerpt="b2b contact data decays at an alarming rate — 30 to 40 percent every year. here's why it happens, what it actually costs, and what you can do about it.">
+          <a href="/blog/crm-data-decay.html" class="blog-card-link">
+            
+            <div class="blog-card-body">
+              <div class="blog-card-meta">
+                <time datetime="2026-02-18">Feb 18, 2026</time>
+                <span class="blog-card-dot"></span>
+                <span>3 min read</span>
+              </div>
+              <h3 class="blog-card-title">Why Your CRM Data Decays 30% Every Year</h3>
+              <p class="blog-card-excerpt">B2B contact data decays at an alarming rate — 30 to 40 percent every year. Here's why it happens, what it actually costs, and what you can do about it.</p>
+              <div class="blog-card-tags"><span class="blog-tag-pill">CRM</span><span class="blog-tag-pill">Data Quality</span><span class="blog-tag-pill">RevOps</span></div>
+            </div>
+          </a>
+        </article>
+        </div>
+        <div class="blog-empty" id="blog-empty">No posts match your search.</div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="/images/salmon_logo.svg" alt="Salmon">
+          <p>The real-time data engine that keeps your CRM accurate, current, and trusted.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Solutions</h4>
+          <a href="/solutions/crm.html">CRM Enrichment</a>
+          <a href="/solutions/gtm.html">GTM & Prospecting</a>
+          <a href="/solutions/kyc.html">KYC & Compliance</a>
+          <a href="/solutions/intel.html">Account Intelligence</a>
+          <a href="/solutions/api.html">Enterprise Data API</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="/customers.html">Customers</a>
+          <a href="/story.html">Our Story</a>
+          <a href="/how-we-work.html">How It Works</a><a href="/engine.html">AI Engine</a>
+          
+          <a href="/data.html">Data</a>
+          <a href="/blog/">Blog</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Compare</h4>
+          <a href="/compare/zoominfo.html">vs ZoomInfo</a>
+          <a href="/compare/clay.html">vs Clay</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-of-service.html">Terms & Conditions</a>
+          <a href="/contact-us.html">Contact Us</a>
+          <a href="/support.html">Support</a>
+          <a href="mailto:hello@salmonrun.ai">hello@salmonrun.ai</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Salmon Labs, Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/nav.js"></script>
+  <script src="/js/blog.js"></script>
+</body>
+</html>

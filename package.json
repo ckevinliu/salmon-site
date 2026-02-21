@@ -1,0 +1,11 @@
+{
+  "name": "salmon-site",
+  "private": true,
+  "scripts": {
+    "build:blog": "node build-blog.js"
+  },
+  "devDependencies": {
+    "marked": "^15.0.0",
+    "gray-matter": "^4.0.3"
+  }
+}
