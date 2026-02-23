@@ -151,56 +151,6 @@
       100% { opacity: 0; transform: translateY(-12px); }
     }
 
-    /* ── Proof Bar ── */
-    .coho-proof {
-      border-bottom: 1px solid var(--border);
-      padding: 2.5rem 0;
-      overflow: hidden;
-    }
-    .coho-proof-track {
-      display: flex;
-      gap: 3rem;
-      align-items: center;
-      animation: proofScroll 20s linear infinite;
-      width: max-content;
-    }
-    .coho-proof-track:hover {
-      animation-play-state: paused;
-    }
-    .coho-proof-item {
-      display: flex;
-      align-items: baseline;
-      gap: 0.75rem;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .coho-proof-v {
-      font-size: 2rem;
-      font-weight: 300;
-      background: var(--salmon-grad);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1;
-    }
-    .coho-proof-l {
-      font-size: 0.8125rem;
-      color: var(--charcoal);
-      font-weight: 300;
-      line-height: 1.4;
-    }
-    .coho-proof-sep {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--border);
-      flex-shrink: 0;
-    }
-    @keyframes proofScroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
     /* ── Orchestration Flow (vertical timeline) ── */
     .coho-flow {
       padding: 5rem 0;
