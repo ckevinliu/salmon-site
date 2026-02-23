@@ -237,128 +237,99 @@
       font-weight: 300;
     }
 
-    /* Vertical timeline */
-    .coho-timeline {
-      position: relative;
-      max-width: 52rem;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-    /* Center spine */
-    .coho-timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--border);
-      transform: translateX(-50%);
-    }
-    /* Animated fill on the spine */
-    .coho-timeline-fill {
-      position: absolute;
-      left: 50%;
-      top: 0;
-      width: 2px;
-      height: 0%;
-      background: var(--salmon);
-      transform: translateX(-50%);
-      transition: height 0.6s ease;
-      z-index: 1;
-    }
-
-    /* Each step */
-    .coho-step {
-      position: relative;
+    /* Stats bar */
+    .coho-stats {
       display: grid;
-      grid-template-columns: 1fr 48px 1fr;
-      gap: 0;
-      align-items: start;
-      padding: 2rem 0;
-      opacity: 0.3;
-      transition: opacity 0.5s ease;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-bottom: 1px solid var(--border);
     }
-    .coho-step.active {
-      opacity: 1;
+    .coho-stat {
+      background: var(--dark-2);
+      padding: 2rem 1.5rem;
+      text-align: center;
     }
-    /* Dot on the spine */
-    .coho-step-dot {
-      grid-column: 2;
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: var(--surface);
-      border: 2px solid var(--border);
-      position: relative;
-      z-index: 2;
-      transition: border-color 0.5s ease, box-shadow 0.5s ease;
-    }
-    .coho-step.active .coho-step-dot {
-      border-color: var(--salmon);
-      box-shadow: 0 0 16px rgba(252,120,105,0.25);
-    }
-    .coho-step-dot svg {
-      width: 20px;
-      height: 20px;
-      stroke: var(--charcoal);
-      fill: none;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      transition: stroke 0.5s ease;
-    }
-    .coho-step.active .coho-step-dot svg {
-      stroke: var(--salmon);
-    }
-    /* Step number */
-    .coho-step-num {
-      position: absolute;
-      top: -8px;
-      right: -4px;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--dark);
-      border: 1.5px solid var(--border);
-      font-size: 0.5625rem;
+    .coho-stat-v {
+      font-size: 2.25rem;
       font-weight: 600;
-      color: var(--charcoal);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: border-color 0.5s ease, color 0.5s ease;
+      background: var(--salmon-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 0.5rem;
     }
-    .coho-step.active .coho-step-num {
-      border-color: var(--salmon);
-      color: var(--salmon);
+    .coho-stat-l {
+      font-size: 0.75rem;
+      color: var(--charcoal);
+      font-family: var(--f-mono);
+      line-height: 1.5;
     }
 
-    /* Content card — alternating sides */
-    .coho-step-content {
+    /* Step cards grid */
+    .coho-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .coho-step-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--r-card);
-      padding: 1.5rem;
-      transition: border-color 0.5s ease;
+      padding: 1.75rem 1.5rem;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
     }
-    .coho-step.active .coho-step-content {
-      border-color: var(--salmon-bdr);
+    .coho-step-card:hover {
+      border-color: var(--border-2);
+      transform: translateY(-2px);
     }
-    .coho-step-content h3 {
-      font-size: 1rem;
-      margin-bottom: 0.375rem;
+    .coho-step-card-num {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--salmon-dim);
+      border: 1px solid var(--salmon-bdr);
+      font-size: 0.625rem;
+      font-weight: 600;
+      color: var(--salmon);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .coho-step-content p {
+    .coho-step-card-icon {
+      width: 28px;
+      height: 28px;
+      margin-bottom: 0.75rem;
+      color: var(--grey);
+    }
+    .coho-step-card-icon svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .coho-step-card h3 {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .coho-step-card p {
       font-size: 0.8125rem;
       color: var(--grey);
       line-height: 1.65;
       font-weight: 300;
     }
-    .coho-step-content .coho-step-detail {
+    .coho-step-card-detail {
       margin-top: 0.75rem;
       padding-top: 0.75rem;
       border-top: 1px solid var(--border);
@@ -366,37 +337,6 @@
       font-family: var(--f-mono);
       color: var(--charcoal);
       line-height: 1.6;
-    }
-
-    /* Odd steps: content on LEFT */
-    .coho-step:nth-child(odd) .coho-step-content {
-      grid-column: 1;
-      grid-row: 1;
-      text-align: right;
-    }
-    .coho-step:nth-child(odd) .coho-step-dot {
-      grid-column: 2;
-      grid-row: 1;
-      justify-self: center;
-    }
-    .coho-step:nth-child(odd) .coho-step-spacer {
-      grid-column: 3;
-      grid-row: 1;
-    }
-
-    /* Even steps: content on RIGHT */
-    .coho-step:nth-child(even) .coho-step-spacer {
-      grid-column: 1;
-      grid-row: 1;
-    }
-    .coho-step:nth-child(even) .coho-step-dot {
-      grid-column: 2;
-      grid-row: 1;
-      justify-self: center;
-    }
-    .coho-step:nth-child(even) .coho-step-content {
-      grid-column: 3;
-      grid-row: 1;
     }
 
     /* ── Agent Cards ── */
@@ -794,51 +734,21 @@
       .coho-agent-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-      /* Timeline: single column on tablet */
-      .coho-timeline::before {
-        left: 24px;
+      .coho-steps-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
-      .coho-timeline-fill {
-        left: 24px;
-      }
-      .coho-step {
-        grid-template-columns: 48px 1fr;
-        gap: 0 1rem;
-      }
-      .coho-step-spacer {
-        display: none;
-      }
-      .coho-step:nth-child(odd) .coho-step-content,
-      .coho-step:nth-child(even) .coho-step-content {
-        grid-column: 2;
-        grid-row: 1;
-        text-align: left;
-      }
-      .coho-step:nth-child(odd) .coho-step-dot,
-      .coho-step:nth-child(even) .coho-step-dot {
-        grid-column: 1;
-        grid-row: 1;
-      }
-      /* Show all steps active on tablet */
-      .coho-step {
-        opacity: 1;
-      }
-      .coho-step .coho-step-dot {
-        border-color: var(--salmon);
-      }
-      .coho-step .coho-step-dot svg {
-        stroke: var(--salmon);
-      }
-      .coho-step .coho-step-num {
-        border-color: var(--salmon);
-        color: var(--salmon);
-      }
-      .coho-step .coho-step-content {
-        border-color: var(--salmon-bdr);
+      .coho-stats {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
     @media (max-width: 767px) {
+      .coho-steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .coho-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
       .coho-agent-grid {
         grid-template-columns: 1fr;
       }
@@ -888,7 +798,7 @@
       </div>
       <a class="nav-link" href="/data.html">Data</a>
       <a class="nav-link active" href="/engine.html">AI Engine</a>
-      <a class="nav-link" href="/blog/">Blog</a>
+      <a class="nav-link" href="/insights/">Insights</a>
       <div class="nav-dropdown">
         <a class="nav-link nav-dropdown-trigger">Company</a>
         <div class="nav-dropdown-menu">
@@ -919,7 +829,7 @@
   </div>
   <a class="nav-link" href="/data.html">Data</a>
   <a class="nav-link active" href="/engine.html">AI Engine</a>
-  <a class="nav-link" href="/blog/">Blog</a>
+  <a class="nav-link" href="/insights/">Insights</a>
   <a class="nav-link" href="/customers.html">Customers</a><a class="nav-link" href="/story.html">Our Story</a>
   <a class="nav-link" href="/how-we-work.html">How It Works</a>
   <a href="/demo.html" class="btn btn-outline mt-md" style="width:100%;text-align:center;">Try Salmon</a>
@@ -1003,80 +913,62 @@
       </div>
     </div>
 
-    <div class="container">
-      <div class="coho-timeline">
-        <div class="coho-timeline-fill"></div>
+    <!-- Stats bar -->
+    <div class="coho-stats">
+      <div class="coho-stat"><div class="coho-stat-v">200+</div><div class="coho-stat-l">live data sources queried in parallel</div></div>
+      <div class="coho-stat"><div class="coho-stat-v">5</div><div class="coho-stat-l">orchestration stages per resolution</div></div>
+      <div class="coho-stat"><div class="coho-stat-v">&lt;2min</div><div class="coho-stat-l">average time to resolve a contact</div></div>
+      <div class="coho-stat"><div class="coho-stat-v">100%</div><div class="coho-stat-l">data lineage &amp; explainability</div></div>
+    </div>
 
-        <!-- Step 1: Source -->
-        <div class="coho-step active" data-step="0">
-          <div class="coho-step-content">
-            <h3>Source</h3>
-            <p>The engine deploys search agents across the open web, partner APIs, and your own data. Multiple agents work in parallel, each optimized for different source types and geographies.</p>
-            <div class="coho-step-detail">Open web &bull; LinkedIn &bull; SEC filings &bull; Business registries &bull; 200+ live sources</div>
-          </div>
-          <div class="coho-step-dot">
-            <span class="coho-step-num">1</span>
+    <!-- Step cards grid -->
+    <div class="container">
+      <div class="coho-steps-grid">
+        <div class="coho-step-card">
+          <div class="coho-step-card-num">1</div>
+          <div class="coho-step-card-icon">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           </div>
-          <div class="coho-step-spacer"></div>
+          <h3>Source</h3>
+          <p>The engine deploys search agents across the open web, partner APIs, and your own data. Multiple agents work in parallel, each optimized for different source types.</p>
+          <div class="coho-step-card-detail">Open web &bull; LinkedIn &bull; SEC filings &bull; Business registries</div>
         </div>
-
-        <!-- Step 2: Enrich -->
-        <div class="coho-step" data-step="1">
-          <div class="coho-step-spacer"></div>
-          <div class="coho-step-dot">
-            <span class="coho-step-num">2</span>
+        <div class="coho-step-card">
+          <div class="coho-step-card-num">2</div>
+          <div class="coho-step-card-icon">
             <svg viewBox="0 0 24 24"><polygon points="12 2 22 8.5 12 15 2 8.5 12 2"/><polyline points="2 15.5 12 22 22 15.5"/></svg>
           </div>
-          <div class="coho-step-content">
-            <h3>Enrich</h3>
-            <p>Raw signals are normalized, deduplicated, and merged into a unified record. Missing fields are filled from the highest-confidence available source.</p>
-            <div class="coho-step-detail">Emails &bull; Direct dials &bull; Titles &bull; Firmographics &bull; Technographics &bull; Intent signals</div>
-          </div>
+          <h3>Enrich</h3>
+          <p>Raw signals are normalized, deduplicated, and merged into a unified record. Missing fields are filled from the highest-confidence available source.</p>
+          <div class="coho-step-card-detail">Emails &bull; Direct dials &bull; Titles &bull; Firmographics &bull; Technographics</div>
         </div>
-
-        <!-- Step 3: Reason -->
-        <div class="coho-step" data-step="2">
-          <div class="coho-step-content">
-            <h3>Reason</h3>
-            <p>The reasoning engine resolves conflicts between sources. When data disagrees, the engine determines which signal is most current and reliable &mdash; and documents why.</p>
-            <div class="coho-step-detail">Title normalization &bull; Tenure estimation &bull; Contradiction resolution &bull; Confidence scoring</div>
-          </div>
-          <div class="coho-step-dot">
-            <span class="coho-step-num">3</span>
+        <div class="coho-step-card">
+          <div class="coho-step-card-num">3</div>
+          <div class="coho-step-card-icon">
             <svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.9V18h8v-3.1A7 7 0 0 0 12 2z"/></svg>
           </div>
-          <div class="coho-step-spacer"></div>
+          <h3>Reason</h3>
+          <p>The reasoning engine resolves conflicts between sources. When data disagrees, it determines which signal is most current and reliable &mdash; and documents why.</p>
+          <div class="coho-step-card-detail">Title normalization &bull; Contradiction resolution &bull; Confidence scoring</div>
         </div>
-
-        <!-- Step 4: Verify -->
-        <div class="coho-step" data-step="3">
-          <div class="coho-step-spacer"></div>
-          <div class="coho-step-dot">
-            <span class="coho-step-num">4</span>
+        <div class="coho-step-card">
+          <div class="coho-step-card-num">4</div>
+          <div class="coho-step-card-icon">
             <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
           </div>
-          <div class="coho-step-content">
-            <h3>Verify</h3>
-            <p>Every data point is cross-referenced against independent verification signals. Employment records, company affiliations, and identity markers are all validated before delivery.</p>
-            <div class="coho-step-detail">Employment status &bull; Company affiliation &bull; Identity markers &bull; Multi-source triangulation</div>
-          </div>
+          <h3>Verify</h3>
+          <p>Every data point is cross-referenced against independent verification signals. Employment records, company affiliations, and identity markers are validated.</p>
+          <div class="coho-step-card-detail">Employment status &bull; Company affiliation &bull; Multi-source triangulation</div>
         </div>
-
-        <!-- Step 5: Deliver -->
-        <div class="coho-step" data-step="4">
-          <div class="coho-step-content">
-            <h3>Deliver</h3>
-            <p>The verified, enriched record is pushed directly into your CRM or data warehouse, schema-mapped to your existing fields. Full data lineage attached to every field.</p>
-            <div class="coho-step-detail">Salesforce &bull; HubSpot &bull; Snowflake &bull; API &bull; Schema-mapped &bull; Full provenance</div>
-          </div>
-          <div class="coho-step-dot">
-            <span class="coho-step-num">5</span>
+        <div class="coho-step-card">
+          <div class="coho-step-card-num">5</div>
+          <div class="coho-step-card-icon">
             <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2" fill="none"/></svg>
           </div>
-          <div class="coho-step-spacer"></div>
+          <h3>Deliver</h3>
+          <p>The verified, enriched record is pushed directly into your CRM or data warehouse, schema-mapped to your existing fields. Full data lineage attached.</p>
+          <div class="coho-step-card-detail">Salesforce &bull; HubSpot &bull; Snowflake &bull; API &bull; Full provenance</div>
         </div>
-
       </div>
     </div>
   </section>
@@ -1325,7 +1217,7 @@
       <div class="footer-brand"><img src="/images/salmon_logo.svg" alt="Salmon"><p>The real-time data engine that keeps your CRM accurate, current, and trusted.</p></div>
       <div class="footer-col"><h4>Solutions</h4><a href="/solutions/crm.html">CRM Enrichment</a><a href="/solutions/gtm.html">GTM & Prospecting</a><a href="/solutions/kyc.html">KYC & Compliance</a><a href="/solutions/intel.html">Account Intelligence</a><a href="/solutions/api.html">Enterprise Data API</a></div>
       <div class="footer-col"><h4>Company</h4><a href="/customers.html">Customers</a><a href="/story.html">Our Story</a><a href="/how-we-work.html">How It Works</a><a href="/engine.html">AI Engine</a><a href="/data.html">Data</a>
-          <a href="/blog/">Blog</a></div>
+          <a href="/insights/">Insights</a></div>
       <div class="footer-col"><h4>Compare</h4><a href="/compare/zoominfo.html">vs ZoomInfo</a><a href="/compare/clay.html">vs Clay</a></div>
       <div class="footer-col"><h4>Legal</h4><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-service.html">Terms & Conditions</a><a href="/contact-us.html">Contact Us</a><a href="/support.html">Support</a><a href="mailto:hello@salmonrun.ai">hello@salmonrun.ai</a></div>
     </div>
@@ -1341,80 +1233,6 @@
     this.setAttribute('aria-expanded', !expanded);
     overlay.classList.toggle('active');
   });
-</script>
-
-<!-- Scroll-triggered vertical timeline animation -->
-<script>
-(function() {
-  var timeline = document.querySelector('.coho-timeline');
-  if (!timeline) return;
-
-  var steps = timeline.querySelectorAll('.coho-step');
-  var fill = timeline.querySelector('.coho-timeline-fill');
-
-  function isMobile() {
-    return window.innerWidth <= 991;
-  }
-
-  // On mobile, CSS handles everything — all steps visible
-  if (isMobile()) return;
-
-  // Remove active from all but first step on load
-  steps.forEach(function(step) {
-    if (step.getAttribute('data-step') !== '0') {
-      step.classList.remove('active');
-    }
-  });
-
-  var ticking = false;
-
-  function onScroll() {
-    if (isMobile()) return;
-
-    var timelineRect = timeline.getBoundingClientRect();
-    var timelineTop = timelineRect.top;
-    var timelineHeight = timelineRect.height;
-    var trigger = window.innerHeight * 0.65;
-
-    // Calculate how far the scroll trigger has traveled through the timeline
-    var scrolledInto = trigger - timelineTop;
-    var fillPct = Math.max(0, Math.min(100, (scrolledInto / timelineHeight) * 100));
-
-    if (fill) {
-      fill.style.height = fillPct + '%';
-    }
-
-    // Activate steps as the fill line passes them
-    steps.forEach(function(step) {
-      var stepRect = step.getBoundingClientRect();
-      var stepMid = stepRect.top + stepRect.height * 0.4;
-      if (stepMid < trigger) {
-        step.classList.add('active');
-      }
-    });
-  }
-
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      requestAnimationFrame(function() {
-        onScroll();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
-
-  // Handle resize
-  window.addEventListener('resize', function() {
-    if (isMobile()) {
-      steps.forEach(function(s) { s.classList.add('active'); });
-      if (fill) fill.style.height = '100%';
-    }
-  });
-
-  // Initial check
-  onScroll();
-})();
 </script>
 
 <!-- Intersection Observer for fade-up animations -->
