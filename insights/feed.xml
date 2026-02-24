@@ -2,30 +2,42 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Salmon Blog</title>
-    <link>https://salmonrun.ai/blog</link>
+    <link>https://salmonrun.ai/insights</link>
     <description>Insights on CRM data quality, revenue operations, and AI-powered enrichment from the Salmon team.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Feb 2026 12:00:00 GMT</lastBuildDate>
-    <atom:link href="https://salmonrun.ai/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Tue, 25 Nov 2025 12:00:00 GMT</lastBuildDate>
+    <atom:link href="https://salmonrun.ai/insights/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
-      <title>Welcome to the Salmon Blog</title>
-      <link>https://salmonrun.ai/blog/welcome-to-salmon-blog</link>
-      <guid isPermaLink="true">https://salmonrun.ai/blog/welcome-to-salmon-blog</guid>
-      <pubDate>Fri, 20 Feb 2026 12:00:00 GMT</pubDate>
-      <description>We're launching the Salmon blog — a space for insights on CRM data quality, revenue operations, and the future of AI-powered enrichment.</description>
+      <title>The Quiet Pain RevOps Leaders Carry Every Day</title>
+      <link>https://salmonrun.ai/insights/quiet-pain-revops-leaders</link>
+      <guid isPermaLink="true">https://salmonrun.ai/insights/quiet-pain-revops-leaders</guid>
+      <pubDate>Tue, 25 Nov 2025 12:00:00 GMT</pubDate>
+      <description>Many RevOps leaders are making high-stakes decisions with data they don't fully trust, creating a quiet tension that slows momentum and adds pressure to every move.</description>
       <author>Salmon Team</author>
-      <category>Company</category>
-      <category>Announcements</category>
+      <category>RevOps</category>
+      <category>Data Enrichment</category>
+      <category>CRM</category>
     </item>
     <item>
-      <title>Why Your CRM Data Decays 30% Every Year</title>
-      <link>https://salmonrun.ai/blog/crm-data-decay</link>
-      <guid isPermaLink="true">https://salmonrun.ai/blog/crm-data-decay</guid>
-      <pubDate>Wed, 18 Feb 2026 12:00:00 GMT</pubDate>
-      <description>B2B contact data decays at an alarming rate — 30 to 40 percent every year. Here's why it happens, what it actually costs, and what you can do about it.</description>
+      <title>Data Enrichment Works. The Problem Is Building a System That Stays Accurate at Enterprise Scale.</title>
+      <link>https://salmonrun.ai/insights/data-enrichment-at-enterprise-scale</link>
+      <guid isPermaLink="true">https://salmonrun.ai/insights/data-enrichment-at-enterprise-scale</guid>
+      <pubDate>Wed, 19 Nov 2025 12:00:00 GMT</pubDate>
+      <description>AI enrichment tools are great for targeted segmentation, but using them at enterprise scale gets messy fast. The real challenge is building validation checks and processes to keep the AI in line.</description>
       <author>Salmon Team</author>
-      <category>CRM</category>
+      <category>Data Enrichment</category>
       <category>Data Quality</category>
+      <category>Enterprise</category>
+    </item>
+    <item>
+      <title>The Hidden Costs of Bad Data (and How to Fix Them)</title>
+      <link>https://salmonrun.ai/insights/hidden-costs-of-bad-data</link>
+      <guid isPermaLink="true">https://salmonrun.ai/insights/hidden-costs-of-bad-data</guid>
+      <pubDate>Thu, 30 Oct 2025 12:00:00 GMT</pubDate>
+      <description>Bad data isn't just a minor inconvenience — it's a significant barrier to your sales team's productivity, performance, and morale. Here's the true cost and how to fix it.</description>
+      <author>Salmon Team</author>
+      <category>Data Quality</category>
+      <category>Sales Productivity</category>
       <category>RevOps</category>
     </item>
   </channel>

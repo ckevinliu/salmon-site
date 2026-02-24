@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Data Enrichment Works. The Problem Is Building a System That Stays Accurate at Enterprise Scale. — Salmon Blog</title>
+  <meta name="description" content="AI enrichment tools are great for targeted segmentation, but using them at enterprise scale gets messy fast. The real challenge is building validation checks and processes to keep the AI in line.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- OG -->
+  <meta property="og:title" content="Data Enrichment Works. The Problem Is Building a System That Stays Accurate at Enterprise Scale.">
+  <meta property="og:description" content="AI enrichment tools are great for targeted segmentation, but using them at enterprise scale gets messy fast. The real challenge is building validation checks and processes to keep the AI in line.">
+  <meta property="og:image" content="/images/OG-Image.jpg">
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2025-11-19">
+  <meta property="article:author" content="Salmon Team">
+  <meta property="article:tag" content="Data Enrichment">
+  <meta property="article:tag" content="Data Quality">
+  <meta property="article:tag" content="Enterprise">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Data Enrichment Works. The Problem Is Building a System That Stays Accurate at Enterprise Scale.",
+  "datePublished": "2025-11-19",
+  "dateModified": "2025-11-19",
+  "author": {
+    "@type": "Person",
+    "name": "Salmon Team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Salmon",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://salmonrun.ai/images/salmon_logo.svg"
+    }
+  },
+  "description": "AI enrichment tools are great for targeted segmentation, but using them at enterprise scale gets messy fast. The real challenge is building validation checks and processes to keep the AI in line.",
+  "image": "https://salmonrun.ai/images/OG-Image.jpg",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://salmonrun.ai/insights/data-enrichment-at-enterprise-scale"
+  }
+}
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="256x256" href="/images/Favicon-256-x-256.png">
+  <link rel="shortcut icon" href="/images/Favicon-256-x-256.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/pages/blog-post.css">
+
+  <!-- GA -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0ZW1JGTHR"></script>
+  <script src="/js/analytics.js"></script>
+</head>
+<body>
+
+  <nav class="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/salmon_logo.svg" alt="Salmon">
+      </a>
+
+      <div class="nav-links">
+        <!-- Solutions dropdown -->
+        <div class="nav-dropdown">
+          <a class="nav-link nav-dropdown-trigger" href="/solutions/">Solutions</a>
+          <div class="nav-dropdown-menu">
+            <a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a>
+            <a class="nav-dropdown-item" href="/solutions/gtm.html">GTM & Prospecting</a>
+            <a class="nav-dropdown-item" href="/solutions/kyc.html">KYC & Compliance</a>
+            <a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a>
+            <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
+          </div>
+        </div>
+
+        <a class="nav-link" href="/data.html">Data</a>
+        <a class="nav-link" href="/engine.html">AI Engine</a>
+        <a class="nav-link" href="/insights/">Insights</a>
+
+        <!-- Company dropdown -->
+        <div class="nav-dropdown">
+          <a class="nav-link nav-dropdown-trigger">Company</a>
+          <div class="nav-dropdown-menu">
+            <a class="nav-dropdown-item" href="/customers.html">Customers</a><a class="nav-dropdown-item" href="/story.html">Our Story</a>
+            <a class="nav-dropdown-item" href="/how-we-work.html">How It Works</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-cta-group hide-mobile">
+        <a href="#crm-showcase-section" class="btn btn-outline btn-sm nav-cta">Try Salmon</a>
+        <a href="/contact-us.html" class="btn btn-primary btn-sm nav-cta">Book a Demo</a>
+      </div>
+
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-mobile-overlay">
+    <a class="nav-link" href="/solutions/">Solutions</a>
+    <div class="nav-dropdown-menu">
+      <a class="nav-dropdown-item" href="/solutions/crm.html">CRM Enrichment</a>
+      <a class="nav-dropdown-item" href="/solutions/gtm.html">GTM & Prospecting</a>
+      <a class="nav-dropdown-item" href="/solutions/kyc.html">KYC & Compliance</a>
+      <a class="nav-dropdown-item" href="/solutions/intel.html">Account Intelligence</a>
+      <a class="nav-dropdown-item" href="/solutions/api.html">Enterprise Data API</a>
+    </div>
+    <a class="nav-link" href="/data.html">Data</a>
+        <a class="nav-link" href="/engine.html">AI Engine</a>
+    <a class="nav-link" href="/insights/">Insights</a>
+    <a class="nav-link" href="/customers.html">Customers</a><a class="nav-link" href="/story.html">Our Story</a>
+    <a class="nav-link" href="/how-we-work.html">How It Works</a>
+    <a class="nav-link" href="/demo.html" style="color: var(--salmon); font-weight: 500;">Try Salmon</a>
+    <a class="nav-link" href="/contact-us.html" style="color: var(--salmon); font-weight: 500;">Book a Demo</a>
+  </div>
+
+  <main>
+    <!-- Post hero -->
+    <section class="post-hero">
+      <div class="container">
+        <a href="/insights/" class="post-back">&larr; Back to blog</a>
+        <span class="eyebrow">Data Enrichment</span>
+        <h1>Data Enrichment Works. The Problem Is Building a System That Stays Accurate at Enterprise Scale.</h1>
+        <div class="post-meta">
+          <span class="post-author">Salmon Team</span>
+          <span class="post-meta-dot"></span>
+          <time datetime="2025-11-19">Nov 19, 2025</time>
+          <span class="post-meta-dot"></span>
+          <span>5 min read</span>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- Article -->
+    <article class="post-article">
+      <div class="container">
+        <div class="blog-prose">
+          <p>We&#39;re big fans of data enrichment tools. Big fans. Using AI within Anthropic, Clay, Apollo, and others to do very specific enrichment and classification that would normally take humans hours or days to complete manually.</p>
+<p>Today, you can use any number of tools on the open market to quickly determine things like:</p>
+<ul>
+<li>Is this company B2B or B2C?</li>
+<li>Does this company have a pricing page on their website?</li>
+<li>Does this company offer telehealth services?</li>
+<li>Which of our pre-defined CRM industries does this company belong to based on their website content?</li>
+<li>Does the careers page indicate employee perks like health insurance, 401k, or parental leave?</li>
+<li>Does the company target SMBs versus enterprise?</li>
+</ul>
+<p>These types of enrichments let you build highly targeted segments and go beyond generic firmographics data. The technology works. The promise is here.</p>
+<p>But here&#39;s where enterprise teams hit a wall that mid-market companies never see coming (or, at least until they grow into enterprises!)</p>
+<h2>The Problem Isn&#39;t the Tool — It&#39;s What Happens at Scale</h2>
+<p>A VP of Sales Operations at a Fortune 500 Insurance company told me recently:</p>
+<blockquote>
+<p>&quot;I&#39;ll be honest, we&#39;re very bad at Salesforce. We spent six figures on enrichment tooling and my sellers can&#39;t trust the segments. They&#39;re back to doing manual research on every account.&quot;</p>
+</blockquote>
+<p>This issue is common with traditional enrichment tooling, such as ZoomInfo, Indeed, etc. Sadly, it&#39;s not much different with AI enrichment tooling. This coordination crisis shows up when you try to operationalize AI enrichment across a large organization. With AI enrichment, the initial proof-of-concept works beautifully. Then you scale it to 50,000 accounts, distribute it across multiple teams, and suddenly you&#39;re dealing with a whole new class of problems.</p>
+<p>Think of your AI agent as someone with access to infinite information but not necessarily trained to always reason like a domain expert. If your instructions are vague, or your validation checks aren&#39;t structured, you&#39;ll get inconsistent or outright wrong answers. Hallucinations happen — and at enterprise scale, they compound fast.</p>
+<h2>A Real Example of Where This Breaks Down</h2>
+<p>I ran a workflow to check whether clinics provided physical therapy services. The AI went to a clinic&#39;s website, found a blog post about physical therapy, and concluded that the clinic offered physical therapy services.</p>
+<p>In reality? The clinic didn&#39;t offer it at all. It was just content marketing.</p>
+<p>This is the classic AI enrichment failure mode: technically correct source material, completely wrong inference. The AI did exactly what it was told — it just didn&#39;t understand the difference between &quot;writes about&quot; and &quot;actually provides.&quot;</p>
+<p>Now multiply that error across 10,000 healthcare providers. Your compliance team flags issues. Your BDR team wastes weeks chasing bad leads. Your sales leadership loses confidence in the entire data infrastructure. And your RevOps team is suddenly spending 60% of their time firefighting data quality instead of building pipeline.</p>
+<h2>The Top Questions Enterprise Teams Should Answer</h2>
+<p>When you&#39;re operating at large enterprise scale, the questions change:</p>
+<ul>
+<li><strong>What&#39;s the confidence threshold at which we accept an AI&#39;s answer as &quot;true&quot;?</strong> Is 85% confidence good enough for prospecting? What about for regulatory compliance use cases where a wrong answer creates legal exposure?</li>
+<li><strong>How do we handle edge cases or uncertainty?</strong> When the model says &quot;I&#39;m not sure,&quot; what happens to that record? Who owns the queue of uncertain records? What&#39;s the SLA?</li>
+<li><strong>When do we trigger a manual review versus when do we trust the model?</strong> This isn&#39;t a technical question — it&#39;s an organizational design question. Who has the domain expertise to review? Who has the capacity? What&#39;s the escalation path?</li>
+<li><strong>How do we ensure consistency of data sources?</strong> If the model checks a website on Monday versus Friday, will the answer vary wildly? What about when a company updates their site? How do we detect drift?</li>
+</ul>
+<p>These aren&#39;t hypotheticals. These are the questions that determine whether your AI enrichment initiative becomes a scalable asset or an expensive science project that gets quietly shelved after six months.</p>
+<h2>The Real Cost: Coordination Breakdown</h2>
+<p>This is where the AI implementation crisis shows up in revenue operations. You deployed the technology. You trained people on the tools. But you didn&#39;t build the organizational infrastructure to maintain data quality at scale.</p>
+<p>The result? Your teams spend more time coordinating around bad data than they would have spent just doing the research manually in the first place.</p>
+<h2>The Solution: How Salmon Handles Data Enrichment at Scale</h2>
+<p>At Salmon Labs, this is the coordination crisis we&#39;re built to solve. Not by replacing your enrichment tools — Clay works great — but by building the verification infrastructure that makes AI enrichment reliable enough to build business-critical processes on top of.</p>
+<p>We work with Fortune 1000 companies to design verification systems that catch errors before they propagate, establish clear ownership for data quality, and transfer the capability to maintain these systems internally. The goal isn&#39;t perfect data — that doesn&#39;t exist. The goal is liberating your revenue teams from constant data firefighting so they can focus on actually selling.</p>
+<h2>What Separates Experiments from Infrastructure</h2>
+<p>The difference between a successful AI enrichment pilot and scalable AI infrastructure isn&#39;t technical sophistication — it&#39;s operational rigor.</p>
+<p>Here&#39;s what that actually looks like:</p>
+<ul>
+<li><strong>Source validation protocols</strong> that verify the AI pulled from the right part of a website, not just any content that mentions the relevant keyword</li>
+<li><strong>Consistency checks</strong> that flag when an enriched field contradicts other known data points</li>
+<li><strong>Confidence scoring</strong> that routes low-confidence answers to human review queues with clear SLAs</li>
+<li><strong>Feedback loops</strong> that capture when BDRs flag bad data and use that signal to improve accuracy over time</li>
+<li><strong>Clear ownership</strong> of data quality at the executive level</li>
+</ul>
+<p>Most enterprises skip these steps because they&#39;re not sexy. But they&#39;re the difference between AI enrichment that drives the pipeline and AI enrichment that creates more work than it eliminates.</p>
+<h2>The Path Forward</h2>
+<p>If you&#39;re running AI enrichment at enterprise scale and finding that adoption is lower than expected or trust is eroding, you&#39;re not dealing with a technology problem — you&#39;re dealing with a coordination problem.</p>
+<p>The teams that figure this out don&#39;t just have better data — they fundamentally change how their revenue organization operates. Instead of constant firefighting, they build reliable systems that let people focus on strategic work. They build infrastructure that scales.</p>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- Tags -->
+    <section class="post-tags-section">
+      <div class="container">
+        <div class="post-tags">
+          <a href="/insights/#Data%20Enrichment" class="post-tag-link">Data Enrichment</a>
+          <a href="/insights/#Data%20Quality" class="post-tag-link">Data Quality</a>
+          <a href="/insights/#Enterprise" class="post-tag-link">Enterprise</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prev / Next -->
+    <nav class="post-nav">
+      <div class="container">
+        <div class="post-nav-grid">
+          <a href="/insights/hidden-costs-of-bad-data.html" class="post-nav-link prev"><div class="post-nav-label">&larr; Previous</div><div class="post-nav-title">The Hidden Costs of Bad Data (and How to Fix Them)</div></a>
+          <a href="/insights/quiet-pain-revops-leaders.html" class="post-nav-link next"><div class="post-nav-label">Next &rarr;</div><div class="post-nav-title">The Quiet Pain RevOps Leaders Carry Every Day</div></a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- CTA -->
+    <section class="post-cta">
+      <div class="container">
+        <div class="post-cta-inner">
+          <div>
+            <h2>See it on your actual data.</h2>
+            <p>No slides. We run Salmon on your records and show you what changes. 30 minutes, live.</p>
+          </div>
+          <div class="post-cta-btns">
+            <a href="/contact-us.html" class="btn btn-primary">Book a Demo</a>
+            <a href="/insights/" class="btn btn-ghost">More from the blog &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="/images/salmon_logo.svg" alt="Salmon">
+          <p>The real-time data engine that keeps your CRM accurate, current, and trusted.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Solutions</h4>
+          <a href="/solutions/crm.html">CRM Enrichment</a>
+          <a href="/solutions/gtm.html">GTM & Prospecting</a>
+          <a href="/solutions/kyc.html">KYC & Compliance</a>
+          <a href="/solutions/intel.html">Account Intelligence</a>
+          <a href="/solutions/api.html">Enterprise Data API</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="/customers.html">Customers</a>
+          <a href="/story.html">Our Story</a>
+          <a href="/how-we-work.html">How It Works</a><a href="/engine.html">AI Engine</a>
+          
+          <a href="/data.html">Data</a>
+          <a href="/insights/">Insights</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Compare</h4>
+          <a href="/compare/zoominfo.html">vs ZoomInfo</a>
+          <a href="/compare/clay.html">vs Clay</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms-of-service.html">Terms & Conditions</a>
+          <a href="/contact-us.html">Contact Us</a>
+          <a href="/support.html">Support</a>
+          <a href="mailto:hello@salmonrun.ai">hello@salmonrun.ai</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Salmon Labs, Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/nav.js"></script>
+</body>
+</html>

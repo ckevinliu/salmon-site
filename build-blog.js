@@ -6,9 +6,9 @@ const matter = require('gray-matter');
 const { marked } = require('marked');
 
 // ── Config ──
-const POSTS_DIR = path.join(__dirname, 'blog/posts');
-const TEMPLATES_DIR = path.join(__dirname, 'blog/_templates');
-const OUTPUT_DIR = path.join(__dirname, 'blog');
+const POSTS_DIR = path.join(__dirname, 'insights/posts');
+const TEMPLATES_DIR = path.join(__dirname, 'insights/_templates');
+const OUTPUT_DIR = path.join(__dirname, 'insights');
 const SITE_URL = 'https://salmonrun.ai';
 const SITE_NAME = 'Salmon';
 const WORDS_PER_MIN = 230;
@@ -85,27 +85,9 @@ function extractNavFooter() {
   const footerMatch = indexHtml.match(/<!-- ═══ FOOTER ═══ -->\s*([\s\S]*?)<\/footer>/);
   const footer = footerMatch ? footerMatch[1] + '</footer>' : '';
 
-  // Add Blog link to nav Company dropdown
-  let navWithBlog = nav.replace(
-    '<a class="nav-dropdown-item" href="/security.html">Security</a>\n          </div>',
-    '<a class="nav-dropdown-item" href="/security.html">Security</a>\n            <a class="nav-dropdown-item" href="/blog/">Blog</a>\n          </div>'
-  );
-
-  // Add Blog link to mobile overlay
-  let overlayWithBlog = overlay.replace(
-    '<a class="nav-link" href="/security.html">Security</a>',
-    '<a class="nav-link" href="/security.html">Security</a>\n    <a class="nav-link" href="/blog/">Blog</a>'
-  );
-
-  // Add Blog link to footer Company column
-  let footerWithBlog = footer.replace(
-    '<a href="/data.html">Data</a>\n        </div>',
-    '<a href="/data.html">Data</a>\n          <a href="/blog/">Blog</a>\n        </div>'
-  );
-
   return {
-    nav: navWithBlog + '\n\n  ' + overlayWithBlog,
-    footer: footerWithBlog,
+    nav: nav + '\n\n  ' + overlay,
+    footer: footer,
   };
 }
 
@@ -164,7 +146,7 @@ function buildPostPages(posts, navFooter) {
 
     // Tag pills
     const tagPills = post.tags.map(t =>
-      `<a href="/blog/#${encodeURIComponent(t)}" class="post-tag-link">${escapeHtmlAttr(t)}</a>`
+      `<a href="/insights/#${encodeURIComponent(t)}" class="post-tag-link">${escapeHtmlAttr(t)}</a>`
     ).join('\n          ');
 
     // Hero image section
@@ -174,10 +156,10 @@ function buildPostPages(posts, navFooter) {
 
     // Prev/next links
     const prevPostLink = prev
-      ? `<a href="/blog/${prev.slug}.html" class="post-nav-link prev"><div class="post-nav-label">&larr; Previous</div><div class="post-nav-title">${escapeHtmlAttr(prev.title)}</div></a>`
+      ? `<a href="/insights/${prev.slug}.html" class="post-nav-link prev"><div class="post-nav-label">&larr; Previous</div><div class="post-nav-title">${escapeHtmlAttr(prev.title)}</div></a>`
       : '<div></div>';
     const nextPostLink = next
-      ? `<a href="/blog/${next.slug}.html" class="post-nav-link next"><div class="post-nav-label">Next &rarr;</div><div class="post-nav-title">${escapeHtmlAttr(next.title)}</div></a>`
+      ? `<a href="/insights/${next.slug}.html" class="post-nav-link next"><div class="post-nav-label">Next &rarr;</div><div class="post-nav-title">${escapeHtmlAttr(next.title)}</div></a>`
       : '<div></div>';
 
     // JSON-LD
@@ -195,7 +177,7 @@ function buildPostPages(posts, navFooter) {
       },
       description: post.excerpt,
       image: post.og_image ? `${SITE_URL}${post.og_image}` : undefined,
-      mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/blog/${post.slug}` },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/insights/${post.slug}` },
     }, null, 2);
 
     let html = template
@@ -244,7 +226,7 @@ function buildHubPage(posts, allTags, navFooter) {
       : '';
 
     return `<article class="blog-card" data-tags="${escapeHtmlAttr(tagsStr)}" data-title="${escapeHtmlAttr(post.title.toLowerCase())}" data-excerpt="${escapeHtmlAttr(post.excerpt.toLowerCase())}">
-          <a href="/blog/${post.slug}.html" class="blog-card-link">
+          <a href="/insights/${post.slug}.html" class="blog-card-link">
             ${imgHtml}
             <div class="blog-card-body">
               <div class="blog-card-meta">
@@ -293,8 +275,8 @@ function buildSearchIndex(posts) {
 function buildRssFeed(posts) {
   const items = posts.slice(0, 20).map(post => `    <item>
       <title>${escapeXml(post.title)}</title>
-      <link>${SITE_URL}/blog/${post.slug}</link>
-      <guid isPermaLink="true">${SITE_URL}/blog/${post.slug}</guid>
+      <link>${SITE_URL}/insights/${post.slug}</link>
+      <guid isPermaLink="true">${SITE_URL}/insights/${post.slug}</guid>
       <pubDate>${formatRssDate(post.date)}</pubDate>
       <description>${escapeXml(post.excerpt)}</description>
       <author>${escapeXml(post.author)}</author>
@@ -305,11 +287,11 @@ ${post.tags.map(t => `      <category>${escapeXml(t)}</category>`).join('\n')}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>${SITE_NAME} Blog</title>
-    <link>${SITE_URL}/blog</link>
+    <link>${SITE_URL}/insights</link>
     <description>Insights on CRM data quality, revenue operations, and AI-powered enrichment from the Salmon team.</description>
     <language>en-us</language>
     <lastBuildDate>${formatRssDate(posts[0]?.date || new Date().toISOString().split('T')[0])}</lastBuildDate>
-    <atom:link href="${SITE_URL}/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="${SITE_URL}/insights/feed.xml" rel="self" type="application/rss+xml"/>
 ${items}
   </channel>
 </rss>`;
